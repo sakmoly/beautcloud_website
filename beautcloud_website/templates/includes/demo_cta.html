@@ -1,11 +1,11 @@
 <section class="bc-section bc-section-plum">
 	<div class="bc-wrap bc-cta">
-		<p class="bc-eyebrow">Next step</p>
-		<h2 class="bc-h2">{{ heading or "Ready to run the floor from one cloud?" }}</h2>
-		<p class="bc-lead">{{ text or "Tell us about your salon, spa or group. We will walk through Beau-T-Cloud around the way you already work." }}</p>
+		<p class="bc-eyebrow">{{ cta.eyebrow }}</p>
+		<h2 class="bc-h2">{{ cta.title }}</h2>
+		<p class="bc-lead">{{ cta.text }}</p>
 		<div class="bc-actions">
-			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
-			<a class="bc-btn bc-btn-ghost" href="/contact" style="border-color:rgba(255,255,255,.25);color:#fff;">Contact Us</a>
+			<a class="bc-btn bc-btn-primary" href="{{ cta.primary_route }}">{{ cta.primary_label }}</a>
+			<a class="bc-btn bc-btn-ghost" href="{{ cta.secondary_route }}" style="border-color:rgba(255,255,255,.25);color:#fff;">{{ cta.secondary_label }}</a>
 		</div>
 	</div>
 </section>

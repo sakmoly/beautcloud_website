@@ -5,10 +5,10 @@
 		<h1 class="bc-h1">{{ feature.hero }}</h1>
 		<p class="bc-lead">{{ feature.solution }}</p>
 		<div class="bc-actions">
-			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
-			<a class="bc-btn bc-btn-ghost" href="/features">All features</a>
+			<a class="bc-btn bc-btn-primary" href="/book-demo">{{ feature.primary_cta_label }}</a>
+			<a class="bc-btn bc-btn-ghost" href="/features">{{ feature.secondary_cta_label }}</a>
 			{% if feature.show_live %}
-			<a class="bc-btn bc-btn-ghost" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open live booking</a>
+			<a class="bc-btn bc-btn-ghost" href="{{ bc.book_url }}" target="_blank" rel="noopener">{{ feature.live_cta_label }}</a>
 			{% endif %}
 		</div>
 	</div>
@@ -17,15 +17,15 @@
 <section class="bc-section">
 	<div class="bc-wrap bc-feature-split">
 		<div>
-			<p class="bc-eyebrow">How the day changes</p>
+			<p class="bc-eyebrow">{{ feature.change_eyebrow }}</p>
 			<h2 class="bc-h2">{{ feature.section_title or feature.hero }}</h2>
 			<div class="bc-compare-stack">
 				<article class="bc-soft-card">
-					<h3 class="bc-h3">The operational problem</h3>
+					<h3 class="bc-h3">{{ feature.problem_label }}</h3>
 					<p>{{ feature.problem }}</p>
 				</article>
 				<article class="bc-soft-card is-help">
-					<h3 class="bc-h3">How Beau-T-Cloud helps</h3>
+					<h3 class="bc-h3">{{ feature.solution_label }}</h3>
 					<p>{{ feature.solution }}</p>
 				</article>
 			</div>
@@ -39,8 +39,8 @@
 <section class="bc-section bc-section-alt">
 	<div class="bc-wrap bc-feature-split">
 		<div>
-			<p class="bc-eyebrow">In the product</p>
-			<h2 class="bc-h2">What this module covers</h2>
+			<p class="bc-eyebrow">{{ feature.covers_eyebrow }}</p>
+			<h2 class="bc-h2">{{ feature.covers_title }}</h2>
 			<ul class="bc-chips">
 				{% for item in feature.points %}
 				<li>{{ item }}</li>
@@ -64,7 +64,7 @@
 {% if related_features %}
 <section class="bc-section">
 	<div class="bc-wrap">
-		<h2 class="bc-h2">Related features</h2>
+		<h2 class="bc-h2">{{ feature.related_title }}</h2>
 		<div class="bc-modules">
 			{% for item in related_features %}
 			<a href="/features/{{ item.slug }}">

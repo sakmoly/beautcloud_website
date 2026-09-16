@@ -2,9 +2,9 @@
 <section class="bc-cinema" style="background-image:url('{{ page_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
-		<p class="bc-eyebrow">Solutions</p>
-		<h1 class="bc-h1">Designed around the way you work.</h1>
-		<p class="bc-lead">The platform is the same cloud. Each page explains the workflow for that kind of beauty business.</p>
+		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
+		<h1 class="bc-h1">{{ site_page.hero }}</h1>
+		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
 <section class="bc-section">
@@ -15,7 +15,7 @@
 			<div class="bc-card-body">
 				<h2 class="bc-h3">{{ item.title }}</h2>
 				<p>{{ item.hero }}</p>
-				<a class="bc-btn bc-btn-ghost" href="/solutions/{{ item.slug }}">View solution</a>
+				<a class="bc-btn bc-btn-ghost" href="/solutions/{{ item.slug }}">{{ site_page.button_label }}</a>
 			</div>
 		</article>
 		{% endfor %}

@@ -1,21 +1,18 @@
 import frappe
 
-from beautcloud_website.website.content import (
-	BUSINESS_TYPES,
-	FAQS,
-	FEATURES,
-	GCC_POINTS,
-	HOME_FEATURES,
-	HOME_MORE,
-	JOURNEY,
-	NAV,
-	PAGE_IMAGES,
-	PAGES,
-	PRICING,
-	SOLUTIONS,
-	STEPS,
-	TOUR,
+from beautcloud_website.website.cms import (
+	business_type_blocks,
+	get_feature,
+	get_homepage,
+	get_nav,
+	get_page,
+	get_solution,
+	home_feature_blocks,
+	home_more_blocks,
+	list_features,
+	list_solutions,
 )
+from beautcloud_website.website.content import FEATURES, PAGE_IMAGES, PAGES, SOLUTIONS
 from beautcloud_website.website.settings import (
 	FEATURE_SLOTS,
 	PAGE_SLOTS,
@@ -92,25 +89,39 @@ def _img(bc, slot, fallback=""):
 	return (bc.images or {}).get(slot) or fallback
 
 
-def _feature(bc, slug):
-	item = dict(FEATURES[slug])
-	item["image"] = _img(bc, FEATURE_SLOTS.get(slug), item.get("image"))
-	item["slug"] = slug
+def _apply_feature_image(bc, item):
+	item["image"] = _img(bc, FEATURE_SLOTS.get(item.get("slug")), item.get("image"))
 	return item
 
 
-def _solution(bc, slug):
-	item = dict(SOLUTIONS[slug])
-	item["image"] = _img(bc, SOLUTION_SLOTS.get(slug), item.get("image"))
-	item["detail_image"] = _img(bc, f"{SOLUTION_SLOTS.get(slug)}_detail", item.get("detail_image"))
-	item["slug"] = slug
+def _apply_solution_image(bc, item):
+	item["image"] = _img(bc, SOLUTION_SLOTS.get(item.get("slug")), item.get("image"))
+	item["detail_image"] = _img(
+		bc, f"{SOLUTION_SLOTS.get(item.get('slug'))}_detail", item.get("detail_image")
+	)
 	return item
+
+
+def _cta(home, page=None):
+	page = page or {}
+	return {
+		"eyebrow": page.get("cta_eyebrow") or home.get("cta_eyebrow") or "Next step",
+		"title": page.get("cta_title") or home.get("cta_title"),
+		"text": page.get("cta_text") or home.get("cta_text"),
+		"primary_label": page.get("cta_primary_label") or home.get("cta_primary_label") or "Book a Demo",
+		"secondary_label": page.get("cta_secondary_label") or home.get("cta_secondary_label") or "Contact Us",
+		"primary_route": page.get("cta_primary_route") or "/book-demo",
+		"secondary_route": page.get("cta_secondary_route") or "/contact",
+	}
 
 
 def update_website_context(context):
 	bc = get_brand_settings()
+	home = get_homepage()
 	context.bc = bc
-	context.bc_nav = NAV
+	context.home = home
+	context.bc_nav = get_nav()
+	context.cta = _cta(home)
 	context.current_year = frappe.utils.nowdate()[:4]
 	path = (context.get("path") or context.get("route") or _request_path() or "").strip("/")
 	if path == "index":
@@ -127,84 +138,118 @@ def update_website_context(context):
 	context.no_breadcrumbs = 1
 	context.no_cache = 1
 	context.favicon = bc.favicon
+	context.business_types = [
+		{
+			**item,
+			"image": _img(
+				bc,
+				SOLUTION_SLOTS.get(item.get("slug") or item["route"].rsplit("/", 1)[-1]),
+				item.get("image"),
+			),
+		}
+		for item in business_type_blocks()
+	]
 
 	if path in ("", "index"):
-		_seo(context, bc, "", PAGES["index"]["title"], PAGES["index"]["description"])
+		_seo(context, bc, "", home.get("seo_title") or PAGES["index"]["title"], home.get("seo_description") or PAGES["index"]["description"])
 		context.page_kind = "home"
-		context.faqs = FAQS
-		context.business_types = [
-			{**item, "image": _img(bc, SOLUTION_SLOTS.get(item["route"].rsplit("/", 1)[-1]), item.get("image"))}
-			for item in BUSINESS_TYPES
-		]
-		context.journey = JOURNEY
+		context.faqs = home.get("faq_items") or []
+		context.journey = home.get("journey_items") or []
 		context.home_features = [
-			{**item, "image": _img(bc, FEATURE_SLOTS.get(item["route"].rsplit("/", 1)[-1]), item.get("image"))}
-			for item in HOME_FEATURES
+			{
+				**item,
+				"image": _img(bc, FEATURE_SLOTS.get(item.get("slug") or item["route"].rsplit("/", 1)[-1]), item.get("image")),
+				"cta": item.get("cta")
+				or f"{home.get('feature_cta_prefix') or 'View'} {item.get('eyebrow')}",
+			}
+			for item in home_feature_blocks()
 		]
 		context.home_more = [
-			{**item, "image": _img(bc, FEATURE_SLOTS.get(item["route"].rsplit("/", 1)[-1]), item.get("image"))}
-			for item in HOME_MORE
+			{
+				**item,
+				"image": _img(bc, FEATURE_SLOTS.get(item.get("slug") or item["route"].rsplit("/", 1)[-1]), item.get("image")),
+			}
+			for item in home_more_blocks()
 		]
 		context.home_welcome = _img(bc, "home_welcome", "/assets/beautcloud_website/images/home/welcome.png")
 		context.home_lounge = _img(bc, "home_lounge", "/assets/beautcloud_website/images/home/lounge.png")
 		context.home_retail = _img(bc, "home_retail", "/assets/beautcloud_website/images/home/retail.png")
 		context.home_gcc = _img(bc, "home_gcc", "/assets/beautcloud_website/images/home/gcc.png")
-		context.gcc_points = GCC_POINTS
-		context.steps = STEPS
+		context.gcc_points = home.get("gcc_items") or []
+		context.steps = home.get("step_items") or []
 		return context
 
 	if path == "features":
-		_seo(context, bc, path, PAGES["features"]["title"], PAGES["features"]["description"])
+		page = get_page("features")
+		_seo(context, bc, path, page.get("seo_title"), page.get("seo_description"))
 		context.page_kind = "features_index"
+		context.site_page = page
+		context.cta = _cta(home, page)
 		context.page_image = _img(bc, "page_features", PAGE_IMAGES["features"])
-		context.feature_list = [_feature(bc, slug) for slug in FEATURES]
+		context.feature_list = [_apply_feature_image(bc, item) for item in list_features()]
 		return context
 
 	if path.startswith("features/"):
 		slug = path.split("/", 1)[1]
-		if slug not in FEATURES:
+		if slug not in FEATURES and not frappe.db.exists("Beau-T-Cloud Feature", slug):
 			return context
-		feature = _feature(bc, slug)
-		_seo(context, bc, path, feature["seo_title"], feature["seo_description"], feature.get("image"))
+		feature = _apply_feature_image(bc, get_feature(slug))
+		_seo(context, bc, path, feature.get("seo_title") or feature.get("title"), feature.get("seo_description"), feature.get("image"))
 		context.page_kind = "feature"
 		context.feature = feature
 		context.feature_slug = slug
 		context.related_features = [
-			_feature(bc, key) for key in feature.get("related", []) if key in FEATURES
+			_apply_feature_image(bc, get_feature(key))
+			for key in feature.get("related", [])
+			if key in FEATURES or frappe.db.exists("Beau-T-Cloud Feature", key)
 		]
 		return context
 
 	if path == "solutions":
-		_seo(context, bc, path, PAGES["solutions"]["title"], PAGES["solutions"]["description"])
+		page = get_page("solutions")
+		_seo(context, bc, path, page.get("seo_title"), page.get("seo_description"))
 		context.page_kind = "solutions_index"
+		context.site_page = page
+		context.cta = _cta(home, page)
 		context.page_image = _img(bc, "page_solutions", PAGE_IMAGES["solutions"])
-		context.solution_list = [_solution(bc, slug) for slug in SOLUTIONS]
+		context.solution_list = [_apply_solution_image(bc, item) for item in list_solutions()]
 		return context
 
 	if path.startswith("solutions/"):
 		slug = path.split("/", 1)[1]
-		if slug not in SOLUTIONS:
+		if slug not in SOLUTIONS and not frappe.db.exists("Beau-T-Cloud Solution", slug):
 			return context
-		solution = _solution(bc, slug)
-		_seo(context, bc, path, solution["seo_title"], solution["seo_description"], solution.get("image"))
+		solution = _apply_solution_image(bc, get_solution(slug))
+		_seo(context, bc, path, solution.get("seo_title") or solution.get("title"), solution.get("seo_description"), solution.get("image"))
 		context.page_kind = "solution"
 		context.solution = solution
 		context.solution_slug = slug
 		context.solution_modules = [
-			_feature(bc, key) for key in solution.get("modules", []) if key in FEATURES
+			_apply_feature_image(bc, get_feature(key))
+			for key in solution.get("modules", [])
+			if key in FEATURES or frappe.db.exists("Beau-T-Cloud Feature", key)
 		]
 		return context
 
-	page = PAGES.get(path)
+	page = get_page(path) if path in PAGES or frappe.db.exists("Beau-T-Cloud Website Page", path) else None
 	if page:
 		page_image = _img(bc, PAGE_SLOTS.get(path), PAGE_IMAGES.get(path) or bc.hero_image)
-		_seo(context, bc, path, page["title"], page["description"], page_image)
+		_seo(
+			context,
+			bc,
+			path,
+			page.get("seo_title") or page.get("title"),
+			page.get("seo_description"),
+			page_image,
+		)
 		context.page_kind = path.replace("-", "_")
 		context.page_image = page_image
+		context.site_page = page
+		context.cta = _cta(home, page)
 		if path == "pricing":
-			context.pricing = PRICING
+			context.pricing = page.get("pricing") or []
 		if path == "product-tour":
-			context.tour = TOUR
+			context.tour = page.get("tour") or []
 		if path == "about":
 			context.about_image = _img(bc, "page_about", PAGE_IMAGES.get("about") or bc.about_image)
 	return context

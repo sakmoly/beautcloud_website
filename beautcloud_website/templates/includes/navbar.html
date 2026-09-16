@@ -1,15 +1,15 @@
 <a class="bc-skip" href="#main">Skip to content</a>
 <header class="bc-nav" data-bc-nav>
 	<div class="bc-wrap bc-nav-inner">
-		<a class="bc-logo" href="/" aria-label="Beau-T-Cloud home">
-			<img src="{{ bc.logo }}" alt="Beau-T-Cloud" width="180" height="46">
+		<a class="bc-logo" href="/" aria-label="{{ bc.brand_name }} home">
+			<img src="{{ bc.logo }}" alt="{{ bc.brand_name }}" width="180" height="46">
 		</a>
 		<button class="bc-burger" type="button" data-bc-burger aria-expanded="false" aria-controls="bc-menu" aria-label="Open menu">
 			<span></span>
 		</button>
 		<ul class="bc-menu" id="bc-menu" data-bc-menu>
 			<li>
-				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">Product</button>
+				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ home.nav_product_label }}</button>
 				<div class="bc-drop" role="menu">
 					{% for item in bc_nav.product %}
 					<a href="{{ item.route }}" role="menuitem">{{ item.label }}</a>
@@ -17,24 +17,24 @@
 				</div>
 			</li>
 			<li>
-				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">Solutions</button>
+				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ home.nav_solutions_label }}</button>
 				<div class="bc-drop" role="menu">
 					{% for item in bc_nav.solutions %}
 					<a href="{{ item.route }}" role="menuitem">{{ item.label }}</a>
 					{% endfor %}
 				</div>
 			</li>
-			<li><a href="/pricing">Pricing</a></li>
-			<li><a href="/product-tour">Resources</a></li>
-			<li><a href="/about">About</a></li>
+			<li><a href="{{ home.nav_pricing_route }}">{{ home.nav_pricing_label }}</a></li>
+			<li><a href="{{ home.nav_resources_route }}">{{ home.nav_resources_label }}</a></li>
+			<li><a href="{{ home.nav_about_route }}">{{ home.nav_about_label }}</a></li>
 		</ul>
 		<div class="bc-nav-actions">
 			<div class="bc-lang" role="group" aria-label="Language">
 				<button type="button" data-bc-lang="en" class="is-active" aria-pressed="true">EN</button>
 				<button type="button" data-bc-lang="ar" aria-pressed="false">عربي</button>
 			</div>
-			<a class="bc-hide-sm" href="{{ bc.login_url }}">Login</a>
-			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
+			<a class="bc-hide-sm" href="{{ bc.login_url }}">{{ home.nav_login_label }}</a>
+			<a class="bc-btn bc-btn-primary" href="{{ home.nav_demo_route }}">{{ home.nav_demo_label }}</a>
 		</div>
 	</div>
 </header>

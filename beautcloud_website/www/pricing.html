@@ -2,9 +2,9 @@
 <section class="bc-cinema" style="background-image:url('{{ page_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
-		<p class="bc-eyebrow">Pricing</p>
-		<h1 class="bc-h1">Plans for every stage of your beauty business.</h1>
-		<p class="bc-lead">Subscription prices are not published yet. Choose the shape of your business and talk to sales — we will propose a package after the demo.</p>
+		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
+		<h1 class="bc-h1">{{ site_page.hero }}</h1>
+		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
 <section class="bc-section">
@@ -14,7 +14,7 @@
 			<p class="bc-eyebrow">Plan {{ loop.index }}</p>
 			<h2 class="bc-h3">{{ plan.name }}</h2>
 			<p>{{ plan.text }}</p>
-			<p class="bc-note">Price on consultation</p>
+			<p class="bc-note">{{ site_page.note }}</p>
 			<a class="bc-btn {% if loop.index == 2 %}bc-btn-primary{% else %}bc-btn-ghost{% endif %}" href="{{ plan.route }}">{{ plan.cta }}</a>
 		</article>
 		{% endfor %}

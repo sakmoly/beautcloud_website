@@ -1,0 +1,25 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 21:55:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["title", "text", "kind", "link_label", "link_route"],
+ "fields": [
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title"},
+  {"fieldname": "text", "fieldtype": "Small Text", "in_list_view": 1, "label": "Text"},
+  {"fieldname": "kind", "fieldtype": "Data", "in_list_view": 1, "label": "Kind / number"},
+  {"fieldname": "link_label", "fieldtype": "Data", "label": "Link label"},
+  {"fieldname": "link_route", "fieldtype": "Data", "label": "Link route"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 21:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Copy Line",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

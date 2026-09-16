@@ -33,6 +33,54 @@
   {
    "child": 0,
    "collapsible": 1,
+   "icon": "text",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Homepage Copy",
+   "link_to": "Beau-T-Cloud Homepage",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "list",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Features",
+   "link_to": "Beau-T-Cloud Feature",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "organization",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Solutions",
+   "link_to": "Beau-T-Cloud Solution",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "small-file",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Website Pages",
+   "link_to": "Beau-T-Cloud Website Page",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
    "icon": "users",
    "indent": 0,
    "keep_closed": 0,
@@ -43,7 +91,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-09-16 21:05:00.000000",
+ "modified": "2026-09-16 22:10:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud",

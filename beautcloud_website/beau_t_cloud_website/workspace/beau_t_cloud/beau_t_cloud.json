@@ -1,7 +1,7 @@
 {
  "app": "beautcloud_website",
  "charts": [],
- "content": "[{\"id\":\"bc-head\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beau-T-Cloud website</span>\",\"col\":12}},{\"id\":\"bc-set\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Website Settings\",\"col\":4}},{\"id\":\"bc-lead\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leads\",\"col\":4}}]",
+ "content": "[{\"id\":\"bc-head\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">Beau-T-Cloud website</span>\",\"col\":12}},{\"id\":\"bc-set\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Website Settings\",\"col\":4}},{\"id\":\"bc-home\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Homepage Copy\",\"col\":4}},{\"id\":\"bc-feat\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Features\",\"col\":4}},{\"id\":\"bc-sol\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Solutions\",\"col\":4}},{\"id\":\"bc-page\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Website Pages\",\"col\":4}},{\"id\":\"bc-lead\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Leads\",\"col\":4}}]",
  "creation": "2026-09-16 21:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -17,7 +17,7 @@
    "hidden": 0,
    "is_query_report": 0,
    "label": "Website",
-   "link_count": 1,
+   "link_count": 5,
    "onboard": 0,
    "type": "Card Break"
   },
@@ -30,9 +30,49 @@
    "link_type": "DocType",
    "onboard": 1,
    "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Homepage Copy",
+   "link_count": 0,
+   "link_to": "Beau-T-Cloud Homepage",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Features",
+   "link_count": 0,
+   "link_to": "Beau-T-Cloud Feature",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Solutions",
+   "link_count": 0,
+   "link_to": "Beau-T-Cloud Solution",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Website Pages",
+   "link_count": 0,
+   "link_to": "Beau-T-Cloud Website Page",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
   }
  ],
- "modified": "2026-09-16 21:00:00.000000",
+ "modified": "2026-09-16 22:10:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud",
@@ -49,6 +89,38 @@
    "doc_view": "",
    "label": "Website Settings",
    "link_to": "Beau-T-Cloud Settings",
+   "stats_filter": "",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "label": "Homepage Copy",
+   "link_to": "Beau-T-Cloud Homepage",
+   "stats_filter": "",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "doc_view": "List",
+   "label": "Features",
+   "link_to": "Beau-T-Cloud Feature",
+   "stats_filter": "",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "List",
+   "label": "Solutions",
+   "link_to": "Beau-T-Cloud Solution",
+   "stats_filter": "",
+   "type": "DocType"
+  },
+  {
+   "color": "Cyan",
+   "doc_view": "List",
+   "label": "Website Pages",
+   "link_to": "Beau-T-Cloud Website Page",
    "stats_filter": "",
    "type": "DocType"
   },

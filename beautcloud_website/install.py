@@ -1,10 +1,12 @@
 import frappe
 
+from beautcloud_website.website.cms import seed_cms
 from beautcloud_website.website.settings import DEFAULTS, IMAGE_SLOTS
 
 
 def after_install():
 	_seed_settings()
+	seed_cms()
 	_configure_website()
 	_ensure_workspace_link()
 	_ensure_desk_sidebar()
@@ -12,6 +14,7 @@ def after_install():
 
 def after_migrate():
 	_seed_settings()
+	seed_cms()
 	_configure_website()
 	_ensure_workspace_link()
 	_ensure_desk_sidebar()
@@ -63,6 +66,7 @@ def _seed_settings():
 def _ensure_workspace_link():
 	if not frappe.db.exists("DocType", "Workspace"):
 		return
+	_ensure_beau_workspace_links()
 	if frappe.db.exists("Workspace", "Website"):
 		ws = frappe.get_doc("Workspace", "Website")
 		already = any(
@@ -111,6 +115,8 @@ def _ensure_desk_sidebar():
 			"items",
 			{"label": "Leads", "type": "Link", "link_type": "DocType", "link_to": "Lead", "icon": "users"},
 		)
+		for item in _cms_sidebar_items():
+			sidebar.append("items", item)
 		sidebar.insert(ignore_permissions=True)
 
 	if frappe.db.exists("DocType", "Workspace Sidebar") and frappe.db.exists("Workspace Sidebar", "Website"):
@@ -183,7 +189,88 @@ def _ensure_desk_sidebar():
 				update_modified=False,
 			)
 
+	_ensure_cms_sidebar_links()
 	_clear_desk_cache()
+
+
+def _cms_sidebar_items():
+	return [
+		{"label": "Homepage Copy", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Homepage", "icon": "text"},
+		{"label": "Features", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Feature", "icon": "list"},
+		{"label": "Solutions", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Solution", "icon": "organization"},
+		{"label": "Website Pages", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Website Page", "icon": "small-file"},
+	]
+
+
+def _ensure_beau_workspace_links():
+	if not frappe.db.exists("Workspace", "Beau-T-Cloud"):
+		return
+	if not frappe.db.exists("DocType", "Beau-T-Cloud Homepage"):
+		return
+	ws = frappe.get_doc("Workspace", "Beau-T-Cloud")
+	wanted_links = [
+		{"label": "Homepage Copy", "link_to": "Beau-T-Cloud Homepage"},
+		{"label": "Features", "link_to": "Beau-T-Cloud Feature"},
+		{"label": "Solutions", "link_to": "Beau-T-Cloud Solution"},
+		{"label": "Website Pages", "link_to": "Beau-T-Cloud Website Page"},
+	]
+	existing_links = {row.get("link_to") for row in (ws.links or [])}
+	changed = False
+	for item in wanted_links:
+		if item["link_to"] not in existing_links:
+			ws.append(
+				"links",
+				{
+					"type": "Link",
+					"label": item["label"],
+					"link_type": "DocType",
+					"link_to": item["link_to"],
+					"onboard": 1,
+					"hidden": 0,
+				},
+			)
+			changed = True
+	wanted_shortcuts = [
+		{"label": "Homepage Copy", "link_to": "Beau-T-Cloud Homepage", "color": "Orange", "doc_view": ""},
+		{"label": "Features", "link_to": "Beau-T-Cloud Feature", "color": "Blue", "doc_view": "List"},
+		{"label": "Solutions", "link_to": "Beau-T-Cloud Solution", "color": "Green", "doc_view": "List"},
+		{"label": "Website Pages", "link_to": "Beau-T-Cloud Website Page", "color": "Cyan", "doc_view": "List"},
+	]
+	existing_shortcuts = {row.get("link_to") for row in (ws.shortcuts or [])}
+	for item in wanted_shortcuts:
+		if item["link_to"] not in existing_shortcuts:
+			ws.append(
+				"shortcuts",
+				{
+					"type": "DocType",
+					"label": item["label"],
+					"link_to": item["link_to"],
+					"color": item["color"],
+					"doc_view": item["doc_view"],
+				},
+			)
+			changed = True
+	if changed:
+		ws.save(ignore_permissions=True)
+
+
+def _ensure_cms_sidebar_links():
+	if not frappe.db.exists("DocType", "Workspace Sidebar"):
+		return
+	if not frappe.db.exists("Workspace Sidebar", "Beau-T-Cloud"):
+		return
+	try:
+		sidebar = frappe.get_doc("Workspace Sidebar", "Beau-T-Cloud")
+		existing = {(row.link_type, row.link_to) for row in (sidebar.items or [])}
+		changed = False
+		for item in _cms_sidebar_items():
+			if (item["link_type"], item["link_to"]) not in existing:
+				sidebar.append("items", item)
+				changed = True
+		if changed:
+			sidebar.save(ignore_permissions=True)
+	except Exception:
+		frappe.log_error(title="Beau-T-Cloud Website CMS sidebar")
 
 
 def _clear_desk_cache():

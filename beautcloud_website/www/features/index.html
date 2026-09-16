@@ -2,9 +2,9 @@
 <section class="bc-cinema" style="background-image:url('{{ page_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
-		<p class="bc-eyebrow">Product</p>
-		<h1 class="bc-h1">Everything in one cloud platform.</h1>
-		<p class="bc-lead">Each module has its own photograph and page. We describe the work — not invented customer results.</p>
+		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
+		<h1 class="bc-h1">{{ site_page.hero }}</h1>
+		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
 <section class="bc-section">
@@ -16,7 +16,7 @@
 				<p class="bc-eyebrow">{{ item.eyebrow }}</p>
 				<h2 class="bc-h3">{{ item.title }}</h2>
 				<p>{{ item.hero }}</p>
-				<a class="bc-btn bc-btn-ghost" href="/features/{{ item.slug }}">View feature</a>
+				<a class="bc-btn bc-btn-ghost" href="/features/{{ item.slug }}">{{ site_page.button_label }}</a>
 			</div>
 		</article>
 		{% endfor %}

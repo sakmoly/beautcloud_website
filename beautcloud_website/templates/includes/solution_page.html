@@ -5,8 +5,8 @@
 		<h1 class="bc-h1">{{ solution.hero }}</h1>
 		<p class="bc-lead">{{ solution.lead }}</p>
 		<div class="bc-actions">
-			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
-			<a class="bc-btn bc-btn-ghost" href="/solutions">All solutions</a>
+			<a class="bc-btn bc-btn-primary" href="/book-demo">{{ solution.primary_cta_label }}</a>
+			<a class="bc-btn bc-btn-ghost" href="/solutions">{{ solution.secondary_cta_label }}</a>
 		</div>
 	</div>
 </section>
@@ -14,7 +14,7 @@
 {% if solution.pillars %}
 <section class="bc-section">
 	<div class="bc-wrap">
-		<p class="bc-eyebrow">{{ solution.section_eyebrow }}</p>
+		<p class="bc-eyebrow">{{ solution.eyebrow }}</p>
 		<h2 class="bc-h2">{{ solution.section_title }}</h2>
 		<div class="bc-pillars">
 			{% for item in solution.pillars %}
@@ -40,7 +40,7 @@
 <section class="bc-section bc-section-alt">
 	<div class="bc-wrap bc-compare">
 		<article>
-			<h2 class="bc-h2">Typical challenges</h2>
+			<h2 class="bc-h2">{{ solution.challenges_title }}</h2>
 			<ul class="bc-check-list">
 				{% for item in solution.challenges %}
 				<li>{{ item }}</li>
@@ -48,7 +48,7 @@
 			</ul>
 		</article>
 		<article class="is-help">
-			<h2 class="bc-h2">How Beau-T-Cloud helps</h2>
+			<h2 class="bc-h2">{{ solution.helps_title }}</h2>
 			<ul class="bc-check-list is-pink">
 				{% for item in solution.helps %}
 				<li>{{ item }}</li>
@@ -60,7 +60,7 @@
 
 <section class="bc-section">
 	<div class="bc-wrap">
-		<p class="bc-eyebrow">A typical workflow</p>
+		<p class="bc-eyebrow">{{ solution.workflow_eyebrow }}</p>
 		<h2 class="bc-h2">{{ solution.workflow_intro }}</h2>
 		<ol class="bc-flow">
 			{% for item in solution.workflow %}
@@ -80,7 +80,7 @@
 
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
-		<p class="bc-eyebrow">Product</p>
+		<p class="bc-eyebrow">{{ solution.product_eyebrow }}</p>
 		<h2 class="bc-h2">{{ solution.modules_title }}</h2>
 		<div class="bc-modules">
 			{% for item in solution_modules %}

@@ -2,13 +2,19 @@
 <section class="bc-cinema" style="background-image:url('{{ page_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
-		<p class="bc-eyebrow">Contact</p>
-		<h1 class="bc-h1">Speak with the Beau-T-Cloud team.</h1>
-		<p class="bc-lead">Use the details below or send a demo request. These values can be updated later from Beau-T-Cloud Settings.</p>
+		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
+		<h1 class="bc-h1">{{ site_page.hero }}</h1>
+		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
 <section class="bc-section">
 	<div class="bc-wrap bc-pillars">
+		{% for item in site_page.body_items %}
+		<article>
+			<h2 class="bc-h3">{{ item.title }}</h2>
+			<p>{{ item.text }}</p>
+		</article>
+		{% endfor %}
 		<article>
 			<p class="bc-eyebrow">Email</p>
 			<h2 class="bc-h3"><a href="{{ bc.email_link }}">{{ bc.contact_email }}</a></h2>
@@ -27,5 +33,5 @@
 			<p>{{ bc.address_line }}</p>
 		</article>
 	</div>
-	<p class="bc-wrap" style="margin-top:2rem;"><a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a></p>
+	<p class="bc-wrap" style="margin-top:2rem;"><a class="bc-btn bc-btn-primary" href="/book-demo">{{ site_page.button_label }}</a></p>
 </section>

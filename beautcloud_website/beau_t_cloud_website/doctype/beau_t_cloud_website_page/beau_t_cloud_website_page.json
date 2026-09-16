@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "autoname": "field:slug",
+ "creation": "2026-09-16 21:55:00",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "slug", "title", "column_a", "seo_title", "seo_description",
+  "hero_section", "eyebrow", "hero", "lead",
+  "body_section", "intro", "body_items", "faq_items",
+  "cta_section", "button_label", "note", "aside_title", "cta_title", "cta_text", "cta_primary_label", "cta_secondary_label"
+ ],
+ "fields": [
+  {"fieldname": "slug", "fieldtype": "Data", "in_list_view": 1, "label": "Slug", "reqd": 1, "unique": 1},
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+  {"fieldname": "column_a", "fieldtype": "Column Break"},
+  {"fieldname": "seo_title", "fieldtype": "Data", "label": "SEO Title"},
+  {"fieldname": "seo_description", "fieldtype": "Small Text", "label": "SEO Description"},
+  {"fieldname": "hero_section", "fieldtype": "Section Break", "label": "Hero"},
+  {"fieldname": "eyebrow", "fieldtype": "Data", "label": "Eyebrow"},
+  {"fieldname": "hero", "fieldtype": "Data", "label": "Hero title"},
+  {"fieldname": "lead", "fieldtype": "Small Text", "label": "Lead"},
+  {"fieldname": "body_section", "fieldtype": "Section Break", "label": "Body"},
+  {"fieldname": "intro", "fieldtype": "Text Editor", "label": "Intro"},
+  {"fieldname": "body_items", "fieldtype": "Table", "label": "Sections", "options": "Beau-T-Cloud Copy Line"},
+  {"fieldname": "faq_items", "fieldtype": "Table", "label": "FAQ", "options": "Beau-T-Cloud FAQ Item"},
+  {"fieldname": "cta_section", "fieldtype": "Section Break", "label": "CTA"},
+  {"fieldname": "button_label", "fieldtype": "Data", "label": "Button label"},
+  {"fieldname": "note", "fieldtype": "Data", "label": "Note"},
+  {"fieldname": "aside_title", "fieldtype": "Data", "label": "Aside title"},
+  {"fieldname": "cta_title", "fieldtype": "Data", "label": "CTA title"},
+  {"fieldname": "cta_text", "fieldtype": "Small Text", "label": "CTA text"},
+  {"fieldname": "cta_primary_label", "fieldtype": "Data", "label": "Primary button"},
+  {"fieldname": "cta_secondary_label", "fieldtype": "Data", "label": "Secondary button"}
+ ],
+ "links": [],
+ "modified": "2026-09-16 21:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Website Page",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {"create": 1, "delete": 1, "read": 1, "role": "System Manager", "write": 1},
+  {"create": 1, "read": 1, "role": "Website Manager", "write": 1}
+ ],
+ "search_fields": "title,slug",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "title",
+ "track_changes": 1
+}

@@ -2,11 +2,11 @@
 	<div class="bc-wrap">
 		<div class="bc-footer-grid">
 			<div>
-				<img src="{{ bc.logo }}" alt="Beau-T-Cloud" width="160" height="42" style="height:42px;background:#fff;border-radius:10px;padding:6px 8px;">
-				<p class="bc-lead" style="color:#d8c4d2;margin-top:1rem;">A Printechs solution for salons, spas and beauty groups.</p>
+				<img src="{{ bc.logo }}" alt="{{ bc.brand_name }}" width="160" height="42" style="height:42px;background:#fff;border-radius:10px;padding:6px 8px;">
+				<p class="bc-lead" style="color:#d8c4d2;margin-top:1rem;">{{ home.footer_blurb }}</p>
 			</div>
 			<div>
-				<h3>Product</h3>
+				<h3>{{ home.footer_product_label }}</h3>
 				<ul>
 					{% for item in bc_nav.product[:5] %}
 					<li><a href="{{ item.route }}">{{ item.label }}</a></li>
@@ -14,7 +14,7 @@
 				</ul>
 			</div>
 			<div>
-				<h3>Solutions</h3>
+				<h3>{{ home.footer_solutions_label }}</h3>
 				<ul>
 					{% for item in bc_nav.solutions %}
 					<li><a href="{{ item.route }}">{{ item.label }}</a></li>
@@ -22,32 +22,36 @@
 				</ul>
 			</div>
 			<div>
-				<h3>Company</h3>
+				<h3>{{ home.footer_company_label }}</h3>
 				<ul>
-					<li><a href="/about">About</a></li>
-					<li><a href="/contact">Contact</a></li>
-					<li><a href="/book-demo">Book a Demo</a></li>
-					<li><a href="/product-tour">Product tour</a></li>
+					{% for item in home.footer_company %}
+					<li><a href="{{ item.link_route or item.route }}">{{ item.title }}</a></li>
+					{% endfor %}
 				</ul>
 			</div>
 			<div>
-				<h3>Resources</h3>
+				<h3>{{ home.footer_resources_label }}</h3>
 				<ul>
-					<li><a href="/#faq">FAQs</a></li>
-					<li><a href="/privacy-policy">Privacy</a></li>
-					<li><a href="/terms">Terms</a></li>
-					<li><a href="{{ bc.book_url }}" target="_blank" rel="noopener">Live booking</a></li>
+					{% for item in home.footer_resources %}
+					<li>
+						{% if item.kind == "book" %}
+						<a href="{{ bc.book_url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+						{% else %}
+						<a href="{{ item.link_route or item.route }}">{{ item.title }}</a>
+						{% endif %}
+					</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>
 		<div class="bc-footer-bottom">
-			<p>© {{ current_year }} Beau-T-Cloud. A Printechs solution.</p>
+			<p>© {{ current_year }} {{ home.footer_legal }}</p>
 			<p>{{ bc.contact_email }} · {{ bc.contact_phone_display }}</p>
 		</div>
 	</div>
 </footer>
 {% if bc.whatsapp_link %}
-<a class="bc-whatsapp" href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener" aria-label="WhatsApp Beau-T-Cloud">
+<a class="bc-whatsapp" href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener" aria-label="WhatsApp {{ bc.brand_name }}">
 	<svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20 11.5A8.5 8.5 0 0 1 7.2 18.4L4 20l1.7-3.1A8.5 8.5 0 1 1 20 11.5Zm-8.5 7a7 7 0 1 0-6.1-3.5l.2.3-.9 1.7 1.8-.8.3.2A7 7 0 0 0 11.5 18.5Zm3.9-5.2c-.2-.1-1.2-.6-1.4-.7s-.3-.1-.5.1-.5.7-.7.8-.3.1-.5 0a5.7 5.7 0 0 1-1.7-1 6.2 6.2 0 0 1-1.1-1.4c-.1-.2 0-.4.1-.5l.3-.3.1-.3c0-.1 0-.3-.1-.4s-.5-1.1-.6-1.5.0-.4-.4-.4h-.4c-.1 0-.4.1-.6.3a2.3 2.3 0 0 0-.7 1.7 4 4 0 0 0 .8 2.1 9.1 9.1 0 0 0 3.5 3.2 11.8 11.8 0 0 0 2.3.8 2.2 2.2 0 0 0 2-.9 1.8 1.8 0 0 0 .1-1.1c-.1-.1-.3-.2-.5-.3Z"/></svg>
 </a>
 {% endif %}

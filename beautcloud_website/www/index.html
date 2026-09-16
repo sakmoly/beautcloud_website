@@ -1,14 +1,13 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<!-- title: Beauty Salon Management Software Saudi Arabia | Beau-T-Cloud -->
 <section class="bc-cinema" style="background-image:url('{{ bc.hero_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
-		<p class="bc-eyebrow">The operating system for modern beauty businesses</p>
-		<h1 class="bc-h1">Run your beauty business beautifully.</h1>
-		<p class="bc-lead">Appointments, clients, staff, POS, inventory, memberships and multiple locations — one connected cloud platform.</p>
+		<p class="bc-eyebrow">{{ home.hero_eyebrow }}</p>
+		<h1 class="bc-h1">{{ home.hero_title }}</h1>
+		<p class="bc-lead">{{ home.hero_lead }}</p>
 		<div class="bc-actions">
-			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
-			<a class="bc-btn bc-btn-ghost" href="/product-tour">Explore the Platform</a>
+			<a class="bc-btn bc-btn-primary" href="{{ home.hero_primary_route }}">{{ home.hero_primary_label }}</a>
+			<a class="bc-btn bc-btn-ghost" href="{{ home.hero_secondary_route }}">{{ home.hero_secondary_label }}</a>
 		</div>
 	</div>
 </section>
@@ -16,25 +15,25 @@
 <section class="bc-section">
 	<div class="bc-wrap bc-feature-split">
 		<div>
-			<p class="bc-eyebrow">See it on the floor</p>
-			<h2 class="bc-h2">Open a live booking page. Then walk the rest of the day.</h2>
-			<p class="bc-lead">The booking and kiosk links open a real salon setup. We do not invent customer counts or fill this page with the same calendar twice.</p>
+			<p class="bc-eyebrow">{{ home.live_eyebrow }}</p>
+			<h2 class="bc-h2">{{ home.live_title }}</h2>
+			<p class="bc-lead">{{ home.live_text }}</p>
 			<div class="bc-actions">
-				<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open live booking</a>
-				<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">Open kiosk</a>
+				<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">{{ home.live_primary_label }}</a>
+				<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">{{ home.live_secondary_label }}</a>
 			</div>
 		</div>
 		<figure class="bc-photo-frame">
-			<img src="{{ home_welcome }}" alt="Salon front desk ready for the first guest" width="960" height="540">
+			<img src="{{ home_welcome }}" alt="{{ home.live_title }}" width="960" height="540">
 		</figure>
 	</div>
 </section>
 
 <section class="bc-section bc-section-alt">
 	<div class="bc-wrap">
-		{% set eyebrow = "Business types" %}
-		{% set heading = "Built for every kind of beauty business" %}
-		{% set text = "Whether you run one studio or a group, Beau-T-Cloud follows the way beauty businesses actually work." %}
+		{% set eyebrow = home.types_eyebrow %}
+		{% set heading = home.types_title %}
+		{% set text = home.types_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-cards bc-cards-auto">
@@ -51,15 +50,15 @@
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_lounge }}" alt="Quiet salon lounge at dusk" width="1320" height="743">
+		<img src="{{ home_lounge }}" alt="{{ home.journey_title }}" width="1320" height="743">
 	</div>
 </section>
 
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
-		{% set eyebrow = "Connected journey" %}
-		{% set heading = "One cloud. Every part of the visit." %}
-		{% set text = "Booking, the welcome, the service, payment, rewards and the next visit stay on the same thread." %}
+		{% set eyebrow = home.journey_eyebrow %}
+		{% set heading = home.journey_title %}
+		{% set text = home.journey_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-journey">
@@ -86,7 +85,7 @@
 				<li>{{ item }}</li>
 				{% endfor %}
 			</ul>
-			<p style="margin-top:1.2rem;"><a class="bc-btn bc-btn-ghost" href="{{ block.route }}">View {{ block.eyebrow }}</a></p>
+			<p style="margin-top:1.2rem;"><a class="bc-btn bc-btn-ghost" href="{{ block.route }}">{{ block.cta }}</a></p>
 		</div>
 		<figure class="bc-photo-frame">
 			<img src="{{ block.image }}" alt="{{ block.title }}" width="960" height="540">
@@ -97,15 +96,15 @@
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_retail }}" alt="Salon retail wall after closing" width="1320" height="743">
+		<img src="{{ home_retail }}" alt="{{ home.more_title }}" width="1320" height="743">
 	</div>
 </section>
 
 <section class="bc-section" id="more-modules">
 	<div class="bc-wrap">
-		{% set eyebrow = "Also in the platform" %}
-		{% set heading = "Booking, loyalty, groups and the day’s numbers." %}
-		{% set text = "Each tile opens a full page. Figures you see later are examples in SAR, not a customer’s results." %}
+		{% set eyebrow = home.more_eyebrow %}
+		{% set heading = home.more_title %}
+		{% set text = home.more_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-cards bc-cards-auto">
@@ -115,7 +114,7 @@
 				<div class="bc-card-body">
 					<h3 class="bc-h3">{{ item.title }}</h3>
 					<p>{{ item.text }}</p>
-					<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">View feature</a>
+					<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">{{ home.more_cta_label }}</a>
 				</div>
 			</article>
 			{% endfor %}
@@ -125,14 +124,14 @@
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_gcc }}" alt="Gulf city salon terrace in late afternoon light" width="1320" height="743">
+		<img src="{{ home_gcc }}" alt="{{ home.gcc_title }}" width="1320" height="743">
 	</div>
 </section>
 <section class="bc-section bc-section-alt" id="gcc">
 	<div class="bc-wrap">
-		{% set eyebrow = "Saudi Arabia & GCC" %}
-		{% set heading = "Implemented for beauty businesses in the region." %}
-		{% set text = "Arabic is prepared as a language switch. Full Arabic copy follows once English is approved. Integrations are named only when they are part of your project." %}
+		{% set eyebrow = home.gcc_eyebrow %}
+		{% set heading = home.gcc_title %}
+		{% set text = home.gcc_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-gcc bc-cards-auto">
@@ -148,15 +147,15 @@
 
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
-		{% set eyebrow = "Getting started" %}
-		{% set heading = "Three steps. No invented promises." %}
-		{% set text = "" %}
+		{% set eyebrow = home.steps_eyebrow %}
+		{% set heading = home.steps_title %}
+		{% set text = home.steps_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-steps">
 			{% for item in steps %}
 			<article class="bc-panel">
-				<p class="bc-eyebrow">{{ item.num }}</p>
+				<p class="bc-eyebrow">{{ item.num or item.kind or loop.index }}</p>
 				<h3 class="bc-h3">{{ item.title }}</h3>
 				<p>{{ item.text }}</p>
 			</article>
@@ -167,9 +166,9 @@
 
 <section class="bc-section" id="faq">
 	<div class="bc-wrap">
-		{% set eyebrow = "FAQ" %}
-		{% set heading = "Questions, answered plainly." %}
-		{% set text = "Legal and security claims stay off this page until they are confirmed." %}
+		{% set eyebrow = home.faq_eyebrow %}
+		{% set heading = home.faq_title %}
+		{% set text = home.faq_text %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
 		<div class="bc-faq">

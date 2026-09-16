@@ -1,0 +1,22 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 21:55:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["question", "answer"],
+ "fields": [
+  {"fieldname": "question", "fieldtype": "Data", "in_list_view": 1, "label": "Question", "reqd": 1},
+  {"fieldname": "answer", "fieldtype": "Small Text", "in_list_view": 1, "label": "Answer"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 21:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud FAQ Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

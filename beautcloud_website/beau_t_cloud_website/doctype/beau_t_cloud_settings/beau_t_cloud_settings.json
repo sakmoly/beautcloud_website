@@ -36,11 +36,16 @@
   "about_image",
   "screenshots_section",
   "hero_screenshot",
+  "hero_screenshot_preview",
   "calendar_screenshot",
+  "calendar_screenshot_preview",
   "booking_screenshot",
+  "booking_screenshot_preview",
   "column_break_shots",
   "crm_screenshot",
-  "pos_screenshot"
+  "crm_screenshot_preview",
+  "pos_screenshot",
+  "pos_screenshot_preview"
  ],
  "fields": [
   {
@@ -210,42 +215,78 @@
   {
    "fieldname": "screenshots_section",
    "fieldtype": "Section Break",
-   "label": "Product Screenshots (upload later)"
+   "label": "Product Screenshots"
   },
   {
+   "description": "Recommended 1440 \u00d7 900 px (16:10). Used as the dashboard and fallback product image.",
    "fieldname": "hero_screenshot",
    "fieldtype": "Attach Image",
    "label": "Dashboard Screenshot"
   },
   {
+   "fieldname": "hero_screenshot_preview",
+   "fieldtype": "Image",
+   "label": "Dashboard Preview",
+   "options": "hero_screenshot"
+  },
+  {
+   "description": "Recommended 1440 \u00d7 900 px (16:10).",
    "fieldname": "calendar_screenshot",
    "fieldtype": "Attach Image",
    "label": "Calendar Screenshot"
   },
   {
+   "fieldname": "calendar_screenshot_preview",
+   "fieldtype": "Image",
+   "label": "Calendar Preview",
+   "options": "calendar_screenshot"
+  },
+  {
+   "description": "Recommended 1440 \u00d7 900 px (16:10).",
    "fieldname": "booking_screenshot",
    "fieldtype": "Attach Image",
    "label": "Booking Screenshot"
+  },
+  {
+   "fieldname": "booking_screenshot_preview",
+   "fieldtype": "Image",
+   "label": "Booking Preview",
+   "options": "booking_screenshot"
   },
   {
    "fieldname": "column_break_shots",
    "fieldtype": "Column Break"
   },
   {
+   "description": "Recommended 1440 \u00d7 900 px (16:10).",
    "fieldname": "crm_screenshot",
    "fieldtype": "Attach Image",
    "label": "CRM Screenshot"
   },
   {
+   "fieldname": "crm_screenshot_preview",
+   "fieldtype": "Image",
+   "label": "CRM Preview",
+   "options": "crm_screenshot"
+  },
+  {
+   "description": "Recommended 1440 \u00d7 900 px (16:10).",
    "fieldname": "pos_screenshot",
    "fieldtype": "Attach Image",
    "label": "POS Screenshot"
+  },
+  {
+   "fieldname": "pos_screenshot_preview",
+   "fieldtype": "Image",
+   "label": "POS Preview",
+   "options": "pos_screenshot"
   }
  ],
+ "description": "Beauty Cloud website settings: contact, WhatsApp, logos, booking and kiosk links",
  "index_web_pages_for_search": 0,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-16 19:50:00.000000",
+ "modified": "2026-09-16 21:20:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud Settings",

@@ -1,58 +1,97 @@
-<section class="bc-page-hero">
-	<div class="bc-wrap bc-feature-split">
-		<div>
-			<p class="bc-eyebrow">Solutions</p>
-			<h1 class="bc-h1">{{ solution.hero }}</h1>
-			<p class="bc-lead">Beau-T-Cloud for {{ solution.title | lower }} — appointments, clients, staff and checkout in one cloud platform.</p>
+<section class="bc-cinema" style="background-image:url('{{ solution.image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
+		<p class="bc-eyebrow">{{ solution.title }}</p>
+		<h1 class="bc-h1">{{ solution.hero }}</h1>
+		<p class="bc-lead">{{ solution.lead }}</p>
+		<div class="bc-actions">
+			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
+			<a class="bc-btn bc-btn-ghost" href="/solutions">All solutions</a>
 		</div>
-		<img src="{{ solution.image }}" alt="{{ solution.title }}" width="720" height="480" style="border-radius:24px;object-fit:cover;height:320px;width:100%;">
 	</div>
 </section>
+
+{% if solution.pillars %}
 <section class="bc-section">
-	<div class="bc-wrap bc-feature-split">
-		<div>
-			<h2 class="bc-h2">Typical challenges</h2>
-			<ul class="bc-list">
-				{% for item in solution.challenges %}
-				<li>{{ item }}</li>
-				{% endfor %}
-			</ul>
-		</div>
-		<div>
-			<h2 class="bc-h2">How Beau-T-Cloud helps</h2>
-			<ul class="bc-list">
-				{% for item in solution.helps %}
-				<li>{{ item }}</li>
-				{% endfor %}
-			</ul>
-		</div>
-	</div>
-</section>
-<section class="bc-section bc-section-alt">
 	<div class="bc-wrap">
-		<h2 class="bc-h2">A typical workflow</h2>
-		<div class="bc-steps">
-			{% for item in solution.workflow %}
-			<article class="bc-panel">
-				<p class="bc-eyebrow">{{ loop.index }}</p>
-				<p>{{ item }}</p>
+		<p class="bc-eyebrow">{{ solution.section_eyebrow }}</p>
+		<h2 class="bc-h2">{{ solution.section_title }}</h2>
+		<div class="bc-pillars">
+			{% for item in solution.pillars %}
+			<article>
+				<span class="bc-flow-num">{{ loop.index }}</span>
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.text }}</p>
 			</article>
 			{% endfor %}
 		</div>
 	</div>
 </section>
+{% endif %}
+
+{% if solution.detail_image %}
+<section class="bc-photo-band">
+	<div class="bc-wrap">
+		<img src="{{ solution.detail_image }}" alt="{{ solution.title }}" width="1200" height="675">
+	</div>
+</section>
+{% endif %}
+
+<section class="bc-section bc-section-alt">
+	<div class="bc-wrap bc-compare">
+		<article>
+			<h2 class="bc-h2">Typical challenges</h2>
+			<ul class="bc-check-list">
+				{% for item in solution.challenges %}
+				<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</article>
+		<article class="is-help">
+			<h2 class="bc-h2">How Beau-T-Cloud helps</h2>
+			<ul class="bc-check-list is-pink">
+				{% for item in solution.helps %}
+				<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</article>
+	</div>
+</section>
+
 <section class="bc-section">
 	<div class="bc-wrap">
-		<h2 class="bc-h2">Relevant modules</h2>
-		<div class="bc-cards">
+		<p class="bc-eyebrow">A typical workflow</p>
+		<h2 class="bc-h2">{{ solution.workflow_intro }}</h2>
+		<ol class="bc-flow">
+			{% for item in solution.workflow %}
+			<li class="bc-flow-card">
+				<span class="bc-flow-num">{{ loop.index }}</span>
+				{% if item is mapping %}
+				<h3 class="bc-h3">{{ item["title"] }}</h3>
+				<p>{{ item["text"] }}</p>
+				{% else %}
+				<h3 class="bc-h3">{{ item }}</h3>
+				{% endif %}
+			</li>
+			{% endfor %}
+		</ol>
+	</div>
+</section>
+
+<section class="bc-section bc-section-blush">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Product</p>
+		<h2 class="bc-h2">{{ solution.modules_title }}</h2>
+		<div class="bc-modules">
 			{% for item in solution_modules %}
-			<article class="bc-card">
-				<div class="bc-card-body">
-					<h3 class="bc-h3">{{ item.title }}</h3>
-					<p>{{ item.hero }}</p>
-					<a href="/features/{{ item.slug }}">View feature</a>
-				</div>
-			</article>
+			<a href="/features/{{ item.slug }}">
+				{% if item.image %}
+				<img src="{{ item.image }}" alt="{{ item.title }}" width="480" height="270">
+				{% endif %}
+				<p class="bc-eyebrow">{{ item.eyebrow }}</p>
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.hero }}</p>
+			</a>
 			{% endfor %}
 		</div>
 	</div>

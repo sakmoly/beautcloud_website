@@ -1,20 +1,22 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-page-hero">
-	<div class="bc-wrap">
+<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">Product</p>
 		<h1 class="bc-h1">Everything in one cloud platform.</h1>
-		<p class="bc-lead">Each module is a dedicated page. Copy stays specific — we do not invent customer results.</p>
+		<p class="bc-lead">Each module has its own photograph and page. We describe the work — not invented customer results.</p>
 	</div>
 </section>
 <section class="bc-section">
-	<div class="bc-wrap bc-cards">
+	<div class="bc-wrap bc-cards bc-cards-auto">
 		{% for item in feature_list %}
 		<article class="bc-card">
+			<img src="{{ item.image }}" alt="{{ item.title }}" width="640" height="360" loading="lazy">
 			<div class="bc-card-body">
 				<p class="bc-eyebrow">{{ item.eyebrow }}</p>
 				<h2 class="bc-h3">{{ item.title }}</h2>
 				<p>{{ item.hero }}</p>
-				<a class="bc-btn bc-btn-ghost" href="/features/{{ item.slug }}">Open</a>
+				<a class="bc-btn bc-btn-ghost" href="/features/{{ item.slug }}">View feature</a>
 			</div>
 		</article>
 		{% endfor %}

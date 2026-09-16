@@ -1,40 +1,43 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
 <!-- title: Beauty Salon Management Software Saudi Arabia | Beau-T-Cloud -->
-<section class="bc-hero">
-	<div class="bc-wrap bc-hero-grid">
-		<div>
-			<p class="bc-eyebrow">The operating system for modern beauty businesses</p>
-			<h1 class="bc-h1">Run your beauty business beautifully.</h1>
-			<p class="bc-lead">Manage appointments, clients, staff, POS, inventory, memberships, loyalty and multiple locations from one connected cloud platform.</p>
-			<ul class="bc-trust">
-				<li>Cloud-Based</li>
-				<li>Multi-Location</li>
-				<li>Real-Time Insights</li>
-			</ul>
-			<div class="bc-actions" style="display:flex;gap:.7rem;flex-wrap:wrap;">
-				<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
-				<a class="bc-btn bc-btn-ghost" href="/product-tour">Explore the Platform</a>
-			</div>
-		</div>
-		<div class="bc-hero-visual" style="display:flex;flex-direction:column;gap:16px;position:relative;">
-			<img class="bc-hero-photo" src="{{ bc.hero_image }}" alt="Quiet luxury salon interior" width="960" height="540" style="position:static;height:220px;width:100%;object-fit:cover;border-radius:22px;">
-			<div style="position:static;width:100%;">
-				{% set kind = "analytics" %}
-				{% set label = "Beau-T-Cloud dashboard" %}
-				{% include "beautcloud_website/templates/includes/product_ui.html" %}
-			</div>
+<section class="bc-cinema" style="background-image:url('{{ bc.hero_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
+		<p class="bc-eyebrow">The operating system for modern beauty businesses</p>
+		<h1 class="bc-h1">Run your beauty business beautifully.</h1>
+		<p class="bc-lead">Appointments, clients, staff, POS, inventory, memberships and multiple locations — one connected cloud platform.</p>
+		<div class="bc-actions">
+			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
+			<a class="bc-btn bc-btn-ghost" href="/product-tour">Explore the Platform</a>
 		</div>
 	</div>
 </section>
 
 <section class="bc-section">
+	<div class="bc-wrap bc-feature-split">
+		<div>
+			<p class="bc-eyebrow">See it on the floor</p>
+			<h2 class="bc-h2">Open a live booking page. Then walk the rest of the day.</h2>
+			<p class="bc-lead">The booking and kiosk links open a real salon setup. We do not invent customer counts or fill this page with the same calendar twice.</p>
+			<div class="bc-actions">
+				<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open live booking</a>
+				<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">Open kiosk</a>
+			</div>
+		</div>
+		<figure class="bc-photo-frame">
+			<img src="{{ home_welcome }}" alt="Salon front desk ready for the first guest" width="960" height="540">
+		</figure>
+	</div>
+</section>
+
+<section class="bc-section bc-section-alt">
 	<div class="bc-wrap">
 		{% set eyebrow = "Business types" %}
 		{% set heading = "Built for every kind of beauty business" %}
 		{% set text = "Whether you run one studio or a group, Beau-T-Cloud follows the way beauty businesses actually work." %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
-		<div class="bc-cards">
+		<div class="bc-cards bc-cards-auto">
 			{% for item in business_types %}
 			{% set title = item.title %}
 			{% set text = item.text %}
@@ -46,10 +49,16 @@
 	</div>
 </section>
 
+<section class="bc-photo-band">
+	<div class="bc-wrap">
+		<img src="{{ home_lounge }}" alt="Quiet salon lounge at dusk" width="1320" height="743">
+	</div>
+</section>
+
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
 		{% set eyebrow = "Connected journey" %}
-		{% set heading = "One Cloud. Every Part of Your Beauty Business." %}
+		{% set heading = "One cloud. Every part of the visit." %}
 		{% set text = "Booking, the welcome, the service, payment, rewards and the next visit stay on the same thread." %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
@@ -79,55 +88,54 @@
 			</ul>
 			<p style="margin-top:1.2rem;"><a class="bc-btn bc-btn-ghost" href="{{ block.route }}">View {{ block.eyebrow }}</a></p>
 		</div>
-		{% set kind = block.preview %}
-		{% set label = block.eyebrow %}
-		{% include "beautcloud_website/templates/includes/product_ui.html" %}
+		<figure class="bc-photo-frame">
+			<img src="{{ block.image }}" alt="{{ block.title }}" width="960" height="540">
+		</figure>
 	</div>
 </section>
 {% endfor %}
 
-<section class="bc-section" id="multi-location">
+<section class="bc-photo-band">
 	<div class="bc-wrap">
-		{% set eyebrow = "Multi-location" %}
-		{% set heading = "One salon or an entire beauty group." %}
-		{% set text = "Manage every location independently while keeping real-time visibility across the business." %}
-		{% set center = False %}
-		{% include "beautcloud_website/templates/includes/section_heading.html" %}
-		<div class="bc-kpis" style="margin-top:1.6rem;">
-			<div class="bc-kpi"><b>Revenue</b><span class="bc-muted">By location or group</span></div>
-			<div class="bc-kpi"><b>Appointments</b><span class="bc-muted">Same-day occupancy</span></div>
-			<div class="bc-kpi"><b>Staff</b><span class="bc-muted">Hours and output</span></div>
-			<div class="bc-kpi"><b>Inventory</b><span class="bc-muted">Branch stock</span></div>
-		</div>
-		<p style="margin-top:1.2rem;"><a href="/features/multi-location">See multi-location</a></p>
+		<img src="{{ home_retail }}" alt="Salon retail wall after closing" width="1320" height="743">
 	</div>
 </section>
 
-<section class="bc-section bc-section-alt" id="analytics">
-	<div class="bc-wrap bc-feature-split">
-		<div>
-			<p class="bc-eyebrow">Analytics</p>
-			<h2 class="bc-h2">Numbers that stay attached to the day.</h2>
-			<p class="bc-lead">Example figures below use SAR. They are illustrations, not a customer’s results.</p>
-			<ul class="bc-chips">
-				<li>Today’s Revenue</li><li>Today’s Appointments</li><li>Occupancy</li><li>Average Ticket</li>
-				<li>New Customers</li><li>Repeat Customers</li><li>Top Services</li><li>Branch Comparison</li>
-			</ul>
-		</div>
-		{% set kind = "analytics" %}
-		{% set label = "Management view" %}
-		{% include "beautcloud_website/templates/includes/product_ui.html" %}
-	</div>
-</section>
-
-<section class="bc-section" id="gcc">
+<section class="bc-section" id="more-modules">
 	<div class="bc-wrap">
-		{% set eyebrow = "Saudi Arabia & GCC" %}
-		{% set heading = "Built for beauty businesses in Saudi Arabia and the GCC" %}
-		{% set text = "The platform is implemented for the region. Integrations are named only when they are part of your project." %}
+		{% set eyebrow = "Also in the platform" %}
+		{% set heading = "Booking, loyalty, groups and the day’s numbers." %}
+		{% set text = "Each tile opens a full page. Figures you see later are examples in SAR, not a customer’s results." %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}
-		<div class="bc-gcc">
+		<div class="bc-cards bc-cards-auto">
+			{% for item in home_more %}
+			<article class="bc-card">
+				<img src="{{ item.image }}" alt="{{ item.title }}" width="640" height="360" loading="lazy">
+				<div class="bc-card-body">
+					<h3 class="bc-h3">{{ item.title }}</h3>
+					<p>{{ item.text }}</p>
+					<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">View feature</a>
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<section class="bc-photo-band">
+	<div class="bc-wrap">
+		<img src="{{ home_gcc }}" alt="Gulf city salon terrace in late afternoon light" width="1320" height="743">
+	</div>
+</section>
+<section class="bc-section bc-section-alt" id="gcc">
+	<div class="bc-wrap">
+		{% set eyebrow = "Saudi Arabia & GCC" %}
+		{% set heading = "Implemented for beauty businesses in the region." %}
+		{% set text = "Arabic is prepared as a language switch. Full Arabic copy follows once English is approved. Integrations are named only when they are part of your project." %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-gcc bc-cards-auto">
 			{% for item in gcc_points %}
 			<article class="bc-panel">
 				<h3 class="bc-h3">{{ item.title }}</h3>
@@ -141,7 +149,7 @@
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
 		{% set eyebrow = "Getting started" %}
-		{% set heading = "Getting started is simple." %}
+		{% set heading = "Three steps. No invented promises." %}
 		{% set text = "" %}
 		{% set center = True %}
 		{% include "beautcloud_website/templates/includes/section_heading.html" %}

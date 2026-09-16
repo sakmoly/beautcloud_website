@@ -1,57 +1,79 @@
-<section class="bc-page-hero">
-	<div class="bc-wrap">
+<section class="bc-cinema" style="background-image:url('{{ feature.image or bc.hero_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">{{ feature.eyebrow }}</p>
 		<h1 class="bc-h1">{{ feature.hero }}</h1>
 		<p class="bc-lead">{{ feature.solution }}</p>
+		<div class="bc-actions">
+			<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
+			<a class="bc-btn bc-btn-ghost" href="/features">All features</a>
+			{% if feature.show_live %}
+			<a class="bc-btn bc-btn-ghost" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open live booking</a>
+			{% endif %}
+		</div>
 	</div>
 </section>
+
 <section class="bc-section">
 	<div class="bc-wrap bc-feature-split">
 		<div>
-			<h2 class="bc-h2">The operational problem</h2>
-			<p>{{ feature.problem }}</p>
-			<h3 class="bc-h3" style="margin-top:1.6rem;">How Beau-T-Cloud helps</h3>
-			<p>{{ feature.solution }}</p>
+			<p class="bc-eyebrow">How the day changes</p>
+			<h2 class="bc-h2">{{ feature.section_title or feature.hero }}</h2>
+			<div class="bc-compare-stack">
+				<article class="bc-soft-card">
+					<h3 class="bc-h3">The operational problem</h3>
+					<p>{{ feature.problem }}</p>
+				</article>
+				<article class="bc-soft-card is-help">
+					<h3 class="bc-h3">How Beau-T-Cloud helps</h3>
+					<p>{{ feature.solution }}</p>
+				</article>
+			</div>
+		</div>
+		<figure class="bc-photo-frame">
+			<img src="{{ feature.image or bc.hero_image }}" alt="{{ feature.title }}" width="720" height="480">
+		</figure>
+	</div>
+</section>
+
+<section class="bc-section bc-section-alt">
+	<div class="bc-wrap bc-feature-split">
+		<div>
+			<p class="bc-eyebrow">In the product</p>
+			<h2 class="bc-h2">What this module covers</h2>
 			<ul class="bc-chips">
 				{% for item in feature.points %}
 				<li>{{ item }}</li>
 				{% endfor %}
 			</ul>
+			<div class="bc-pillars" style="margin-top:1.6rem;">
+				{% for item in feature.benefits %}
+				<article>
+					<span class="bc-flow-num">{{ loop.index }}</span>
+					<p>{{ item }}</p>
+				</article>
+				{% endfor %}
+			</div>
 		</div>
 		{% set kind = feature.preview %}
 		{% set label = feature.title %}
 		{% include "beautcloud_website/templates/includes/product_ui.html" %}
 	</div>
 </section>
-<section class="bc-section bc-section-alt">
-	<div class="bc-wrap">
-		<h2 class="bc-h2">Business benefits</h2>
-		<ul class="bc-list">
-			{% for item in feature.benefits %}
-			<li>{{ item }}</li>
-			{% endfor %}
-		</ul>
-		{% if feature.show_live %}
-		<p style="margin-top:1.2rem;">
-			<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open live booking</a>
-			<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">Open kiosk</a>
-		</p>
-		{% endif %}
-	</div>
-</section>
+
 {% if related_features %}
 <section class="bc-section">
 	<div class="bc-wrap">
 		<h2 class="bc-h2">Related features</h2>
-		<div class="bc-cards">
+		<div class="bc-modules">
 			{% for item in related_features %}
-			<article class="bc-card">
-				<div class="bc-card-body">
-					<h3 class="bc-h3">{{ item.title }}</h3>
-					<p>{{ item.hero }}</p>
-					<a href="/features/{{ item.slug }}">View feature</a>
-				</div>
-			</article>
+			<a href="/features/{{ item.slug }}">
+				{% if item.image %}
+				<img src="{{ item.image }}" alt="{{ item.title }}" width="480" height="270">
+				{% endif %}
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.hero }}</p>
+			</a>
 			{% endfor %}
 		</div>
 	</div>

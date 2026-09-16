@@ -6,8 +6,10 @@ from beautcloud_website.website.content import (
 	FEATURES,
 	GCC_POINTS,
 	HOME_FEATURES,
+	HOME_MORE,
 	JOURNEY,
 	NAV,
+	PAGE_IMAGES,
 	PAGES,
 	PRICING,
 	SOLUTIONS,
@@ -44,15 +46,41 @@ def _canonical(bc, path):
 	return f"{host}/{path}"
 
 
+def _abs_url(bc, url):
+	if not url:
+		return ""
+	if url.startswith("http://") or url.startswith("https://"):
+		return url
+	host = (bc.canonical_host or "https://beautcloud.com").rstrip("/")
+	return host + (url if url.startswith("/") else "/" + url)
+
+
 def _seo(context, bc, path, title, description, image=None):
 	page_title = title
+	canonical = _canonical(bc, path)
+	og_image = _abs_url(
+		bc,
+		image or PAGE_IMAGES.get(path or "index") or bc.hero_image or bc.hero_screenshot or bc.logo,
+	)
 	context.title = page_title
+	context.meta_description = description
 	context.metatags = {
 		"title": page_title,
 		"description": description,
-		"image": image or bc.hero_image or bc.logo,
+		"image": og_image,
+		"og:title": page_title,
+		"og:description": description,
+		"og:image": og_image,
+		"og:url": canonical,
+		"og:type": "website",
+		"og:site_name": bc.brand_name or "Beau-T-Cloud",
+		"twitter:card": "summary_large_image",
+		"twitter:title": page_title,
+		"twitter:description": description,
+		"twitter:image": og_image,
 	}
-	context.canonical = _canonical(bc, path)
+	context.canonical = canonical
+	context.bc_canonical = canonical
 
 
 def update_website_context(context):
@@ -83,6 +111,11 @@ def update_website_context(context):
 		context.business_types = BUSINESS_TYPES
 		context.journey = JOURNEY
 		context.home_features = HOME_FEATURES
+		context.home_more = HOME_MORE
+		context.home_welcome = "/assets/beautcloud_website/images/home/welcome.png"
+		context.home_lounge = "/assets/beautcloud_website/images/home/lounge.png"
+		context.home_retail = "/assets/beautcloud_website/images/home/retail.png"
+		context.home_gcc = "/assets/beautcloud_website/images/home/gcc.png"
 		context.gcc_points = GCC_POINTS
 		context.steps = STEPS
 		return context
@@ -90,6 +123,7 @@ def update_website_context(context):
 	if path == "features":
 		_seo(context, bc, path, PAGES["features"]["title"], PAGES["features"]["description"])
 		context.page_kind = "features_index"
+		context.page_image = PAGE_IMAGES["features"]
 		context.feature_list = [{"slug": slug, **item} for slug, item in FEATURES.items()]
 		return context
 
@@ -98,7 +132,7 @@ def update_website_context(context):
 		feature = FEATURES.get(slug)
 		if not feature:
 			return context
-		_seo(context, bc, path, feature["seo_title"], feature["seo_description"])
+		_seo(context, bc, path, feature["seo_title"], feature["seo_description"], feature.get("image"))
 		context.page_kind = "feature"
 		context.feature = feature
 		context.feature_slug = slug
@@ -108,6 +142,7 @@ def update_website_context(context):
 	if path == "solutions":
 		_seo(context, bc, path, PAGES["solutions"]["title"], PAGES["solutions"]["description"])
 		context.page_kind = "solutions_index"
+		context.page_image = PAGE_IMAGES["solutions"]
 		context.solution_list = [{"slug": slug, **item} for slug, item in SOLUTIONS.items()]
 		return context
 
@@ -129,10 +164,11 @@ def update_website_context(context):
 	if page:
 		_seo(context, bc, path, page["title"], page["description"])
 		context.page_kind = path.replace("-", "_")
+		context.page_image = PAGE_IMAGES.get(path) or bc.hero_image
 		if path == "pricing":
 			context.pricing = PRICING
 		if path == "product-tour":
 			context.tour = TOUR
 		if path == "about":
-			context.about_image = bc.about_image
+			context.about_image = PAGE_IMAGES.get("about") or bc.about_image
 	return context

@@ -5,8 +5,9 @@
 	"name": "Beau-T-Cloud",
 	"applicationCategory": "BusinessApplication",
 	"operatingSystem": "Web",
-	"url": "{{ bc.canonical_host }}",
-	"description": "Cloud salon and beauty business management platform for appointments, clients, POS, staff, inventory, memberships and multi-location operations.",
+	"url": "{{ bc_canonical or canonical or bc.canonical_host }}",
+	"description": {{ (meta_description or "Cloud salon and beauty business management platform for appointments, clients, POS, staff, inventory, memberships and multi-location operations.") | tojson }},
+	"image": "{{ metatags.image if metatags else bc.logo }}",
 	"offers": {
 		"@type": "Offer",
 		"availability": "https://schema.org/OnlineOnly",
@@ -36,6 +37,15 @@
 	}
 }
 </script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": {{ (title or "Beau-T-Cloud") | tojson }},
+	"description": {{ (meta_description or "") | tojson }},
+	"url": "{{ bc_canonical or canonical or bc.canonical_host }}"
+}
+</script>
 {% if page_kind == "home" %}
 <script type="application/ld+json">
 {
@@ -49,6 +59,28 @@
 			"acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
 		}{% if not loop.last %},{% endif %}
 		{% endfor %}
+	]
+}
+</script>
+{% endif %}
+{% if page_kind in ("feature", "solution", "features_index", "solutions_index") %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{"@type": "ListItem", "position": 1, "name": "Home", "item": "{{ bc.canonical_host }}/"},
+		{% if page_kind == "feature" %}
+		{"@type": "ListItem", "position": 2, "name": "Features", "item": "{{ bc.canonical_host }}/features"},
+		{"@type": "ListItem", "position": 3, "name": {{ feature.title | tojson }}, "item": "{{ bc_canonical }}"}
+		{% elif page_kind == "solution" %}
+		{"@type": "ListItem", "position": 2, "name": "Solutions", "item": "{{ bc.canonical_host }}/solutions"},
+		{"@type": "ListItem", "position": 3, "name": {{ solution.title | tojson }}, "item": "{{ bc_canonical }}"}
+		{% elif page_kind == "features_index" %}
+		{"@type": "ListItem", "position": 2, "name": "Features", "item": "{{ bc_canonical }}"}
+		{% else %}
+		{"@type": "ListItem", "position": 2, "name": "Solutions", "item": "{{ bc_canonical }}"}
+		{% endif %}
 	]
 }
 </script>

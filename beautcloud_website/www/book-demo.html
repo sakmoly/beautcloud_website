@@ -1,13 +1,14 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-page-hero">
-	<div class="bc-wrap">
+<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">Book a demo</p>
 		<h1 class="bc-h1">Tell us about your beauty business.</h1>
 		<p class="bc-lead">Required: full name, business name, and either a mobile number or email. This creates a lead for the Printechs team.</p>
 	</div>
 </section>
 <section class="bc-section">
-	<div class="bc-wrap">
+	<div class="bc-wrap bc-feature-split">
 		<form class="bc-form" data-bc-demo-form novalidate>
 			<input type="hidden" name="form_loaded_at" value="">
 			<div class="bc-hp" aria-hidden="true">
@@ -75,5 +76,21 @@
 				<p class="bc-form-status" data-bc-form-status></p>
 			</div>
 		</form>
+		<aside class="bc-compare" style="grid-template-columns:1fr;align-self:start;">
+			<article>
+				<h2 class="bc-h3">What happens next</h2>
+				<ul class="bc-check-list is-pink">
+					<li>We read how you book, take payment and pay staff today</li>
+					<li>We walk through Beau-T-Cloud on that workflow</li>
+					<li>You get a written proposal after the call — prices are not listed on the site yet</li>
+				</ul>
+			</article>
+			<article class="is-help">
+				<h2 class="bc-h3">Prefer to talk now?</h2>
+				<p><a href="{{ bc.email_link }}">{{ bc.contact_email }}</a></p>
+				<p><a href="{{ bc.phone_link }}">{{ bc.contact_phone_display }}</a></p>
+				<p><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener">WhatsApp {{ bc.whatsapp_display }}</a></p>
+			</article>
+		</aside>
 	</div>
 </section>

@@ -9,8 +9,8 @@ required_apps = []
 
 home_page = "index"
 
-web_include_css = ["/assets/beautcloud_website/css/beautcloud.css?v=20260916b"]
-web_include_js = ["/assets/beautcloud_website/js/beautcloud.js?v=20260916b"]
+web_include_css = ["/assets/beautcloud_website/css/beautcloud.css?v=20260916i"]
+web_include_js = ["/assets/beautcloud_website/js/beautcloud.js?v=20260916i"]
 
 update_website_context = ["beautcloud_website.website.context.update_website_context"]
 
@@ -30,7 +30,7 @@ add_to_apps_screen = [
 		"name": "beautcloud_website",
 		"logo": "/assets/beautcloud_website/images/logo/beau-t-cloud-symbol.png",
 		"title": "Beau-T-Cloud Website",
-		"route": "/",
+		"route": "/app/beau-t-cloud",
 	}
 ]
 

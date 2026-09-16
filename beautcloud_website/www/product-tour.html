@@ -1,26 +1,30 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-page-hero">
-	<div class="bc-wrap">
+<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">Product tour</p>
 		<h1 class="bc-h1">See the platform, then open the live flow.</h1>
-		<p class="bc-lead">Booking and kiosk are public for now so you can click through a real salon setup. Other modules use branded previews until screenshots are uploaded in ERPNext.</p>
+		<p class="bc-lead">Booking and kiosk open a real salon setup. Other modules use branded previews until you upload screenshots in Beau-T-Cloud Settings.</p>
 	</div>
 </section>
 <section class="bc-section">
-	<div class="bc-wrap bc-cards">
+	<div class="bc-wrap bc-cards bc-cards-auto">
 		{% for item in tour %}
 		<article class="bc-card">
 			<div class="bc-card-body">
+				<p class="bc-eyebrow">Step {{ loop.index }}</p>
 				<h2 class="bc-h3">{{ item.title }}</h2>
 				<p>{{ item.text }}</p>
 				{% if item.kind == "book" %}
-				<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open booking</a>
+				<p style="margin-top:1rem;"><a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">Open booking</a></p>
 				{% elif item.kind == "kiosk" %}
-				<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">Open kiosk</a>
+				<p style="margin-top:1rem;"><a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">Open kiosk</a></p>
 				{% else %}
-				{% set kind = item.kind %}
-				{% set label = item.title %}
-				{% include "beautcloud_website/templates/includes/product_ui.html" %}
+				<div style="margin-top:1rem;">
+					{% set kind = item.kind %}
+					{% set label = item.title %}
+					{% include "beautcloud_website/templates/includes/product_ui.html" %}
+				</div>
 				{% endif %}
 			</div>
 		</article>

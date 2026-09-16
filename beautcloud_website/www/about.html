@@ -1,19 +1,26 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-page-hero">
-	<div class="bc-wrap bc-feature-split">
-		<div>
-			<p class="bc-eyebrow">About</p>
-			<h1 class="bc-h1">A Printechs product for beauty operations.</h1>
-			<p class="bc-lead">Beau-T-Cloud is developed to help modern salons, spas and beauty businesses simplify daily operations and gain better control over customers, appointments, staff, sales, inventory and business performance.</p>
-		</div>
-		<img src="{{ bc.about_image }}" alt="Quiet studio desk prepared for planning" width="720" height="540" style="border-radius:24px;object-fit:cover;height:320px;width:100%;">
+<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
+		<p class="bc-eyebrow">About</p>
+		<h1 class="bc-h1">A Printechs product for beauty operations.</h1>
+		<p class="bc-lead">Beau-T-Cloud helps salons, spas and beauty groups run appointments, clients, staff, sales and inventory from one cloud platform.</p>
 	</div>
 </section>
 <section class="bc-section">
-	<div class="bc-wrap">
-		<h2 class="bc-h2">What we do not invent</h2>
-		<p class="bc-lead">This page does not use a founder story, founding year or customer counts. Those details can be added here when they are approved.</p>
-		<p>Beau-T-Cloud is a Printechs solution. Implementation and support are delivered by the same team that configures the platform for your business.</p>
+	<div class="bc-wrap bc-pillars">
+		<article>
+			<h2 class="bc-h3">Who builds it</h2>
+			<p>Beau-T-Cloud is a Printechs solution. The same team that implements the software also supports the business after go-live.</p>
+		</article>
+		<article>
+			<h2 class="bc-h3">How we write this site</h2>
+			<p>We do not publish founder stories, customer counts or awards unless they are approved. Contact details and screenshots can be updated from Beau-T-Cloud Settings.</p>
+		</article>
+		<article>
+			<h2 class="bc-h3">Where to start</h2>
+			<p>Book a demo if you want a walkthrough around your floor. Contact us if you already know what you need to ask.</p>
+		</article>
 	</div>
 </section>
 {% include "beautcloud_website/templates/includes/demo_cta.html" %}

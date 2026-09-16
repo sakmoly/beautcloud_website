@@ -1,6 +1,6 @@
 import frappe
 
-from beautcloud_website.website.settings import DEFAULTS
+from beautcloud_website.website.settings import DEFAULTS, IMAGE_SLOTS
 
 
 def after_install():
@@ -47,6 +47,15 @@ def _seed_settings():
 		if not doc.get(field):
 			doc.set(field, value)
 			changed = True
+	if frappe.db.exists("DocType", "Beau-T-Cloud Website Image"):
+		existing = {row.slot for row in (doc.get("website_images") or [])}
+		for row in IMAGE_SLOTS:
+			if row["slot"] not in existing:
+				doc.append(
+					"website_images",
+					{"slot": row["slot"], "label": row["label"], "image": row["image"]},
+				)
+				changed = True
 	if changed:
 		doc.save(ignore_permissions=True)
 

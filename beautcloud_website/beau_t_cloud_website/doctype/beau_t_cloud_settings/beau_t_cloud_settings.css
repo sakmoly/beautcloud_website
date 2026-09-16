@@ -1,5 +1,5 @@
-[data-fieldname$="_screenshot_preview"] .img-responsive,
-[data-fieldname$="_screenshot_preview"] img {
+[data-fieldname$="_preview"] .img-responsive,
+[data-fieldname$="_preview"] img {
 	display: block;
 	width: 100%;
 	max-width: 100%;
@@ -12,7 +12,7 @@
 	border-radius: 10px;
 }
 
-[data-fieldname$="_screenshot_preview"] .missing-image {
+[data-fieldname$="_preview"] .missing-image {
 	width: 100%;
 	aspect-ratio: 16 / 10;
 	max-height: 280px;

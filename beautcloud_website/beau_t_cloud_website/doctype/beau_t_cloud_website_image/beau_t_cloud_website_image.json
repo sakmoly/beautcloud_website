@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 21:50:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "slot",
+  "label",
+  "image",
+  "preview"
+ ],
+ "fields": [
+  {
+   "fieldname": "slot",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Photo",
+   "options": "home_welcome\nhome_lounge\nhome_retail\nhome_gcc\npage_features\npage_solutions\npage_about\npage_contact\npage_book_demo\npage_pricing\npage_product_tour\nfeature_appointment_management\nfeature_online_booking\nfeature_salon_pos\nfeature_client_crm\nfeature_staff_management\nfeature_inventory_management\nfeature_memberships_loyalty\nfeature_multi_location\nfeature_reports_analytics\nsolution_hair_salon\nsolution_beauty_salon\nsolution_nail_salon\nsolution_spa\nsolution_barbershop\nsolution_multi_branch\nsolution_hair_salon_detail\nsolution_beauty_salon_detail\nsolution_nail_salon_detail\nsolution_spa_detail\nsolution_barbershop_detail\nsolution_multi_branch_detail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "label",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Shown On"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "in_list_view": 1,
+   "label": "Image"
+  },
+  {
+   "fieldname": "preview",
+   "fieldtype": "Image",
+   "label": "Preview",
+   "options": "image"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 21:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Website Image",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "idx",
+ "sort_order": "ASC",
+ "states": []
+}

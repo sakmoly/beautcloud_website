@@ -1,7 +1,7 @@
 frappe.ui.form.on("Beau-T-Cloud Settings", {
 	refresh(frm) {
 		frm.set_intro(
-			"These values appear on the public Beau-T-Cloud website. Screenshot previews use a 16:10 screen (1440 × 900 px). Leave a screenshot empty to keep the branded product preview."
+			"Brand, page photos and screenshots on this form appear on the public website after Save. Use Website Photos to replace home, feature and solution images. Leave a screenshot empty to keep the branded product preview."
 		);
 		frm.fields
 			.filter((field) => field.df.fieldname && field.df.fieldname.endsWith("_screenshot"))

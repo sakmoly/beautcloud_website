@@ -29,11 +29,18 @@
   "canonical_host",
   "assets_section",
   "logo",
+  "logo_preview",
   "symbol",
+  "symbol_preview",
   "favicon",
+  "favicon_preview",
   "column_break_assets",
   "hero_image",
+  "hero_image_preview",
   "about_image",
+  "about_image_preview",
+  "website_photos_section",
+  "website_images",
   "screenshots_section",
   "hero_screenshot",
   "hero_screenshot_preview",
@@ -189,14 +196,32 @@
    "label": "Primary Logo"
   },
   {
+   "fieldname": "logo_preview",
+   "fieldtype": "Image",
+   "label": "Logo Preview",
+   "options": "logo"
+  },
+  {
    "fieldname": "symbol",
    "fieldtype": "Attach Image",
    "label": "Symbol"
   },
   {
+   "fieldname": "symbol_preview",
+   "fieldtype": "Image",
+   "label": "Symbol Preview",
+   "options": "symbol"
+  },
+  {
    "fieldname": "favicon",
    "fieldtype": "Attach Image",
    "label": "Favicon"
+  },
+  {
+   "fieldname": "favicon_preview",
+   "fieldtype": "Image",
+   "label": "Favicon Preview",
+   "options": "favicon"
   },
   {
    "fieldname": "column_break_assets",
@@ -208,9 +233,33 @@
    "label": "Hero Atmosphere Image"
   },
   {
+   "fieldname": "hero_image_preview",
+   "fieldtype": "Image",
+   "label": "Hero Preview",
+   "options": "hero_image"
+  },
+  {
    "fieldname": "about_image",
    "fieldtype": "Attach Image",
    "label": "About Image"
+  },
+  {
+   "fieldname": "about_image_preview",
+   "fieldtype": "Image",
+   "label": "About Preview",
+   "options": "about_image"
+  },
+  {
+   "fieldname": "website_photos_section",
+   "fieldtype": "Section Break",
+   "label": "Website Photos"
+  },
+  {
+   "description": "These are the photos used on public pages. Click a row, attach a new image, and Save. Leave a row as-is to keep the current photo.",
+   "fieldname": "website_images",
+   "fieldtype": "Table",
+   "label": "Page, feature and solution photos",
+   "options": "Beau-T-Cloud Website Image"
   },
   {
    "fieldname": "screenshots_section",
@@ -286,7 +335,7 @@
  "index_web_pages_for_search": 0,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-16 21:20:00.000000",
+ "modified": "2026-09-16 21:50:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud Settings",

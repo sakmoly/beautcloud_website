@@ -5,6 +5,6 @@
 	<div class="bc-card-body">
 		<h3 class="bc-h3">{{ title }}</h3>
 		<p>{{ text }}</p>
-		{% if route %}<a class="bc-btn bc-btn-ghost" href="{{ route }}">Explore</a>{% endif %}
+		{% if route %}<a class="bc-btn bc-btn-ghost" href="{{ route }}">{{ button_label or "Explore" }}</a>{% endif %}
 	</div>
 </article>

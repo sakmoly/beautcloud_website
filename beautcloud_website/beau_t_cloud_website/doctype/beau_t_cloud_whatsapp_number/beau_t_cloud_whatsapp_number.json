@@ -1,0 +1,57 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 23:18:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["country", "country_code", "number", "display", "is_default"],
+ "fields": [
+  {
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Country",
+   "reqd": 1
+  },
+  {
+   "description": "ISO code used to match the visitor, e.g. IN, SA, AE, KW, QA, BH, OM",
+   "fieldname": "country_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Code",
+   "reqd": 1
+  },
+  {
+   "description": "Country code + number, digits only",
+   "fieldname": "number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "WhatsApp Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "display",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Display"
+  },
+  {
+   "default": "0",
+   "description": "Used when the visitor’s country is not in this grid",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Default"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 23:18:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud WhatsApp Number",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

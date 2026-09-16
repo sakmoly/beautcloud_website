@@ -1,0 +1,23 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 22:45:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["section", "content_section", "sort_order"],
+ "fields": [
+  {"fieldname": "section", "fieldtype": "Select", "in_list_view": 1, "label": "Section", "options": "Hero\nLive booking\nBusiness types\nLounge photo\nJourney\nFeature blocks\nRetail photo\nMore modules\nGCC photo\nGCC\nGetting started\nFAQ\nFooter CTA\nCustom section", "reqd": 1},
+  {"depends_on": "eval:doc.section=='Custom section'", "fieldname": "content_section", "fieldtype": "Link", "in_list_view": 1, "label": "Custom section", "options": "Beau-T-Cloud Content Section"},
+  {"default": "0", "fieldname": "sort_order", "fieldtype": "Int", "in_list_view": 1, "label": "Sort order"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 22:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Layout Row",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

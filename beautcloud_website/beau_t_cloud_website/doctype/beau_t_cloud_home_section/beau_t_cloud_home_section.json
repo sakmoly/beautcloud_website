@@ -1,0 +1,41 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 22:15:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "section", "enabled", "layout", "place_after",
+  "eyebrow", "title", "text",
+  "image", "image_preview",
+  "button_label", "button_route", "secondary_label", "secondary_route",
+  "background", "anchor_id"
+ ],
+ "fields": [
+  {"default": "Custom", "description": "Use a built-in name, or type a new one (Partners, Testimonials…). Cards use this same name.", "fieldname": "section", "fieldtype": "Data", "in_list_view": 1, "label": "Section", "options": "Hero\nLive booking\nBusiness types\nLounge photo\nJourney\nMore modules\nRetail photo\nGCC\nGCC photo\nGetting started\nFAQ\nFooter CTA\nCustom", "reqd": 1},
+  {"default": "1", "fieldname": "enabled", "fieldtype": "Check", "in_list_view": 1, "label": "Show"},
+  {"default": "Cards", "fieldname": "layout", "fieldtype": "Select", "label": "Layout", "options": "Cards\nSplit\nSplit flipped\nCenter\nPhoto"},
+  {"default": "After FAQ", "description": "Used for new/custom sections", "fieldname": "place_after", "fieldtype": "Select", "label": "Place after", "options": "After hero\nAfter live booking\nAfter business types\nAfter journey\nAfter feature blocks\nAfter more modules\nAfter GCC\nAfter getting started\nAfter FAQ"},
+  {"fieldname": "eyebrow", "fieldtype": "Data", "label": "Eyebrow"},
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title"},
+  {"fieldname": "text", "fieldtype": "Small Text", "in_list_view": 1, "label": "Description"},
+  {"fieldname": "image", "fieldtype": "Attach Image", "in_list_view": 1, "label": "Image"},
+  {"fieldname": "image_preview", "fieldtype": "Image", "label": "Preview", "options": "image"},
+  {"fieldname": "button_label", "fieldtype": "Data", "label": "Button"},
+  {"fieldname": "button_route", "fieldtype": "Data", "label": "Button route"},
+  {"fieldname": "secondary_label", "fieldtype": "Data", "label": "Second button"},
+  {"fieldname": "secondary_route", "fieldtype": "Data", "label": "Second route"},
+  {"default": "Default", "fieldname": "background", "fieldtype": "Select", "label": "Background", "options": "Default\nAlt\nBlush"},
+  {"fieldname": "anchor_id", "fieldtype": "Data", "label": "Section id"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 22:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Home Section",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

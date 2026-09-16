@@ -1,0 +1,107 @@
+{% if block.layout == "Photo" and block.image %}
+<section class="bc-photo-band" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>
+	<div class="bc-wrap">
+		<img src="{{ block.image }}" alt="{{ block.title }}" width="1320" height="743">
+	</div>
+</section>
+{% elif block.layout == "Cards" %}
+<section class="bc-section {{ block.theme_class }}" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>
+	<div class="bc-wrap">
+		{% if block.eyebrow %}<p class="bc-eyebrow">{{ block.eyebrow }}</p>{% endif %}
+		{% if block.title %}<h2 class="bc-h2">{{ block.title }}</h2>{% endif %}
+		{% if block.text %}<p class="bc-lead">{{ block.text }}</p>{% endif %}
+		<div class="bc-cards bc-cards-auto">
+			{% for item in block.cards %}
+			<article class="bc-card">
+				{% if item.image %}
+				<img src="{{ item.image }}" alt="{{ item.title }}" width="640" height="400" loading="lazy">
+				{% endif %}
+				<div class="bc-card-body">
+					<h3 class="bc-h3">{{ item.title }}</h3>
+					<p>{{ item.text }}</p>
+					{% if item.route %}
+					<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">{{ item.button_label or "Explore" }}</a>
+					{% endif %}
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% elif block.layout == "FAQ" %}
+<section class="bc-section {{ block.theme_class }}" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>
+	<div class="bc-wrap">
+		{% if block.eyebrow %}<p class="bc-eyebrow">{{ block.eyebrow }}</p>{% endif %}
+		{% if block.title %}<h2 class="bc-h2">{{ block.title }}</h2>{% endif %}
+		{% if block.text %}<p class="bc-lead">{{ block.text }}</p>{% endif %}
+		<div class="bc-faq">
+			{% for faq in block.faq_items %}
+			<details>
+				<summary>{{ faq.q }}</summary>
+				<p>{{ faq.a }}</p>
+			</details>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% elif block.layout == "Center" %}
+<section class="bc-section {{ block.theme_class }}" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>
+	<div class="bc-wrap" style="text-align:center;">
+		{% if block.eyebrow %}<p class="bc-eyebrow">{{ block.eyebrow }}</p>{% endif %}
+		{% if block.title %}<h2 class="bc-h2">{{ block.title }}</h2>{% endif %}
+		{% if block.text %}<p class="bc-lead">{{ block.text }}</p>{% endif %}
+		{% if block.image %}
+		<figure class="bc-photo-frame" style="margin-top:1.5rem;">
+			<img src="{{ block.image }}" alt="{{ block.title }}" width="960" height="540">
+		</figure>
+		{% endif %}
+		{% if block.button_label or block.secondary_label %}
+		<div class="bc-actions">
+			{% if block.button_label %}<a class="bc-btn bc-btn-primary" href="{{ block.button_route or '#' }}">{{ block.button_label }}</a>{% endif %}
+			{% if block.secondary_label %}<a class="bc-btn bc-btn-ghost" href="{{ block.secondary_route or '#' }}">{{ block.secondary_label }}</a>{% endif %}
+		</div>
+		{% endif %}
+	</div>
+</section>
+{% else %}
+<section class="bc-section {{ block.theme_class }}" {% if block.anchor_id %}id="{{ block.anchor_id }}"{% endif %}>
+	<div class="bc-wrap bc-feature-split {% if block.layout == 'Split flipped' %}is-flip{% endif %}">
+		<div>
+			{% if block.eyebrow %}<p class="bc-eyebrow">{{ block.eyebrow }}</p>{% endif %}
+			{% if block.title %}<h2 class="bc-h2">{{ block.title }}</h2>{% endif %}
+			{% if block.text %}<p class="bc-lead">{{ block.text }}</p>{% endif %}
+			{% if block.button_label or block.secondary_label %}
+			<div class="bc-actions">
+				{% if block.button_label %}<a class="bc-btn bc-btn-primary" href="{{ block.button_route or '#' }}">{{ block.button_label }}</a>{% endif %}
+				{% if block.secondary_label %}<a class="bc-btn bc-btn-ghost" href="{{ block.secondary_route or '#' }}">{{ block.secondary_label }}</a>{% endif %}
+			</div>
+			{% endif %}
+		</div>
+		{% if block.image %}
+		<figure class="bc-photo-frame">
+			<img src="{{ block.image }}" alt="{{ block.title }}" width="960" height="540">
+		</figure>
+		{% endif %}
+	</div>
+	{% if block.cards %}
+	<div class="bc-wrap">
+		<div class="bc-cards bc-cards-auto">
+			{% for item in block.cards %}
+			<article class="bc-card">
+				{% if item.image %}
+				<img src="{{ item.image }}" alt="{{ item.title }}" width="640" height="400" loading="lazy">
+				{% endif %}
+				<div class="bc-card-body">
+					<h3 class="bc-h3">{{ item.title }}</h3>
+					<p>{{ item.text }}</p>
+					{% if item.route %}
+					<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">{{ item.button_label or "Explore" }}</a>
+					{% endif %}
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+</section>
+{% endif %}

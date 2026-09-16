@@ -1,5 +1,5 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-cinema" style="background-image:url('{{ bc.hero_image }}')">
+<section class="bc-cinema" style="background-image:url('{{ home.hero_image or bc.hero_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">{{ home.hero_eyebrow }}</p>
@@ -11,6 +11,8 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "hero" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-section">
 	<div class="bc-wrap bc-feature-split">
@@ -24,10 +26,12 @@
 			</div>
 		</div>
 		<figure class="bc-photo-frame">
-			<img src="{{ home_welcome }}" alt="{{ home.live_title }}" width="960" height="540">
+			<img src="{{ home.live_image or home_welcome }}" alt="{{ home.live_title }}" width="960" height="540">
 		</figure>
 	</div>
 </section>
+{% set extra_after = "live" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-section bc-section-alt">
 	<div class="bc-wrap">
@@ -42,15 +46,18 @@
 			{% set text = item.text %}
 			{% set image = item.image %}
 			{% set route = item.route %}
+			{% set button_label = item.button_label or "Explore" %}
 			{% include "beautcloud_website/templates/includes/feature_card.html" %}
 			{% endfor %}
 		</div>
 	</div>
 </section>
+{% set extra_after = "types" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_lounge }}" alt="{{ home.journey_title }}" width="1320" height="743">
+		<img src="{{ home.lounge_image or home_lounge }}" alt="{{ home.journey_title }}" width="1320" height="743">
 	</div>
 </section>
 
@@ -72,6 +79,8 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "journey" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 {% for block in home_features %}
 <section class="bc-section {% if loop.index is even %}bc-section-alt{% endif %}" id="{{ block.id }}">
@@ -93,10 +102,12 @@
 	</div>
 </section>
 {% endfor %}
+{% set extra_after = "features" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_retail }}" alt="{{ home.more_title }}" width="1320" height="743">
+		<img src="{{ home.retail_image or home_retail }}" alt="{{ home.more_title }}" width="1320" height="743">
 	</div>
 </section>
 
@@ -121,10 +132,12 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "more" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-photo-band">
 	<div class="bc-wrap">
-		<img src="{{ home_gcc }}" alt="{{ home.gcc_title }}" width="1320" height="743">
+		<img src="{{ home.gcc_image or home_gcc }}" alt="{{ home.gcc_title }}" width="1320" height="743">
 	</div>
 </section>
 <section class="bc-section bc-section-alt" id="gcc">
@@ -144,6 +157,8 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "gcc" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-section bc-section-blush">
 	<div class="bc-wrap">
@@ -163,6 +178,8 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "steps" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 <section class="bc-section" id="faq">
 	<div class="bc-wrap">
@@ -181,5 +198,7 @@
 		</div>
 	</div>
 </section>
+{% set extra_after = "faq" %}
+{% include "beautcloud_website/templates/includes/home_extra.html" %}
 
 {% include "beautcloud_website/templates/includes/demo_cta.html" %}

@@ -7,28 +7,28 @@
 		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
-<section class="bc-section">
-	<div class="bc-wrap bc-cards bc-cards-auto">
-		{% for item in tour %}
-		<article class="bc-card">
-			<div class="bc-card-body">
-				<p class="bc-eyebrow">Step {{ loop.index }}</p>
-				<h2 class="bc-h3">{{ item.title }}</h2>
-				<p>{{ item.text }}</p>
+{% for item in tour %}
+<section class="bc-section {% if loop.index is even %}bc-section-alt{% endif %}">
+	<div class="bc-wrap bc-feature-split {% if loop.index is even %}is-flip{% endif %}">
+		<div>
+			<p class="bc-eyebrow">Step {{ loop.index }}</p>
+			<h2 class="bc-h2">{{ item.title }}</h2>
+			<p class="bc-lead">{{ item.text }}</p>
+			<p style="margin-top:1.2rem;">
 				{% if item.kind == "book" %}
-				<p style="margin-top:1rem;"><a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">{{ home.live_primary_label }}</a></p>
+				<a class="bc-btn bc-btn-primary" href="{{ bc.book_url }}" target="_blank" rel="noopener">{{ item.cta }}</a>
 				{% elif item.kind == "kiosk" %}
-				<p style="margin-top:1rem;"><a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">{{ home.live_secondary_label }}</a></p>
-				{% else %}
-				<div style="margin-top:1rem;">
-					{% set kind = item.kind %}
-					{% set label = item.title %}
-					{% include "beautcloud_website/templates/includes/product_ui.html" %}
-				</div>
+				<a class="bc-btn bc-btn-ghost" href="{{ bc.kiosk_url }}" target="_blank" rel="noopener">{{ item.cta }}</a>
+				{% elif item.route %}
+				<a class="bc-btn bc-btn-ghost" href="{{ item.route }}">{{ item.cta }}</a>
 				{% endif %}
-			</div>
-		</article>
-		{% endfor %}
+			</p>
+		</div>
+		<figure class="bc-photo-frame">
+			<img src="{{ item.image }}" alt="{{ item.title }}" width="960" height="540">
+		</figure>
 	</div>
 </section>
+{% endfor %}
+{% include "beautcloud_website/templates/includes/page_sections.html" %}
 {% include "beautcloud_website/templates/includes/demo_cta.html" %}

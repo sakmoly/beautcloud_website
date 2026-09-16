@@ -79,6 +79,61 @@
 			});
 		});
 
+		(function applyWhatsAppByCountry() {
+			const zones = {
+				"Asia/Kolkata": "IN",
+				"Asia/Calcutta": "IN",
+				"Asia/Riyadh": "SA",
+				"Asia/Dubai": "AE",
+				"Asia/Kuwait": "KW",
+				"Asia/Qatar": "QA",
+				"Asia/Bahrain": "BH",
+				"Asia/Muscat": "OM",
+				"Africa/Cairo": "EG",
+				"Asia/Karachi": "PK",
+				"Asia/Dhaka": "BD",
+			};
+
+			function detectCountry() {
+				try {
+					const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+					if (zones[tz]) return zones[tz];
+				} catch (e) {
+					/* ignore */
+				}
+				const langs = (navigator.languages || [navigator.language || ""]).join(",").toLowerCase();
+				const match = langs.match(/-([a-z]{2})(?:$|,)/);
+				return match ? match[1].toUpperCase() : "";
+			}
+
+			function rows() {
+				const node = document.getElementById("bc-wa-numbers");
+				if (!node || !node.textContent) return [];
+				try {
+					return JSON.parse(node.textContent) || [];
+				} catch (e) {
+					return [];
+				}
+			}
+
+			function pick(list, code) {
+				return (
+					list.find(function (row) { return row.code === code; }) ||
+					list.find(function (row) { return row.default; }) ||
+					list[0]
+				);
+			}
+
+			const chosen = pick(rows(), detectCountry());
+			if (!chosen) return;
+			document.querySelectorAll("[data-bc-wa]").forEach(function (el) {
+				if (chosen.link) el.setAttribute("href", chosen.link);
+				if (el.hasAttribute("data-bc-wa-text") && chosen.display) {
+					el.textContent = el.textContent.indexOf("WhatsApp") === 0 ? "WhatsApp " + chosen.display : chosen.display;
+				}
+			});
+		})();
+
 		const form = document.querySelector("[data-bc-demo-form]");
 		if (form) {
 			const loaded = form.querySelector("[name='form_loaded_at']");

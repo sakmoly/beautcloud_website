@@ -94,8 +94,9 @@
 				<h2 class="bc-h3">{{ site_page.cta_title }}</h2>
 				<p><a href="{{ bc.email_link }}">{{ bc.contact_email }}</a></p>
 				<p><a href="{{ bc.phone_link }}">{{ bc.contact_phone_display }}</a></p>
-				<p><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener">WhatsApp {{ bc.whatsapp_display }}</a></p>
+				<p><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener" data-bc-wa data-bc-wa-text>WhatsApp {{ bc.whatsapp_display_active }}</a></p>
 			</article>
 		</aside>
 	</div>
 </section>
+{% include "beautcloud_website/templates/includes/page_sections.html" %}

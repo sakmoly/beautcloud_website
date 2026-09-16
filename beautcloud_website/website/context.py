@@ -1,6 +1,7 @@
 import frappe
 
 from beautcloud_website.website.cms import (
+	PAGE_LABELS,
 	business_type_blocks,
 	get_feature,
 	get_homepage,
@@ -9,6 +10,7 @@ from beautcloud_website.website.cms import (
 	get_solution,
 	home_feature_blocks,
 	home_more_blocks,
+	list_content_sections,
 	list_features,
 	list_solutions,
 )
@@ -138,13 +140,16 @@ def update_website_context(context):
 	context.no_breadcrumbs = 1
 	context.no_cache = 1
 	context.favicon = bc.favicon
+	page_label = PAGE_LABELS.get(path) or PAGE_LABELS.get(root) or ""
+	context.page_sections = [] if path in ("", "index") else list_content_sections(page_label, path)
 	context.business_types = [
 		{
 			**item,
-			"image": _img(
+			"image": item.get("image")
+			or _img(
 				bc,
-				SOLUTION_SLOTS.get(item.get("slug") or item["route"].rsplit("/", 1)[-1]),
-				item.get("image"),
+				SOLUTION_SLOTS.get(item.get("slug") or (item.get("route") or "").rsplit("/", 1)[-1]),
+				"",
 			),
 		}
 		for item in business_type_blocks()
@@ -171,10 +176,10 @@ def update_website_context(context):
 			}
 			for item in home_more_blocks()
 		]
-		context.home_welcome = _img(bc, "home_welcome", "/assets/beautcloud_website/images/home/welcome.png")
-		context.home_lounge = _img(bc, "home_lounge", "/assets/beautcloud_website/images/home/lounge.png")
-		context.home_retail = _img(bc, "home_retail", "/assets/beautcloud_website/images/home/retail.png")
-		context.home_gcc = _img(bc, "home_gcc", "/assets/beautcloud_website/images/home/gcc.png")
+		context.home_welcome = home.get("live_image") or _img(bc, "home_welcome", "/assets/beautcloud_website/images/home/welcome.png")
+		context.home_lounge = home.get("lounge_image") or _img(bc, "home_lounge", "/assets/beautcloud_website/images/home/lounge.png")
+		context.home_retail = home.get("retail_image") or _img(bc, "home_retail", "/assets/beautcloud_website/images/home/retail.png")
+		context.home_gcc = home.get("gcc_image") or _img(bc, "home_gcc", "/assets/beautcloud_website/images/home/gcc.png")
 		context.gcc_points = home.get("gcc_items") or []
 		context.steps = home.get("step_items") or []
 		return context

@@ -481,7 +481,7 @@ PAGE_IMAGES = {
 	"contact": f"{ASSET}/pages/contact.png",
 	"book-demo": f"{ASSET}/pages/book-demo.png",
 	"pricing": f"{ASSET}/pages/pricing.png",
-	"product-tour": f"{ASSET}/pages/product-tour.png",
+	"product-tour": f"{ASSET}/hero/hero-salon.png",
 	"privacy-policy": f"{ASSET}/logo/beau-t-cloud-primary.png",
 	"terms": f"{ASSET}/logo/beau-t-cloud-primary.png",
 }
@@ -493,10 +493,46 @@ PRICING = [
 ]
 
 TOUR = [
-	{"title": "Online booking", "text": "A live client booking flow is available to open in a new tab.", "kind": "book"},
-	{"title": "Kiosk check-in", "text": "A self-service arrival screen for the floor. Open for review for now.", "kind": "kiosk"},
-	{"title": "Calendar", "text": "Staff availability, duration and rooms on one board.", "kind": "calendar"},
-	{"title": "Client CRM", "text": "History, notes and membership on the same person.", "kind": "crm"},
-	{"title": "POS", "text": "Services and retail on one ticket. Example totals use SAR.", "kind": "pos"},
-	{"title": "Group view", "text": "Locations stay local; owners can still see the set.", "kind": "multi"},
+	{
+		"title": "Online booking",
+		"text": "Clients pick a service, a time and a stylist on their phone. Open the live booking page to walk the same flow a guest would use.",
+		"kind": "book",
+		"cta": "Open live booking",
+		"route": "",
+	},
+	{
+		"title": "Kiosk check-in",
+		"text": "A self-service arrival screen at the door, so the reception desk is not the bottleneck when the lounge fills up.",
+		"kind": "kiosk",
+		"cta": "Open kiosk",
+		"route": "",
+	},
+	{
+		"title": "Calendar",
+		"text": "Staff, duration and rooms on one board so the day is visible before anyone is at the chair.",
+		"kind": "calendar",
+		"cta": "Appointment management",
+		"route": "/features/appointment-management",
+	},
+	{
+		"title": "Client CRM",
+		"text": "History, notes and membership sit on the same person, so the next visit starts from what you already know.",
+		"kind": "crm",
+		"cta": "Client CRM",
+		"route": "/features/client-crm",
+	},
+	{
+		"title": "POS",
+		"text": "Services and retail close on one ticket at the desk, next to the products on the shelf.",
+		"kind": "pos",
+		"cta": "Salon POS",
+		"route": "/features/salon-pos",
+	},
+	{
+		"title": "Group view",
+		"text": "Each location stays local. Owners can still see the set of rooms, chairs and books together.",
+		"kind": "multi",
+		"cta": "Multi-location",
+		"route": "/features/multi-location",
+	},
 ]

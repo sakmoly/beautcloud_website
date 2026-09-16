@@ -122,51 +122,69 @@
 }
 
 .bc-nav-inner {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr) auto;
 	align-items: center;
-	gap: 1.5rem;
-	min-height: 84px;
+	column-gap: 1.75rem;
+	min-height: 88px;
 	transition: min-height 0.25s ease;
 }
 
 .bc-nav.is-compact .bc-nav-inner {
-	min-height: 68px;
+	min-height: 76px;
 }
 
 .bc-logo {
 	display: flex;
 	align-items: center;
-	flex: 0 0 auto;
+	justify-self: start;
 }
 
 .bc-logo img {
-	height: 46px;
+	display: block;
+	height: 64px;
 	width: auto;
+	background: transparent;
+}
+
+.bc-nav.is-compact .bc-logo img {
+	height: 54px;
 }
 
 .bc-menu {
 	display: flex;
 	align-items: center;
-	gap: 0.2rem;
-	margin-left: auto;
-	list-style: none;
+	justify-content: center;
+	flex-wrap: nowrap;
+	gap: 0.15rem;
+	margin: 0;
 	padding: 0;
+	list-style: none;
 }
 
 .bc-menu > li {
 	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .bc-menu a,
 .bc-menu button {
 	display: inline-flex;
 	align-items: center;
+	justify-content: center;
 	gap: 0.35rem;
-	padding: 0.7rem 0.8rem;
+	min-height: 42px;
+	padding: 0 0.95rem;
 	background: none;
 	border: 0;
 	font: inherit;
 	font-weight: 550;
+	letter-spacing: 0;
+	word-spacing: 0;
+	white-space: nowrap;
+	line-height: 1;
 	color: var(--bc-plum);
 	cursor: pointer;
 }
@@ -211,11 +229,30 @@
 .bc-nav-actions {
 	display: flex;
 	align-items: center;
-	gap: 0.55rem;
+	justify-self: end;
+	gap: 0.9rem;
+}
+
+.bc-nav-login {
+	display: inline-flex;
+	align-items: center;
+	min-height: 42px;
+	padding: 0 0.15rem;
+	font-weight: 550;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.bc-nav-actions .bc-btn {
+	min-height: 42px;
+	padding: 0 1.2rem;
+	line-height: 1;
 }
 
 .bc-lang {
 	display: inline-flex;
+	align-items: stretch;
+	height: 42px;
 	border: 1px solid var(--bc-line);
 	border-radius: 999px;
 	overflow: hidden;
@@ -224,10 +261,11 @@
 .bc-lang button {
 	border: 0;
 	background: transparent;
-	padding: 0.38rem 0.7rem;
+	padding: 0 0.85rem;
 	font: inherit;
 	font-size: 0.78rem;
 	font-weight: 650;
+	line-height: 1;
 	cursor: pointer;
 	color: var(--bc-muted);
 }
@@ -599,9 +637,19 @@
 	color: #fff;
 }
 
+.bc-section-plum .bc-h1,
+.bc-section-plum .bc-h2,
+.bc-section-plum .bc-h3,
+.bc-section-plum h1,
+.bc-section-plum h2,
+.bc-section-plum h3 {
+	color: #fff;
+}
+
 .bc-section-plum .bc-lead,
-.bc-section-plum .bc-muted {
-	color: rgba(255, 255, 255, 0.78);
+.bc-section-plum .bc-muted,
+.bc-section-plum p {
+	color: rgba(255, 255, 255, 0.86);
 }
 
 .bc-center {
@@ -984,6 +1032,19 @@
 	padding: 3.5rem 0 1.4rem;
 }
 
+.bc-footer-logo {
+	display: inline-block;
+	background: #fff;
+	border-radius: 12px;
+	padding: 8px 10px;
+}
+
+.bc-footer-logo img {
+	display: block;
+	height: 96px;
+	width: auto;
+}
+
 .bc-footer a {
 	color: #f7eef3;
 }
@@ -1173,6 +1234,18 @@ html[dir="rtl"] .bc-feature-split {
 }
 
 @media (max-width: 820px) {
+	.bc-nav-inner {
+		display: flex;
+		grid-template-columns: none;
+		column-gap: 0.8rem;
+		min-height: 76px;
+	}
+
+	.bc-logo img,
+	.bc-nav.is-compact .bc-logo img {
+		height: 52px;
+	}
+
 	.bc-burger {
 		display: grid;
 		place-items: center;

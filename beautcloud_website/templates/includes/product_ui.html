@@ -1,13 +1,16 @@
-{% set shot = {
-	"calendar": bc.calendar_screenshot,
-	"booking": bc.booking_screenshot,
-	"crm": bc.crm_screenshot,
-	"pos": bc.pos_screenshot,
-	"analytics": bc.hero_screenshot,
-	"multi": bc.hero_screenshot,
-	"staff": bc.hero_screenshot,
-	"inventory": bc.hero_screenshot
-}.get(kind, bc.hero_screenshot) %}
+{% set kind_images = {
+	"calendar": (bc.calendar_screenshot or (bc.images or {}).get("tour_calendar") or (bc.images or {}).get("feature_appointment_management")),
+	"booking": (bc.booking_screenshot or (bc.images or {}).get("tour_booking") or (bc.images or {}).get("feature_online_booking")),
+	"book": (bc.booking_screenshot or (bc.images or {}).get("tour_booking") or (bc.images or {}).get("feature_online_booking")),
+	"kiosk": ((bc.images or {}).get("tour_kiosk") or (bc.images or {}).get("home_lounge")),
+	"crm": (bc.crm_screenshot or (bc.images or {}).get("tour_crm") or (bc.images or {}).get("feature_client_crm")),
+	"pos": (bc.pos_screenshot or (bc.images or {}).get("tour_pos") or (bc.images or {}).get("feature_salon_pos")),
+	"analytics": (bc.hero_screenshot or (bc.images or {}).get("feature_reports_analytics")),
+	"multi": (bc.hero_screenshot or (bc.images or {}).get("tour_multi") or (bc.images or {}).get("feature_multi_location")),
+	"staff": ((bc.images or {}).get("feature_staff_management")),
+	"inventory": ((bc.images or {}).get("feature_inventory_management"))
+} %}
+{% set shot = kind_images.get(kind) or bc.hero_image %}
 <div class="bc-frame bc-preview">
 	<div class="bc-frame-bar">
 		<span class="bc-dot"></span>
@@ -16,50 +19,6 @@
 	<div class="bc-frame-body">
 		{% if shot %}
 		<img src="{{ shot }}" alt="{{ label or 'Beau-T-Cloud product' }}" width="1440" height="900" loading="lazy">
-		{% elif kind == "booking" %}
-		<div class="bc-stat-row">
-			<div class="bc-stat"><b>Hair styling</b><span>From SAR 120</span></div>
-			<div class="bc-stat"><b>Facial</b><span>From SAR 180</span></div>
-			<div class="bc-stat"><b>1:00 PM</b><span>Fri · available</span></div>
-		</div>
-		<p class="bc-note" style="margin-top:1rem;">Example booking steps. Open the live page to see a real salon menu.</p>
-		{% elif kind == "crm" %}
-		<div class="bc-stat-row">
-			<div class="bc-stat"><b>Lina A.</b><span>Preferred: late afternoon</span></div>
-			<div class="bc-stat"><b>12 visits</b><span>Last colour · March</span></div>
-			<div class="bc-stat"><b>Gold</b><span>Membership active</span></div>
-		</div>
-		<p class="bc-note" style="margin-top:1rem;">Sample profile layout. Names here are placeholders, not customers.</p>
-		{% elif kind == "pos" %}
-		<div class="bc-stat-row">
-			<div class="bc-stat"><b>Cut + colour</b><span>SAR 420</span></div>
-			<div class="bc-stat"><b>Retail</b><span>SAR 95</span></div>
-			<div class="bc-stat"><b>Total</b><span>SAR 515</span></div>
-		</div>
-		<p class="bc-note" style="margin-top:1rem;">Example ticket in SAR. Live payment methods are set during implementation.</p>
-		{% elif kind == "analytics" or kind == "multi" %}
-		<div class="bc-stat-row">
-			<div class="bc-stat"><b>SAR 12.4k</b><span>Today · example</span></div>
-			<div class="bc-stat"><b>48</b><span>Appointments · example</span></div>
-			<div class="bc-stat"><b>71%</b><span>Occupancy · example</span></div>
-		</div>
-		<div class="bc-cal" aria-hidden="true">
-			{% for i in range(28) %}
-			<i class="{% if i in [3, 8, 9, 15, 21] %}is-on{% endif %}">{{ i + 1 }}</i>
-			{% endfor %}
-		</div>
-		{% else %}
-		<div class="bc-stat-row">
-			<div class="bc-stat"><b>48</b><span>Today’s appointments</span></div>
-			<div class="bc-stat"><b>SAR 8.2k</b><span>Example ticket mix</span></div>
-			<div class="bc-stat"><b>6</b><span>Staff on floor</span></div>
-		</div>
-		<div class="bc-cal" aria-hidden="true">
-			{% for i in range(28) %}
-			<i class="{% if i in [2, 7, 14, 15, 20] %}is-on{% endif %}">{{ i + 1 }}</i>
-			{% endfor %}
-		</div>
-		<p class="bc-note" style="margin-top:0.8rem;">Branded preview. Upload a real screenshot in Beau-T-Cloud Settings to replace this.</p>
 		{% endif %}
 	</div>
 </div>

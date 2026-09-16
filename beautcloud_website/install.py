@@ -59,6 +59,32 @@ def _seed_settings():
 					{"slot": row["slot"], "label": row["label"], "image": row["image"]},
 				)
 				changed = True
+	if frappe.db.exists("DocType", "Beau-T-Cloud WhatsApp Number") and not doc.get("whatsapp_numbers"):
+		india = "".join(ch for ch in str(doc.get("whatsapp_number") or DEFAULTS["whatsapp_number"]) if ch.isdigit())
+		saudi = "".join(ch for ch in str(doc.get("whatsapp_number_sa") or "") if ch.isdigit())
+		if india:
+			doc.append(
+				"whatsapp_numbers",
+				{
+					"country": "India",
+					"country_code": "IN",
+					"number": india,
+					"display": doc.get("whatsapp_display") or DEFAULTS["whatsapp_display"],
+					"is_default": 0 if saudi else 1,
+				},
+			)
+		if saudi:
+			doc.append(
+				"whatsapp_numbers",
+				{
+					"country": "Saudi Arabia",
+					"country_code": "SA",
+					"number": saudi,
+					"display": doc.get("whatsapp_display_sa") or f"+{saudi}",
+					"is_default": 1,
+				},
+			)
+		changed = True
 	if changed:
 		doc.save(ignore_permissions=True)
 
@@ -195,6 +221,7 @@ def _ensure_desk_sidebar():
 
 def _cms_sidebar_items():
 	return [
+		{"label": "Page Sections", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Content Section", "icon": "small-file"},
 		{"label": "Homepage Copy", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Homepage", "icon": "text"},
 		{"label": "Features", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Feature", "icon": "list"},
 		{"label": "Solutions", "type": "Link", "link_type": "DocType", "link_to": "Beau-T-Cloud Solution", "icon": "organization"},
@@ -209,6 +236,7 @@ def _ensure_beau_workspace_links():
 		return
 	ws = frappe.get_doc("Workspace", "Beau-T-Cloud")
 	wanted_links = [
+		{"label": "Page Sections", "link_to": "Beau-T-Cloud Content Section"},
 		{"label": "Homepage Copy", "link_to": "Beau-T-Cloud Homepage"},
 		{"label": "Features", "link_to": "Beau-T-Cloud Feature"},
 		{"label": "Solutions", "link_to": "Beau-T-Cloud Solution"},
@@ -231,6 +259,7 @@ def _ensure_beau_workspace_links():
 			)
 			changed = True
 	wanted_shortcuts = [
+		{"label": "Page Sections", "link_to": "Beau-T-Cloud Content Section", "color": "Pink", "doc_view": "List"},
 		{"label": "Homepage Copy", "link_to": "Beau-T-Cloud Homepage", "color": "Orange", "doc_view": ""},
 		{"label": "Features", "link_to": "Beau-T-Cloud Feature", "color": "Blue", "doc_view": "List"},
 		{"label": "Solutions", "link_to": "Beau-T-Cloud Solution", "color": "Green", "doc_view": "List"},

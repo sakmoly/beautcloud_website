@@ -1,0 +1,27 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 22:40:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": ["section", "title", "text", "image", "image_preview", "button_label", "route"],
+ "fields": [
+  {"default": "Business types", "description": "Must match a Homepage sections row, e.g. Business types or a new section name.", "fieldname": "section", "fieldtype": "Data", "in_list_view": 1, "label": "Section", "options": "Business types\nHero\nLive booking\nJourney\nMore modules\nGCC\nGetting started\nFAQ"},
+  {"fieldname": "title", "fieldtype": "Data", "in_list_view": 1, "label": "Title", "reqd": 1},
+  {"fieldname": "text", "fieldtype": "Small Text", "in_list_view": 1, "label": "Description"},
+  {"fieldname": "image", "fieldtype": "Attach Image", "in_list_view": 1, "label": "Image"},
+  {"fieldname": "image_preview", "fieldtype": "Image", "label": "Preview", "options": "image"},
+  {"default": "Explore", "fieldname": "button_label", "fieldtype": "Data", "label": "Button"},
+  {"fieldname": "route", "fieldtype": "Data", "label": "Link"}
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-16 22:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Home Card",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "idx",
+ "sort_order": "ASC"
+}

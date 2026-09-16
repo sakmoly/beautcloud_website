@@ -23,10 +23,12 @@
 			<p class="bc-eyebrow">Phone</p>
 			<h2 class="bc-h3"><a href="{{ bc.phone_link }}">{{ bc.contact_phone_display }}</a></h2>
 		</article>
+		{% for item in bc.whatsapp_numbers %}
 		<article>
-			<p class="bc-eyebrow">WhatsApp</p>
-			<h2 class="bc-h3"><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener">{{ bc.whatsapp_display }}</a></h2>
+			<p class="bc-eyebrow">WhatsApp {{ item.country }}</p>
+			<h2 class="bc-h3"><a href="{{ item.link }}" target="_blank" rel="noopener">{{ item.display }}</a></h2>
 		</article>
+		{% endfor %}
 		<article>
 			<p class="bc-eyebrow">Address</p>
 			<h2 class="bc-h3">{{ bc.city }}, {{ bc.country }}</h2>
@@ -35,3 +37,4 @@
 	</div>
 	<p class="bc-wrap" style="margin-top:2rem;"><a class="bc-btn bc-btn-primary" href="/book-demo">{{ site_page.button_label }}</a></p>
 </section>
+{% include "beautcloud_website/templates/includes/page_sections.html" %}

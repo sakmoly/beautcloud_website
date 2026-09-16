@@ -3,12 +3,13 @@
 {% block title %}{{ title | striptags }}{% endblock %}
 
 {% block favicon %}
-<link rel="shortcut icon" href="{{ (bc.favicon if bc else '/assets/beautcloud_website/images/logo/favicon.png') | abs_url }}" type="image/png">
+<link rel="shortcut icon" href="{{ (bc.favicon if bc else '/assets/beautcloud_website/images/logo/favicon.png') | abs_url }}?v=20260916k" type="image/png">
+<link rel="apple-touch-icon" href="/assets/beautcloud_website/images/logo/apple-touch-icon.png?v=20260916k">
 {% endblock %}
 
 {% block head_include %}
 <link rel="canonical" href="{{ bc_canonical or canonical or (bc.canonical_host if bc else 'https://beautcloud.com') }}">
-<link rel="stylesheet" href="/assets/beautcloud_website/css/beautcloud.css?v=20260916i">
+<link rel="stylesheet" href="/assets/beautcloud_website/css/beautcloud.css?v=20260916l">
 <style>
 	.bc-body h1, .bc-body h2, .bc-body h3, .bc-h1, .bc-h2, .bc-h3 {
 		letter-spacing: 0.02em !important;
@@ -17,8 +18,48 @@
 		margin-top: 0 !important;
 	}
 	.bc-h2 { font-size: clamp(1.45rem, 2.6vw, 2.15rem) !important; max-width: 38rem !important; }
-	.bc-lead, .bc-body p, .bc-body li { letter-spacing: 0.01em !important; word-spacing: normal !important; }
+	.bc-lead, .bc-main p, .bc-main li { letter-spacing: 0.01em !important; word-spacing: normal !important; }
 	.bc-wrap { width: min(1320px, calc(100% - 3.2rem)) !important; }
+	.bc-nav-inner {
+		display: grid !important;
+		grid-template-columns: auto minmax(0, 1fr) auto !important;
+		align-items: center !important;
+		column-gap: 1.75rem !important;
+		min-height: 88px !important;
+	}
+	.bc-logo img { display: block !important; height: 64px !important; width: auto !important; background: transparent !important; }
+	.bc-menu {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 0.15rem !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		list-style: none !important;
+	}
+	.bc-menu > li { margin: 0 !important; padding: 0 !important; letter-spacing: 0 !important; word-spacing: 0 !important; }
+	.bc-menu a, .bc-menu button {
+		display: inline-flex !important;
+		align-items: center !important;
+		min-height: 42px !important;
+		padding: 0 0.95rem !important;
+		letter-spacing: 0 !important;
+		line-height: 1 !important;
+		white-space: nowrap !important;
+	}
+	.bc-nav-actions { display: flex !important; align-items: center !important; justify-self: end !important; gap: 0.9rem !important; }
+	.bc-nav-login, .bc-nav-actions .bc-btn, .bc-lang { min-height: 42px !important; }
+	@media (max-width: 820px) {
+		.bc-nav-inner { display: flex !important; min-height: 76px !important; }
+		.bc-logo img { height: 52px !important; }
+		.bc-menu { display: none !important; }
+		.bc-nav.is-open .bc-menu {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: stretch !important;
+			justify-content: flex-start !important;
+		}
+	}
 	.bc-cinema {
 		position: relative !important;
 		min-height: 620px !important;
@@ -37,6 +78,9 @@
 	.bc-cinema .bc-h1 { color: #fff !important; }
 	.bc-cinema .bc-lead { color: rgba(255,255,255,.9) !important; }
 	.bc-cinema .bc-btn-ghost { border-color: rgba(255,255,255,.4) !important; color: #fff !important; }
+	.bc-section-plum, .bc-section-plum .bc-h1, .bc-section-plum .bc-h2, .bc-section-plum .bc-h3,
+	.bc-section-plum h1, .bc-section-plum h2, .bc-section-plum h3 { color: #fff !important; }
+	.bc-section-plum .bc-lead, .bc-section-plum p { color: rgba(255,255,255,.86) !important; }
 	.bc-frame-body { padding: 0 !important; aspect-ratio: 16 / 10 !important; min-height: 280px !important; }
 	.bc-frame-body img { width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; }
 	.bc-pillars, .bc-modules, .bc-flow, .bc-compare { display: flex !important; flex-wrap: wrap !important; gap: 1.2rem !important; }

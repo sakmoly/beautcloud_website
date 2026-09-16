@@ -2,7 +2,7 @@
 <header class="bc-nav" data-bc-nav>
 	<div class="bc-wrap bc-nav-inner">
 		<a class="bc-logo" href="/" aria-label="{{ bc.brand_name }} home">
-			<img src="{{ bc.logo }}" alt="{{ bc.brand_name }}" width="180" height="46">
+			<img src="{{ bc.logo }}?v=20260916l" alt="{{ bc.brand_name }}" width="113" height="64">
 		</a>
 		<button class="bc-burger" type="button" data-bc-burger aria-expanded="false" aria-controls="bc-menu" aria-label="Open menu">
 			<span></span>
@@ -33,7 +33,7 @@
 				<button type="button" data-bc-lang="en" class="is-active" aria-pressed="true">EN</button>
 				<button type="button" data-bc-lang="ar" aria-pressed="false">عربي</button>
 			</div>
-			<a class="bc-hide-sm" href="{{ bc.login_url }}">{{ home.nav_login_label }}</a>
+			<a class="bc-nav-login bc-hide-sm" href="{{ bc.login_url }}">{{ home.nav_login_label }}</a>
 			<a class="bc-btn bc-btn-primary" href="{{ home.nav_demo_route }}">{{ home.nav_demo_label }}</a>
 		</div>
 	</div>

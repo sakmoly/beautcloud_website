@@ -5,6 +5,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "copy_help",
   "brand_section",
   "brand_name",
   "company_name",
@@ -16,11 +17,15 @@
   "contact_phone",
   "contact_phone_display",
   "column_break_contact",
-  "whatsapp_number",
-  "whatsapp_display",
   "address_line",
   "city",
   "country",
+  "whatsapp_section",
+  "whatsapp_numbers",
+  "whatsapp_number",
+  "whatsapp_display",
+  "whatsapp_number_sa",
+  "whatsapp_display_sa",
   "links_section",
   "login_url",
   "book_url",
@@ -55,6 +60,12 @@
   "pos_screenshot_preview"
  ],
  "fields": [
+  {
+   "fieldname": "copy_help",
+   "fieldtype": "HTML",
+   "label": "Help",
+   "options": "<div class='form-message blue'><b>This form is brand, contact and fallback images.</b><br>Homepage titles, descriptions and section photos are one grid on <a href='/app/beau-t-cloud-homepage'><b>Homepage Copy</b></a> — open the <b>Live booking</b> row for “See it on the floor”.<br>Other pages: <a href='/app/beau-t-cloud-feature'>Features</a> · <a href='/app/beau-t-cloud-solution'>Solutions</a> · <a href='/app/beau-t-cloud-website-page'>Website Pages</a>.</div>"
+  },
   {
    "fieldname": "brand_section",
    "fieldtype": "Section Break",
@@ -118,17 +129,43 @@
    "fieldtype": "Column Break"
   },
   {
+   "fieldname": "whatsapp_section",
+   "fieldtype": "Section Break",
+   "label": "WhatsApp by country"
+  },
+  {
+   "description": "Add a row per country. The green button opens the number that matches the visitor. Tick Default for the fallback (usually Saudi Arabia).",
+   "fieldname": "whatsapp_numbers",
+   "fieldtype": "Table",
+   "label": "WhatsApp Numbers",
+   "options": "Beau-T-Cloud WhatsApp Number"
+  },
+  {
    "default": "918075216948",
-   "description": "Digits only, used for wa.me",
    "fieldname": "whatsapp_number",
    "fieldtype": "Data",
-   "label": "WhatsApp Digits"
+   "hidden": 1,
+   "label": "WhatsApp India"
   },
   {
    "default": "+91 80752 16948",
    "fieldname": "whatsapp_display",
    "fieldtype": "Data",
-   "label": "WhatsApp Display"
+   "hidden": 1,
+   "label": "WhatsApp India Display"
+  },
+  {
+   "fieldname": "whatsapp_number_sa",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "WhatsApp Saudi"
+  },
+  {
+   "default": "+966",
+   "fieldname": "whatsapp_display_sa",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "WhatsApp Saudi Display"
   },
   {
    "default": "King Fahd Road, Al Olaya",

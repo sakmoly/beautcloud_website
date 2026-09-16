@@ -16,7 +16,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Photo",
-   "options": "home_welcome\nhome_lounge\nhome_retail\nhome_gcc\npage_features\npage_solutions\npage_about\npage_contact\npage_book_demo\npage_pricing\npage_product_tour\nfeature_appointment_management\nfeature_online_booking\nfeature_salon_pos\nfeature_client_crm\nfeature_staff_management\nfeature_inventory_management\nfeature_memberships_loyalty\nfeature_multi_location\nfeature_reports_analytics\nsolution_hair_salon\nsolution_beauty_salon\nsolution_nail_salon\nsolution_spa\nsolution_barbershop\nsolution_multi_branch\nsolution_hair_salon_detail\nsolution_beauty_salon_detail\nsolution_nail_salon_detail\nsolution_spa_detail\nsolution_barbershop_detail\nsolution_multi_branch_detail",
+   "options": "home_welcome\nhome_lounge\nhome_retail\nhome_gcc\npage_features\npage_solutions\npage_about\npage_contact\npage_book_demo\npage_pricing\npage_product_tour\ntour_booking\ntour_kiosk\ntour_calendar\ntour_crm\ntour_pos\ntour_multi\nfeature_appointment_management\nfeature_online_booking\nfeature_salon_pos\nfeature_client_crm\nfeature_staff_management\nfeature_inventory_management\nfeature_memberships_loyalty\nfeature_multi_location\nfeature_reports_analytics\nsolution_hair_salon\nsolution_beauty_salon\nsolution_nail_salon\nsolution_spa\nsolution_barbershop\nsolution_multi_branch\nsolution_hair_salon_detail\nsolution_beauty_salon_detail\nsolution_nail_salon_detail\nsolution_spa_detail\nsolution_barbershop_detail\nsolution_multi_branch_detail",
    "reqd": 1
   },
   {

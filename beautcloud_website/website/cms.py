@@ -20,6 +20,7 @@ FEATURE_DT = "Beau-T-Cloud Feature"
 SOLUTION_DT = "Beau-T-Cloud Solution"
 PAGE_DT = "Beau-T-Cloud Website Page"
 HOME_DT = "Beau-T-Cloud Homepage"
+ASSET = "/assets/beautcloud_website/images"
 
 HOME_DEFAULTS = {
 	"seo_title": PAGES["index"]["title"],
@@ -78,6 +79,123 @@ HOME_DEFAULTS = {
 	"footer_company_label": "Company",
 	"footer_resources_label": "Resources",
 	"footer_legal": "Beau-T-Cloud. A Printechs solution.",
+	"hero_image": f"{ASSET}/hero/hero-salon.png",
+	"live_image": f"{ASSET}/home/welcome.png",
+	"lounge_image": f"{ASSET}/home/lounge.png",
+	"retail_image": f"{ASSET}/home/retail.png",
+	"gcc_image": f"{ASSET}/home/gcc.png",
+}
+
+HOME_BLOCKS = [
+	{
+		"section": "Hero",
+		"image": f"{ASSET}/hero/hero-salon.png",
+		"map": {
+			"eyebrow": "hero_eyebrow",
+			"title": "hero_title",
+			"text": "hero_lead",
+			"button_label": "hero_primary_label",
+			"button_route": "hero_primary_route",
+			"secondary_label": "hero_secondary_label",
+			"secondary_route": "hero_secondary_route",
+			"image": "hero_image",
+		},
+	},
+	{
+		"section": "Live booking",
+		"image": f"{ASSET}/home/welcome.png",
+		"map": {
+			"eyebrow": "live_eyebrow",
+			"title": "live_title",
+			"text": "live_text",
+			"button_label": "live_primary_label",
+			"secondary_label": "live_secondary_label",
+			"image": "live_image",
+		},
+	},
+	{
+		"section": "Business types",
+		"map": {"eyebrow": "types_eyebrow", "title": "types_title", "text": "types_text"},
+	},
+	{"section": "Lounge photo", "image": f"{ASSET}/home/lounge.png", "map": {"image": "lounge_image"}},
+	{
+		"section": "Journey",
+		"map": {"eyebrow": "journey_eyebrow", "title": "journey_title", "text": "journey_text"},
+	},
+	{
+		"section": "More modules",
+		"map": {
+			"eyebrow": "more_eyebrow",
+			"title": "more_title",
+			"text": "more_text",
+			"button_label": "more_cta_label",
+		},
+	},
+	{"section": "Retail photo", "image": f"{ASSET}/home/retail.png", "map": {"image": "retail_image"}},
+	{
+		"section": "GCC",
+		"map": {"eyebrow": "gcc_eyebrow", "title": "gcc_title", "text": "gcc_text"},
+	},
+	{"section": "GCC photo", "image": f"{ASSET}/home/gcc.png", "map": {"image": "gcc_image"}},
+	{
+		"section": "Getting started",
+		"map": {"eyebrow": "steps_eyebrow", "title": "steps_title", "text": "steps_text"},
+	},
+	{
+		"section": "FAQ",
+		"map": {"eyebrow": "faq_eyebrow", "title": "faq_title", "text": "faq_text"},
+	},
+	{
+		"section": "Footer CTA",
+		"map": {
+			"eyebrow": "cta_eyebrow",
+			"title": "cta_title",
+			"text": "cta_text",
+			"button_label": "cta_primary_label",
+			"secondary_label": "cta_secondary_label",
+		},
+	},
+]
+
+DEFAULT_PAGE_LAYOUT = [
+	{"section": "Hero", "sort_order": 1},
+	{"section": "Live booking", "sort_order": 2},
+	{"section": "Business types", "sort_order": 3},
+	{"section": "Lounge photo", "sort_order": 4},
+	{"section": "Journey", "sort_order": 5},
+	{"section": "Feature blocks", "sort_order": 6},
+	{"section": "Retail photo", "sort_order": 7},
+	{"section": "More modules", "sort_order": 8},
+	{"section": "GCC photo", "sort_order": 9},
+	{"section": "GCC", "sort_order": 10},
+	{"section": "Getting started", "sort_order": 11},
+	{"section": "FAQ", "sort_order": 12},
+	{"section": "Footer CTA", "sort_order": 13},
+]
+
+PAGE_LABELS = {
+	"": "Homepage",
+	"index": "Homepage",
+	"features": "Features",
+	"solutions": "Solutions",
+	"about": "About",
+	"contact": "Contact",
+	"book-demo": "Book a Demo",
+	"pricing": "Pricing",
+	"product-tour": "Product Tour",
+	"privacy-policy": "Privacy Policy",
+	"terms": "Terms",
+}
+
+SECTION_DT = "Beau-T-Cloud Content Section"
+
+LAYOUT_MAP = {
+	"Title + image": "Split",
+	"Title + image flipped": "Split flipped",
+	"Center text": "Center",
+	"Photo": "Photo",
+	"Cards": "Cards",
+	"FAQ": "FAQ",
 }
 
 FOOTER_COMPANY = [
@@ -127,7 +245,7 @@ PAGE_DEFAULTS = {
 		"seo_description": PAGES["product-tour"]["description"],
 		"eyebrow": "Product tour",
 		"hero": "See the platform, then open the live flow.",
-		"lead": "Booking and kiosk open a real salon setup. Other modules use branded previews until you upload screenshots in Beau-T-Cloud Settings.",
+		"lead": "Each step is a different part of the floor. Booking and kiosk open a live salon. The other steps use their own photo until you attach a real screenshot.",
 		"cta_title": HOME_DEFAULTS["cta_title"],
 		"cta_text": HOME_DEFAULTS["cta_text"],
 		"cta_primary_label": "Book a Demo",
@@ -345,14 +463,72 @@ def _seed_homepage():
 		"faq_items": _faq_rows(FAQS),
 		"footer_company": _copy_rows(FOOTER_COMPANY),
 		"footer_resources": _copy_rows(FOOTER_RESOURCES),
+		"business_type_cards": [
+			{
+				"section": "Business types",
+				"title": item["title"],
+				"text": item["text"],
+				"image": item.get("image") or "",
+				"route": item.get("route") or "",
+				"button_label": "Explore",
+			}
+			for item in BUSINESS_TYPES
+		],
 	}
 	for field, rows in tables.items():
 		if not doc.get(field):
 			for row in rows:
 				doc.append(field, row)
 			changed = True
+	if _seed_homepage_blocks(doc):
+		changed = True
+	for row in doc.get("business_type_cards") or []:
+		if not row.get("section"):
+			row.section = "Business types"
+			changed = True
+	if not doc.get("page_layout"):
+		for row in DEFAULT_PAGE_LAYOUT:
+			doc.append("page_layout", row)
+		changed = True
 	if changed:
 		doc.save(ignore_permissions=True)
+
+
+def _seed_homepage_blocks(doc):
+	if doc.get("homepage_sections"):
+		return False
+	for spec in HOME_BLOCKS:
+		row = {"section": spec["section"], "enabled": 1, "image": spec.get("image") or ""}
+		for source, field in spec.get("map", {}).items():
+			if source == "image":
+				continue
+			row[source] = doc.get(field) or HOME_DEFAULTS.get(field) or ""
+		if not row.get("image"):
+			row["image"] = spec.get("image") or ""
+		doc.append("homepage_sections", row)
+	for row in doc.get("extra_sections") or []:
+		if row.get("section") and row.get("section") != "Custom":
+			continue
+		doc.append(
+			"homepage_sections",
+			{
+				"section": "Custom",
+				"enabled": row.get("enabled") if row.get("enabled") is not None else 1,
+				"eyebrow": row.get("eyebrow"),
+				"title": row.get("title"),
+				"text": row.get("text"),
+				"image": row.get("image"),
+				"button_label": row.get("button_label"),
+				"button_route": row.get("button_route"),
+				"secondary_label": row.get("secondary_label"),
+				"secondary_route": row.get("secondary_route"),
+				"place_after": row.get("place_after") or "After FAQ",
+				"layout": row.get("layout") or "Split",
+				"background": row.get("background") or "Default",
+				"anchor_id": row.get("anchor_id"),
+			},
+		)
+	return True
 
 
 def _seed_features():
@@ -462,6 +638,8 @@ def get_homepage():
 	data["faq_items"] = list(FAQS)
 	data["footer_company"] = _copy_rows(FOOTER_COMPANY)
 	data["footer_resources"] = _copy_rows(FOOTER_RESOURCES)
+	data["extra_sections"] = []
+	data["business_type_cards"] = []
 	if not _exists(HOME_DT):
 		return data
 	try:
@@ -483,7 +661,176 @@ def get_homepage():
 		data["footer_company"] = _table_items(doc, "footer_company")
 	if doc.get("footer_resources"):
 		data["footer_resources"] = _table_items(doc, "footer_resources")
+	data["section_cards"] = _section_card_map(doc)
+	data["business_type_cards"] = data["section_cards"].get("Business types", [])
+	_apply_homepage_blocks(doc, data, data["section_cards"])
+	data["extra_sections"] = list(data.get("extra_sections") or []) + list_content_sections(
+		"Homepage", ""
+	)
 	return data
+
+
+PLACE_AFTER = {
+	"After hero": "hero",
+	"After live booking": "live",
+	"After business types": "types",
+	"After journey": "journey",
+	"After feature blocks": "features",
+	"After more modules": "more",
+	"After GCC": "gcc",
+	"After getting started": "steps",
+	"After FAQ": "faq",
+	"hero": "hero",
+	"live": "live",
+	"types": "types",
+	"journey": "journey",
+	"features": "features",
+	"more": "more",
+	"gcc": "gcc",
+	"steps": "steps",
+	"faq": "faq",
+}
+
+
+def _section_card_map(doc):
+	grouped = {}
+	for row in doc.get("business_type_cards") or []:
+		if not row.get("title"):
+			continue
+		key = (row.get("section") or "Business types").strip()
+		grouped.setdefault(key, []).append(
+			{
+				"title": row.get("title") or "",
+				"text": row.get("text") or "",
+				"image": row.get("image") or "",
+				"route": row.get("route") or "",
+				"button_label": row.get("button_label") or "Explore",
+				"slug": _slug_from_route(row.get("route") or ""),
+				"section": key,
+			}
+		)
+	return grouped
+
+
+def _apply_homepage_blocks(doc, data, card_map=None):
+	card_map = card_map if card_map is not None else _section_card_map(doc)
+	blocks = doc.get("homepage_sections") or []
+	legacy = [row for row in (doc.get("extra_sections") or []) if (row.get("section") or "Custom") == "Custom"]
+	data["extra_sections"] = []
+	by_name = {spec["section"]: spec for spec in HOME_BLOCKS}
+	for row in list(blocks) + list(legacy):
+		if row.get("enabled") in (0, "0"):
+			continue
+		name = (row.get("section") or "Custom").strip()
+		if name in by_name and name != "Custom":
+			spec = by_name[name]
+			for source, field in spec.get("map", {}).items():
+				value = row.get(source)
+				if value not in (None, ""):
+					data[field] = value
+			continue
+		data["extra_sections"].append(_custom_block(row, card_map.get(name, [])))
+
+
+def _custom_block(row, cards=None):
+	theme = {"Default": "", "Alt": "bc-section-alt", "Blush": "bc-section-blush"}
+	cards = cards or []
+	layout = row.get("layout") or "Split"
+	if cards and layout == "Split":
+		layout = "Cards"
+	return {
+		"eyebrow": row.get("eyebrow") or "",
+		"title": row.get("title") or "",
+		"text": row.get("text") or "",
+		"image": row.get("image") or "",
+		"layout": layout,
+		"background": row.get("background") or "Default",
+		"theme_class": theme.get(row.get("background") or "Default", ""),
+		"button_label": row.get("button_label") or "",
+		"button_route": row.get("button_route") or "",
+		"secondary_label": row.get("secondary_label") or "",
+		"secondary_route": row.get("secondary_route") or "",
+		"place_after": PLACE_AFTER.get(row.get("place_after") or "After FAQ", "faq"),
+		"anchor_id": row.get("anchor_id") or "",
+		"cards": cards,
+	}
+
+
+def _extra_sections(doc):
+	data = {"extra_sections": []}
+	_apply_homepage_blocks(doc, data)
+	return data["extra_sections"]
+
+
+def list_content_sections(page_label, path=""):
+	if not _exists(SECTION_DT):
+		return []
+	filters = {"enabled": 1}
+	names = []
+	if page_label:
+		names.extend(
+			frappe.get_all(
+				SECTION_DT,
+				filters={**filters, "page": page_label},
+				pluck="name",
+				order_by="sort_order asc, modified desc",
+			)
+		)
+	if path:
+		names.extend(
+			frappe.get_all(
+				SECTION_DT,
+				filters={**filters, "page_path": path},
+				pluck="name",
+				order_by="sort_order asc, modified desc",
+			)
+		)
+	seen = set()
+	blocks = []
+	for name in names:
+		if name in seen:
+			continue
+		seen.add(name)
+		blocks.append(_content_block(frappe.get_cached_doc(SECTION_DT, name)))
+	return blocks
+
+
+def _content_block(doc):
+	theme = {"Default": "", "Alt": "bc-section-alt", "Blush": "bc-section-blush"}
+	cards = []
+	for row in doc.get("cards") or []:
+		if not row.get("title"):
+			continue
+		cards.append(
+			{
+				"title": row.get("title") or "",
+				"text": row.get("text") or "",
+				"image": row.get("image") or "",
+				"route": row.get("route") or "",
+				"button_label": row.get("button_label") or "Explore",
+			}
+		)
+	faqs = []
+	for row in doc.get("faq_items") or []:
+		if row.get("question"):
+			faqs.append({"q": row.get("question"), "a": row.get("answer") or ""})
+	return {
+		"eyebrow": doc.get("eyebrow") or "",
+		"title": doc.get("title") or "",
+		"text": doc.get("description") or "",
+		"image": doc.get("image") or "",
+		"layout": LAYOUT_MAP.get(doc.get("layout") or "Title + image", "Split"),
+		"background": doc.get("background") or "Default",
+		"theme_class": theme.get(doc.get("background") or "Default", ""),
+		"button_label": doc.get("button_label") or "",
+		"button_route": doc.get("button_route") or "",
+		"secondary_label": doc.get("secondary_label") or "",
+		"secondary_route": doc.get("secondary_route") or "",
+		"place_after": PLACE_AFTER.get(doc.get("place_after") or "After FAQ", "faq"),
+		"anchor_id": "",
+		"cards": cards,
+		"faq_items": faqs,
+	}
 
 
 def get_feature(slug):
@@ -642,14 +989,38 @@ def get_page(slug):
 			for row in data.get("body_items") or []
 		]
 	if slug == "product-tour":
-		data["tour"] = [
-			{
-				"title": row.get("title"),
-				"text": row.get("text"),
-				"kind": row.get("kind") or "calendar",
-			}
-			for row in data.get("body_items") or []
-		]
+		from beautcloud_website.website.settings import TOUR_SHOTS, TOUR_SLOTS, image_for
+
+		defaults = {item["kind"]: item for item in TOUR}
+		data["tour"] = []
+		for row in data.get("body_items") or []:
+			kind = row.get("kind") or "calendar"
+			base = defaults.get(kind) or {}
+			shot_field = TOUR_SHOTS.get(kind)
+			shot = ""
+			if shot_field:
+				try:
+					shot = frappe.get_cached_doc("Beau-T-Cloud Settings").get(shot_field) or ""
+				except Exception:
+					shot = ""
+			data["tour"].append(
+				{
+					"title": row.get("title") or base.get("title"),
+					"text": row.get("text") or base.get("text"),
+					"kind": kind,
+					"cta": row.get("link_label") or base.get("cta") or "Learn more",
+					"route": row.get("link_route") or base.get("route") or "",
+					"image": shot or image_for(TOUR_SLOTS.get(kind) or "page_product_tour"),
+				}
+			)
+		if not data["tour"]:
+			data["tour"] = [
+				{
+					**item,
+					"image": image_for(TOUR_SLOTS.get(item["kind"]) or "page_product_tour"),
+				}
+				for item in TOUR
+			]
 	return data
 
 
@@ -730,6 +1101,9 @@ def home_more_blocks():
 
 
 def business_type_blocks():
+	home = get_homepage()
+	if home.get("business_type_cards"):
+		return list(home["business_type_cards"])
 	blocks = []
 	for item in list_solutions():
 		blocks.append(
@@ -739,6 +1113,7 @@ def business_type_blocks():
 				"route": f"/solutions/{item['slug']}",
 				"slug": item["slug"],
 				"image": item.get("image"),
+				"button_label": "Explore",
 			}
 		)
 	return blocks or list(BUSINESS_TYPES)

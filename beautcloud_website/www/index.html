@@ -1,0 +1,178 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<!-- title: Beauty Salon Management Software Saudi Arabia | Beau-T-Cloud -->
+<section class="bc-hero">
+	<div class="bc-wrap bc-hero-grid">
+		<div>
+			<p class="bc-eyebrow">The operating system for modern beauty businesses</p>
+			<h1 class="bc-h1">Run your beauty business beautifully.</h1>
+			<p class="bc-lead">Manage appointments, clients, staff, POS, inventory, memberships, loyalty and multiple locations from one connected cloud platform.</p>
+			<ul class="bc-trust">
+				<li>Cloud-Based</li>
+				<li>Multi-Location</li>
+				<li>Real-Time Insights</li>
+			</ul>
+			<div class="bc-actions" style="display:flex;gap:.7rem;flex-wrap:wrap;">
+				<a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a>
+				<a class="bc-btn bc-btn-ghost" href="/product-tour">Explore the Platform</a>
+			</div>
+		</div>
+		<div class="bc-hero-visual" style="display:flex;flex-direction:column;gap:16px;position:relative;">
+			<img class="bc-hero-photo" src="{{ bc.hero_image }}" alt="Quiet luxury salon interior" width="960" height="540" style="position:static;height:220px;width:100%;object-fit:cover;border-radius:22px;">
+			<div style="position:static;width:100%;">
+				{% set kind = "analytics" %}
+				{% set label = "Beau-T-Cloud dashboard" %}
+				{% include "beautcloud_website/templates/includes/product_ui.html" %}
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="bc-section">
+	<div class="bc-wrap">
+		{% set eyebrow = "Business types" %}
+		{% set heading = "Built for every kind of beauty business" %}
+		{% set text = "Whether you run one studio or a group, Beau-T-Cloud follows the way beauty businesses actually work." %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-cards">
+			{% for item in business_types %}
+			{% set title = item.title %}
+			{% set text = item.text %}
+			{% set image = item.image %}
+			{% set route = item.route %}
+			{% include "beautcloud_website/templates/includes/feature_card.html" %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<section class="bc-section bc-section-blush">
+	<div class="bc-wrap">
+		{% set eyebrow = "Connected journey" %}
+		{% set heading = "One Cloud. Every Part of Your Beauty Business." %}
+		{% set text = "Booking, the welcome, the service, payment, rewards and the next visit stay on the same thread." %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-journey">
+			{% for item in journey %}
+			<div class="bc-step">
+				<b>{{ loop.index }}</b>
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.text }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% for block in home_features %}
+<section class="bc-section {% if loop.index is even %}bc-section-alt{% endif %}" id="{{ block.id }}">
+	<div class="bc-wrap bc-feature-split {% if loop.index is even %}is-flip{% endif %}">
+		<div>
+			<p class="bc-eyebrow">{{ block.eyebrow }}</p>
+			<h2 class="bc-h2">{{ block.title }}</h2>
+			<p class="bc-lead">{{ block.text }}</p>
+			<ul class="bc-chips">
+				{% for item in block.points %}
+				<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+			<p style="margin-top:1.2rem;"><a class="bc-btn bc-btn-ghost" href="{{ block.route }}">View {{ block.eyebrow }}</a></p>
+		</div>
+		{% set kind = block.preview %}
+		{% set label = block.eyebrow %}
+		{% include "beautcloud_website/templates/includes/product_ui.html" %}
+	</div>
+</section>
+{% endfor %}
+
+<section class="bc-section" id="multi-location">
+	<div class="bc-wrap">
+		{% set eyebrow = "Multi-location" %}
+		{% set heading = "One salon or an entire beauty group." %}
+		{% set text = "Manage every location independently while keeping real-time visibility across the business." %}
+		{% set center = False %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-kpis" style="margin-top:1.6rem;">
+			<div class="bc-kpi"><b>Revenue</b><span class="bc-muted">By location or group</span></div>
+			<div class="bc-kpi"><b>Appointments</b><span class="bc-muted">Same-day occupancy</span></div>
+			<div class="bc-kpi"><b>Staff</b><span class="bc-muted">Hours and output</span></div>
+			<div class="bc-kpi"><b>Inventory</b><span class="bc-muted">Branch stock</span></div>
+		</div>
+		<p style="margin-top:1.2rem;"><a href="/features/multi-location">See multi-location</a></p>
+	</div>
+</section>
+
+<section class="bc-section bc-section-alt" id="analytics">
+	<div class="bc-wrap bc-feature-split">
+		<div>
+			<p class="bc-eyebrow">Analytics</p>
+			<h2 class="bc-h2">Numbers that stay attached to the day.</h2>
+			<p class="bc-lead">Example figures below use SAR. They are illustrations, not a customer’s results.</p>
+			<ul class="bc-chips">
+				<li>Today’s Revenue</li><li>Today’s Appointments</li><li>Occupancy</li><li>Average Ticket</li>
+				<li>New Customers</li><li>Repeat Customers</li><li>Top Services</li><li>Branch Comparison</li>
+			</ul>
+		</div>
+		{% set kind = "analytics" %}
+		{% set label = "Management view" %}
+		{% include "beautcloud_website/templates/includes/product_ui.html" %}
+	</div>
+</section>
+
+<section class="bc-section" id="gcc">
+	<div class="bc-wrap">
+		{% set eyebrow = "Saudi Arabia & GCC" %}
+		{% set heading = "Built for beauty businesses in Saudi Arabia and the GCC" %}
+		{% set text = "The platform is implemented for the region. Integrations are named only when they are part of your project." %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-gcc">
+			{% for item in gcc_points %}
+			<article class="bc-panel">
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.text }}</p>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<section class="bc-section bc-section-blush">
+	<div class="bc-wrap">
+		{% set eyebrow = "Getting started" %}
+		{% set heading = "Getting started is simple." %}
+		{% set text = "" %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-steps">
+			{% for item in steps %}
+			<article class="bc-panel">
+				<p class="bc-eyebrow">{{ item.num }}</p>
+				<h3 class="bc-h3">{{ item.title }}</h3>
+				<p>{{ item.text }}</p>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+<section class="bc-section" id="faq">
+	<div class="bc-wrap">
+		{% set eyebrow = "FAQ" %}
+		{% set heading = "Questions, answered plainly." %}
+		{% set text = "Legal and security claims stay off this page until they are confirmed." %}
+		{% set center = True %}
+		{% include "beautcloud_website/templates/includes/section_heading.html" %}
+		<div class="bc-faq">
+			{% for faq in faqs %}
+			<details>
+				<summary>{{ faq.q }}</summary>
+				<p>{{ faq.a }}</p>
+			</details>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

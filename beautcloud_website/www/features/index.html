@@ -1,0 +1,23 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-page-hero">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Product</p>
+		<h1 class="bc-h1">Everything in one cloud platform.</h1>
+		<p class="bc-lead">Each module is a dedicated page. Copy stays specific — we do not invent customer results.</p>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap bc-cards">
+		{% for item in feature_list %}
+		<article class="bc-card">
+			<div class="bc-card-body">
+				<p class="bc-eyebrow">{{ item.eyebrow }}</p>
+				<h2 class="bc-h3">{{ item.title }}</h2>
+				<p>{{ item.hero }}</p>
+				<a class="bc-btn bc-btn-ghost" href="/features/{{ item.slug }}">Open</a>
+			</div>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

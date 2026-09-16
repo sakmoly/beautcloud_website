@@ -1,0 +1,29 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-page-hero">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Contact</p>
+		<h1 class="bc-h1">Speak with the Beau-T-Cloud team.</h1>
+		<p class="bc-lead">These details are placeholders and can be updated later from Beau-T-Cloud Settings in ERPNext.</p>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap bc-gcc">
+		<article class="bc-panel">
+			<h2 class="bc-h3">Email</h2>
+			<p><a href="{{ bc.email_link }}">{{ bc.contact_email }}</a></p>
+		</article>
+		<article class="bc-panel">
+			<h2 class="bc-h3">Phone</h2>
+			<p><a href="{{ bc.phone_link }}">{{ bc.contact_phone_display }}</a></p>
+		</article>
+		<article class="bc-panel">
+			<h2 class="bc-h3">WhatsApp</h2>
+			<p><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener">{{ bc.whatsapp_display }}</a></p>
+		</article>
+		<article class="bc-panel">
+			<h2 class="bc-h3">Studio address</h2>
+			<p>{{ bc.address_line }}<br>{{ bc.city }}, {{ bc.country }}</p>
+		</article>
+	</div>
+	<p class="bc-wrap" style="margin-top:2rem;"><a class="bc-btn bc-btn-primary" href="/book-demo">Book a Demo</a></p>
+</section>

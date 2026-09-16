@@ -5,6 +5,35 @@ app_description = "Official Beau-T-Cloud salon and beauty business management we
 app_email = "mehrin@beautcloud.com"
 app_license = "mit"
 
+required_apps = []
+
+home_page = "index"
+
+web_include_css = ["/assets/beautcloud_website/css/beautcloud.css?v=20260916b"]
+web_include_js = ["/assets/beautcloud_website/js/beautcloud.js?v=20260916b"]
+
+update_website_context = ["beautcloud_website.website.context.update_website_context"]
+
+base_template_map = {
+	r"^/?$": "beautcloud_website/templates/layouts/beautcloud.html",
+	r"^index$": "beautcloud_website/templates/layouts/beautcloud.html",
+	r"^/?(features|solutions|product-tour|pricing|about|contact|book-demo|privacy-policy|terms)(/.*)?$": (
+		"beautcloud_website/templates/layouts/beautcloud.html"
+	),
+}
+
+after_install = "beautcloud_website.install.after_install"
+after_migrate = "beautcloud_website.install.after_migrate"
+
+add_to_apps_screen = [
+	{
+		"name": "beautcloud_website",
+		"logo": "/assets/beautcloud_website/images/logo/beau-t-cloud-symbol.png",
+		"title": "Beau-T-Cloud Website",
+		"route": "/",
+	}
+]
+
 # Apps
 # ------------------
 

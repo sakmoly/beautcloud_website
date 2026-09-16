@@ -1,0 +1,23 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-page-hero">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Solutions</p>
+		<h1 class="bc-h1">Designed around the way you work.</h1>
+		<p class="bc-lead">Pick the business type closest to yours. The platform is the same cloud — the workflow emphasis changes.</p>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap bc-cards">
+		{% for item in solution_list %}
+		<article class="bc-card">
+			<img src="{{ item.image }}" alt="{{ item.title }}" width="640" height="400" loading="lazy">
+			<div class="bc-card-body">
+				<h2 class="bc-h3">{{ item.title }}</h2>
+				<p>{{ item.hero }}</p>
+				<a class="bc-btn bc-btn-ghost" href="/solutions/{{ item.slug }}">Open</a>
+			</div>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

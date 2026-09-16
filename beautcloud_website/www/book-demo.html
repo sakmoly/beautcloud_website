@@ -1,0 +1,79 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-page-hero">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Book a demo</p>
+		<h1 class="bc-h1">Tell us about your beauty business.</h1>
+		<p class="bc-lead">Required: full name, business name, and either a mobile number or email. This creates a lead for the Printechs team.</p>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap">
+		<form class="bc-form" data-bc-demo-form novalidate>
+			<input type="hidden" name="form_loaded_at" value="">
+			<div class="bc-hp" aria-hidden="true">
+				<label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+			</div>
+			<div>
+				<label for="full_name">Full name</label>
+				<input id="full_name" name="full_name" required autocomplete="name">
+			</div>
+			<div>
+				<label for="business_name">Business name</label>
+				<input id="business_name" name="business_name" required>
+			</div>
+			<div>
+				<label for="email">Email</label>
+				<input id="email" name="email" type="email" autocomplete="email">
+			</div>
+			<div>
+				<label for="mobile">Mobile</label>
+				<input id="mobile" name="mobile" type="tel" autocomplete="tel">
+			</div>
+			<div>
+				<label for="country">Country</label>
+				<input id="country" name="country" value="Saudi Arabia">
+			</div>
+			<div>
+				<label for="city">City</label>
+				<input id="city" name="city" value="Riyadh">
+			</div>
+			<div>
+				<label for="business_type">Business type</label>
+				<select id="business_type" name="business_type">
+					<option>Hair Salon</option>
+					<option>Beauty Salon</option>
+					<option>Nail Studio</option>
+					<option>Spa</option>
+					<option>Barbershop</option>
+					<option>Multi-Branch Group</option>
+					<option>Other</option>
+				</select>
+			</div>
+			<div>
+				<label for="branches">Number of branches</label>
+				<input id="branches" name="branches" value="1">
+			</div>
+			<div>
+				<label for="employees">Number of employees</label>
+				<select id="employees" name="employees">
+					<option>1-10</option>
+					<option>11-50</option>
+					<option>51-200</option>
+					<option>201-500</option>
+				</select>
+			</div>
+			<div>
+				<label for="current_software">Current software</label>
+				<input id="current_software" name="current_software" placeholder="Paper, another app, or none">
+			</div>
+			<div class="is-full">
+				<label for="message">Message</label>
+				<textarea id="message" name="message" rows="4"></textarea>
+			</div>
+			<div class="is-full">
+				<button class="bc-btn bc-btn-primary" type="submit">Request demo</button>
+				<p class="bc-form-status" data-bc-form-status></p>
+			</div>
+		</form>
+	</div>
+</section>

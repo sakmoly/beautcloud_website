@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+
+{% block title %}{{ title | striptags }}{% endblock %}
+
+{% block favicon %}
+<link rel="shortcut icon" href="{{ (bc.favicon if bc else '/assets/beautcloud_website/images/logo/favicon.png') | abs_url }}" type="image/png">
+{% endblock %}
+
+{% block head_include %}
+<link rel="canonical" href="{{ canonical or (bc.canonical_host if bc else 'https://beautcloud.com') }}">
+<link rel="stylesheet" href="/assets/beautcloud_website/css/beautcloud.css?v=20260916b">
+<style>
+	.bc-hero-visual { display: flex !important; flex-direction: column !important; gap: 1rem !important; position: relative !important; }
+	.bc-hero-photo { position: static !important; height: 220px !important; width: 100% !important; object-fit: cover !important; }
+	.bc-hero .bc-frame { position: static !important; right: auto !important; bottom: auto !important; width: 100% !important; margin-top: 0 !important; }
+</style>
+{{ head_include or "" }}
+{% endblock %}
+
+{% block navbar %}
+{% include "beautcloud_website/templates/includes/navbar.html" %}
+{% endblock %}
+
+{% block content %}
+<main id="main" class="bc-main">
+	{% block page_content %}{% endblock %}
+</main>
+{% include "beautcloud_website/templates/includes/json_ld.html" %}
+{% endblock %}
+
+{% block footer %}
+{% include "beautcloud_website/templates/includes/footer.html" %}
+{% endblock %}

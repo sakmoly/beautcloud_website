@@ -1,0 +1,10 @@
+<article class="bc-card">
+	{% if image %}
+	<img src="{{ image }}" alt="{{ title }}" width="640" height="400" loading="lazy">
+	{% endif %}
+	<div class="bc-card-body">
+		<h3 class="bc-h3">{{ title }}</h3>
+		<p>{{ text }}</p>
+		{% if route %}<a class="bc-btn bc-btn-ghost" href="{{ route }}">Explore</a>{% endif %}
+	</div>
+</article>

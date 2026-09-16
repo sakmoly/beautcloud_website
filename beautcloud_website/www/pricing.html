@@ -1,0 +1,21 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-page-hero">
+	<div class="bc-wrap">
+		<p class="bc-eyebrow">Pricing</p>
+		<h1 class="bc-h1">Plans for every stage of your beauty business.</h1>
+		<p class="bc-lead">Subscription prices are not published yet. Choose the shape of your business and talk to sales — we will propose a package after the demo.</p>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap bc-price">
+		{% for plan in pricing %}
+		<article class="{% if loop.index == 2 %}is-featured{% endif %}">
+			<h2 class="bc-h3">{{ plan.name }}</h2>
+			<p>{{ plan.text }}</p>
+			<p class="bc-note">Price on consultation</p>
+			<a class="bc-btn {% if loop.index == 2 %}bc-btn-primary{% else %}bc-btn-ghost{% endif %}" href="{{ plan.route }}">{{ plan.cta }}</a>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

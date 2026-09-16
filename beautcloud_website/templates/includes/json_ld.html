@@ -1,0 +1,55 @@
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "SoftwareApplication",
+	"name": "Beau-T-Cloud",
+	"applicationCategory": "BusinessApplication",
+	"operatingSystem": "Web",
+	"url": "{{ bc.canonical_host }}",
+	"description": "Cloud salon and beauty business management platform for appointments, clients, POS, staff, inventory, memberships and multi-location operations.",
+	"offers": {
+		"@type": "Offer",
+		"availability": "https://schema.org/OnlineOnly",
+		"url": "{{ bc.canonical_host }}/book-demo"
+	},
+	"provider": {
+		"@type": "Organization",
+		"name": "Printechs",
+		"url": "{{ bc.canonical_host }}",
+		"email": "{{ bc.contact_email }}"
+	}
+}
+</script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Beau-T-Cloud",
+	"url": "{{ bc.canonical_host }}",
+	"logo": "{{ bc.logo }}",
+	"parentOrganization": { "@type": "Organization", "name": "Printechs" },
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"email": "{{ bc.contact_email }}",
+		"telephone": "{{ bc.contact_phone_display }}",
+		"contactType": "sales"
+	}
+}
+</script>
+{% if page_kind == "home" %}
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		{% for faq in faqs %}
+		{
+			"@type": "Question",
+			"name": {{ faq.q | tojson }},
+			"acceptedAnswer": { "@type": "Answer", "text": {{ faq.a | tojson }} }
+		}{% if not loop.last %},{% endif %}
+		{% endfor %}
+	]
+}
+</script>
+{% endif %}

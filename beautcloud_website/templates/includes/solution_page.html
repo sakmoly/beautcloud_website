@@ -1,0 +1,60 @@
+<section class="bc-page-hero">
+	<div class="bc-wrap bc-feature-split">
+		<div>
+			<p class="bc-eyebrow">Solutions</p>
+			<h1 class="bc-h1">{{ solution.hero }}</h1>
+			<p class="bc-lead">Beau-T-Cloud for {{ solution.title | lower }} — appointments, clients, staff and checkout in one cloud platform.</p>
+		</div>
+		<img src="{{ solution.image }}" alt="{{ solution.title }}" width="720" height="480" style="border-radius:24px;object-fit:cover;height:320px;width:100%;">
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap bc-feature-split">
+		<div>
+			<h2 class="bc-h2">Typical challenges</h2>
+			<ul class="bc-list">
+				{% for item in solution.challenges %}
+				<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div>
+			<h2 class="bc-h2">How Beau-T-Cloud helps</h2>
+			<ul class="bc-list">
+				{% for item in solution.helps %}
+				<li>{{ item }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</section>
+<section class="bc-section bc-section-alt">
+	<div class="bc-wrap">
+		<h2 class="bc-h2">A typical workflow</h2>
+		<div class="bc-steps">
+			{% for item in solution.workflow %}
+			<article class="bc-panel">
+				<p class="bc-eyebrow">{{ loop.index }}</p>
+				<p>{{ item }}</p>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+<section class="bc-section">
+	<div class="bc-wrap">
+		<h2 class="bc-h2">Relevant modules</h2>
+		<div class="bc-cards">
+			{% for item in solution_modules %}
+			<article class="bc-card">
+				<div class="bc-card-body">
+					<h3 class="bc-h3">{{ item.title }}</h3>
+					<p>{{ item.hero }}</p>
+					<a href="/features/{{ item.slug }}">View feature</a>
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

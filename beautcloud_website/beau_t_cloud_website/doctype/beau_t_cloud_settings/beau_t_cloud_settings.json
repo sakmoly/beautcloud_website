@@ -1,0 +1,278 @@
+{
+ "actions": [],
+ "creation": "2026-09-16 19:50:00",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "brand_section",
+  "brand_name",
+  "company_name",
+  "column_break_brand",
+  "tagline",
+  "supporting_line",
+  "contact_section",
+  "contact_email",
+  "contact_phone",
+  "contact_phone_display",
+  "column_break_contact",
+  "whatsapp_number",
+  "whatsapp_display",
+  "address_line",
+  "city",
+  "country",
+  "links_section",
+  "login_url",
+  "book_url",
+  "kiosk_url",
+  "column_break_links",
+  "canonical_host",
+  "assets_section",
+  "logo",
+  "symbol",
+  "favicon",
+  "column_break_assets",
+  "hero_image",
+  "about_image",
+  "screenshots_section",
+  "hero_screenshot",
+  "calendar_screenshot",
+  "booking_screenshot",
+  "column_break_shots",
+  "crm_screenshot",
+  "pos_screenshot"
+ ],
+ "fields": [
+  {
+   "fieldname": "brand_section",
+   "fieldtype": "Section Break",
+   "label": "Brand"
+  },
+  {
+   "default": "Beau-T-Cloud",
+   "fieldname": "brand_name",
+   "fieldtype": "Data",
+   "label": "Brand Name"
+  },
+  {
+   "default": "Printechs",
+   "fieldname": "company_name",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "column_break_brand",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Run your beauty business beautifully.",
+   "fieldname": "tagline",
+   "fieldtype": "Small Text",
+   "label": "Tagline"
+  },
+  {
+   "default": "One Cloud. Every Part of Your Beauty Business.",
+   "fieldname": "supporting_line",
+   "fieldtype": "Small Text",
+   "label": "Supporting Line"
+  },
+  {
+   "fieldname": "contact_section",
+   "fieldtype": "Section Break",
+   "label": "Contact (dummy until updated)"
+  },
+  {
+   "default": "hello@beautcloud.com",
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "default": "966110000000",
+   "description": "Digits only, used for tel: links",
+   "fieldname": "contact_phone",
+   "fieldtype": "Data",
+   "label": "Phone Digits"
+  },
+  {
+   "default": "+966 11 000 0000",
+   "fieldname": "contact_phone_display",
+   "fieldtype": "Data",
+   "label": "Phone Display"
+  },
+  {
+   "fieldname": "column_break_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "918075216948",
+   "description": "Digits only, used for wa.me",
+   "fieldname": "whatsapp_number",
+   "fieldtype": "Data",
+   "label": "WhatsApp Digits"
+  },
+  {
+   "default": "+91 80752 16948",
+   "fieldname": "whatsapp_display",
+   "fieldtype": "Data",
+   "label": "WhatsApp Display"
+  },
+  {
+   "default": "King Fahd Road, Al Olaya",
+   "fieldname": "address_line",
+   "fieldtype": "Data",
+   "label": "Address Line"
+  },
+  {
+   "default": "Riyadh",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "default": "Saudi Arabia",
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "label": "Country"
+  },
+  {
+   "fieldname": "links_section",
+   "fieldtype": "Section Break",
+   "label": "Product Links"
+  },
+  {
+   "description": "Leave empty to send Login to Book a Demo",
+   "fieldname": "login_url",
+   "fieldtype": "Data",
+   "label": "Staff Login URL",
+   "options": "URL"
+  },
+  {
+   "default": "http://printechsdammam.dyndns.org:86/book",
+   "fieldname": "book_url",
+   "fieldtype": "Data",
+   "label": "Online Booking URL",
+   "options": "URL"
+  },
+  {
+   "default": "http://printechsdammam.dyndns.org:86/kiosk",
+   "fieldname": "kiosk_url",
+   "fieldtype": "Data",
+   "label": "Kiosk URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "column_break_links",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "https://beautcloud.com",
+   "fieldname": "canonical_host",
+   "fieldtype": "Data",
+   "label": "Canonical Host",
+   "options": "URL"
+  },
+  {
+   "fieldname": "assets_section",
+   "fieldtype": "Section Break",
+   "label": "Brand Images"
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Primary Logo"
+  },
+  {
+   "fieldname": "symbol",
+   "fieldtype": "Attach Image",
+   "label": "Symbol"
+  },
+  {
+   "fieldname": "favicon",
+   "fieldtype": "Attach Image",
+   "label": "Favicon"
+  },
+  {
+   "fieldname": "column_break_assets",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hero_image",
+   "fieldtype": "Attach Image",
+   "label": "Hero Atmosphere Image"
+  },
+  {
+   "fieldname": "about_image",
+   "fieldtype": "Attach Image",
+   "label": "About Image"
+  },
+  {
+   "fieldname": "screenshots_section",
+   "fieldtype": "Section Break",
+   "label": "Product Screenshots (upload later)"
+  },
+  {
+   "fieldname": "hero_screenshot",
+   "fieldtype": "Attach Image",
+   "label": "Dashboard Screenshot"
+  },
+  {
+   "fieldname": "calendar_screenshot",
+   "fieldtype": "Attach Image",
+   "label": "Calendar Screenshot"
+  },
+  {
+   "fieldname": "booking_screenshot",
+   "fieldtype": "Attach Image",
+   "label": "Booking Screenshot"
+  },
+  {
+   "fieldname": "column_break_shots",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "crm_screenshot",
+   "fieldtype": "Attach Image",
+   "label": "CRM Screenshot"
+  },
+  {
+   "fieldname": "pos_screenshot",
+   "fieldtype": "Attach Image",
+   "label": "POS Screenshot"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-09-16 19:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Beau-T-Cloud Website",
+ "name": "Beau-T-Cloud Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

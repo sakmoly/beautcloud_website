@@ -1034,9 +1034,7 @@
 
 .bc-footer-logo {
 	display: inline-block;
-	background: #fff;
-	border-radius: 12px;
-	padding: 8px 10px;
+	background: transparent;
 }
 
 .bc-footer-logo img {

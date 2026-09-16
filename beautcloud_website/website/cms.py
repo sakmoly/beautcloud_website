@@ -86,6 +86,14 @@ HOME_DEFAULTS = {
 	"gcc_image": f"{ASSET}/home/gcc.png",
 }
 
+NAV_DEFAULTS = [
+	{"label": "Product", "menu_type": "Product dropdown", "route": "", "enabled": 1},
+	{"label": "Solutions", "menu_type": "Solutions dropdown", "route": "", "enabled": 1},
+	{"label": "Pricing", "menu_type": "Link", "route": "/pricing", "enabled": 1},
+	{"label": "Resources", "menu_type": "Link", "route": "/product-tour", "enabled": 1},
+	{"label": "About", "menu_type": "Link", "route": "/about", "enabled": 1},
+]
+
 HOME_BLOCKS = [
 	{
 		"section": "Hero",
@@ -490,6 +498,10 @@ def _seed_homepage():
 		for row in DEFAULT_PAGE_LAYOUT:
 			doc.append("page_layout", row)
 		changed = True
+	if _exists("Beau-T-Cloud Nav Item") and not doc.get("nav_items"):
+		for row in _nav_seed_rows(doc):
+			doc.append("nav_items", row)
+		changed = True
 	if changed:
 		doc.save(ignore_permissions=True)
 
@@ -630,6 +642,52 @@ def _seed_pages():
 		doc.insert(ignore_permissions=True)
 
 
+def _nav_seed_rows(doc=None):
+	data = dict(HOME_DEFAULTS)
+	if doc:
+		for field in (
+			"nav_product_label",
+			"nav_solutions_label",
+			"nav_pricing_label",
+			"nav_pricing_route",
+			"nav_resources_label",
+			"nav_resources_route",
+			"nav_about_label",
+			"nav_about_route",
+		):
+			if doc.get(field) not in (None, ""):
+				data[field] = doc.get(field)
+	return [
+		{"label": data["nav_product_label"], "menu_type": "Product dropdown", "route": "", "enabled": 1},
+		{"label": data["nav_solutions_label"], "menu_type": "Solutions dropdown", "route": "", "enabled": 1},
+		{"label": data["nav_pricing_label"], "menu_type": "Link", "route": data["nav_pricing_route"], "enabled": 1},
+		{"label": data["nav_resources_label"], "menu_type": "Link", "route": data["nav_resources_route"], "enabled": 1},
+		{"label": data["nav_about_label"], "menu_type": "Link", "route": data["nav_about_route"], "enabled": 1},
+	]
+
+
+def _nav_menu(doc, data):
+	rows = []
+	if doc:
+		for row in doc.get("nav_items") or []:
+			if not row.get("label"):
+				continue
+			rows.append(
+				{
+					"label": row.get("label"),
+					"type": row.get("menu_type") or "Link",
+					"route": row.get("route") or "",
+					"enabled": 1 if row.get("enabled") else 0,
+				}
+			)
+	if not rows:
+		rows = [
+			{"label": item["label"], "type": item["menu_type"], "route": item.get("route") or "", "enabled": 1}
+			for item in _nav_seed_rows()
+		]
+	return [item for item in rows if item.get("enabled")]
+
+
 def get_homepage():
 	data = dict(HOME_DEFAULTS)
 	data["journey_items"] = list(JOURNEY)
@@ -640,6 +698,7 @@ def get_homepage():
 	data["footer_resources"] = _copy_rows(FOOTER_RESOURCES)
 	data["extra_sections"] = []
 	data["business_type_cards"] = []
+	data["nav_menu"] = _nav_menu(None, data)
 	if not _exists(HOME_DT):
 		return data
 	try:
@@ -661,6 +720,7 @@ def get_homepage():
 		data["footer_company"] = _table_items(doc, "footer_company")
 	if doc.get("footer_resources"):
 		data["footer_resources"] = _table_items(doc, "footer_resources")
+	data["nav_menu"] = _nav_menu(doc, data)
 	data["section_cards"] = _section_card_map(doc)
 	data["business_type_cards"] = data["section_cards"].get("Business types", [])
 	_apply_homepage_blocks(doc, data, data["section_cards"])

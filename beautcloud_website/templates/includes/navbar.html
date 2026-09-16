@@ -8,25 +8,29 @@
 			<span></span>
 		</button>
 		<ul class="bc-menu" id="bc-menu" data-bc-menu>
+			{% for item in home.nav_menu %}
+			{% if item.type == "Product dropdown" %}
 			<li>
-				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ home.nav_product_label }}</button>
+				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ item.label }}</button>
 				<div class="bc-drop" role="menu">
-					{% for item in bc_nav.product %}
-					<a href="{{ item.route }}" role="menuitem">{{ item.label }}</a>
+					{% for link in bc_nav.product %}
+					<a href="{{ link.route }}" role="menuitem">{{ link.label }}</a>
 					{% endfor %}
 				</div>
 			</li>
+			{% elif item.type == "Solutions dropdown" %}
 			<li>
-				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ home.nav_solutions_label }}</button>
+				<button type="button" data-bc-drop aria-expanded="false" aria-haspopup="true">{{ item.label }}</button>
 				<div class="bc-drop" role="menu">
-					{% for item in bc_nav.solutions %}
-					<a href="{{ item.route }}" role="menuitem">{{ item.label }}</a>
+					{% for link in bc_nav.solutions %}
+					<a href="{{ link.route }}" role="menuitem">{{ link.label }}</a>
 					{% endfor %}
 				</div>
 			</li>
-			<li><a href="{{ home.nav_pricing_route }}">{{ home.nav_pricing_label }}</a></li>
-			<li><a href="{{ home.nav_resources_route }}">{{ home.nav_resources_label }}</a></li>
-			<li><a href="{{ home.nav_about_route }}">{{ home.nav_about_label }}</a></li>
+			{% elif item.route %}
+			<li><a href="{{ item.route }}">{{ item.label }}</a></li>
+			{% endif %}
+			{% endfor %}
 		</ul>
 		<div class="bc-nav-actions">
 			<div class="bc-lang" role="group" aria-label="Language">

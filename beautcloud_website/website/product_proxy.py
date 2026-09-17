@@ -36,6 +36,11 @@ def should_proxy(path: str) -> bool:
 		or path.startswith("/kiosk/")
 		or path == "/staff"
 		or path.startswith("/staff/")
+		or path == "/services"
+		or path.startswith("/services/")
+		or path == "/branches"
+		or path.startswith("/branches/")
+		or path.startswith("/p/")
 		or path.startswith("/_next/")
 		or path == "/api/beauty"
 		or path.startswith("/api/beauty/")

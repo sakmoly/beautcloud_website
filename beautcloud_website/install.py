@@ -207,11 +207,12 @@ def _ensure_desk_sidebar():
 				update_modified=False,
 			)
 
+		# Old App-type icon used the same logo/name as Beau-T-Cloud and showed twice.
 		if frappe.db.exists("Desktop Icon", "Beau-T-Cloud Website"):
 			frappe.db.set_value(
 				"Desktop Icon",
 				"Beau-T-Cloud Website",
-				{"link": "/app/beau-t-cloud", "hidden": 0, "logo_url": logo},
+				{"hidden": 1},
 				update_modified=False,
 			)
 

@@ -18,9 +18,10 @@ DEFAULTS = {
 	"city": "Riyadh",
 	"country": "Saudi Arabia",
 	"login_url": "",
-	"book_url": "http://printechsdammam.dyndns.org:86/book",
-	"kiosk_url": "http://printechsdammam.dyndns.org:86/kiosk",
+	"book_url": "https://www.beautcloud.com/book",
+	"kiosk_url": "https://www.beautcloud.com/kiosk",
 	"canonical_host": "https://beautcloud.com",
+	"google_site_verification": "cv4mnLGBpKqeRhGiK48Y6UYBQ2xPk2jqKRYTaFM_0_0",
 	"logo": f"{ASSET}/logo/beau-t-cloud-primary.png",
 	"symbol": f"{ASSET}/logo/beau-t-cloud-symbol.png",
 	"favicon": f"{ASSET}/logo/favicon.png",
@@ -267,7 +268,9 @@ def get_brand_settings():
 	data["whatsapp_link_sa"] = saudi.get("link") or chosen.get("link") or ""
 	data["whatsapp_display_in"] = india.get("display") or data.get("whatsapp_display") or ""
 	phone = "".join(ch for ch in str(data.get("contact_phone") or "") if ch.isdigit())
+	placeholder_phones = {"966110000000", "110000000"}
 	data["phone_link"] = f"tel:+{phone}" if phone else ""
+	data["show_phone"] = bool(phone) and phone not in placeholder_phones
 	data["email_link"] = f"mailto:{data['contact_email']}" if data.get("contact_email") else ""
 	data["login_url"] = data.get("login_url") or "/book-demo"
 	data["images"] = get_image_map()

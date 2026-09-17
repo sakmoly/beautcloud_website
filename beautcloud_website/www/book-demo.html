@@ -1,5 +1,5 @@
 <!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
-<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+<section class="bc-cinema is-compact" style="background-image:url('{{ page_image }}')">
 	<div class="bc-cinema-shade"></div>
 	<div class="bc-wrap bc-cinema-inner">
 		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
@@ -7,28 +7,35 @@
 		<p class="bc-lead">{{ site_page.lead }}</p>
 	</div>
 </section>
-<section class="bc-section">
-	<div class="bc-wrap bc-feature-split">
-		<form class="bc-form" data-bc-demo-form novalidate>
+<section class="bc-section bc-section-blush bc-demo-section">
+	<div class="bc-wrap bc-demo-grid">
+		<form class="bc-form bc-demo-card" data-bc-demo-form novalidate>
 			<input type="hidden" name="form_loaded_at" value="">
 			<div class="bc-hp" aria-hidden="true">
 				<label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
 			</div>
+			<header class="bc-demo-card-head is-full">
+				<p class="bc-eyebrow">{{ site_page.title }}</p>
+				<h2 class="bc-h3">{{ site_page.button_label }}</h2>
+				{% if site_page.note %}
+				<p class="bc-note">{{ site_page.note }}</p>
+				{% endif %}
+			</header>
 			<div>
 				<label for="full_name">Full name</label>
-				<input id="full_name" name="full_name" required autocomplete="name">
+				<input id="full_name" name="full_name" required autocomplete="name" placeholder="Your name">
 			</div>
 			<div>
 				<label for="business_name">Business name</label>
-				<input id="business_name" name="business_name" required>
+				<input id="business_name" name="business_name" required placeholder="Salon, spa or group name">
 			</div>
 			<div>
 				<label for="email">Email</label>
-				<input id="email" name="email" type="email" autocomplete="email">
+				<input id="email" name="email" type="email" autocomplete="email" placeholder="name@business.com">
 			</div>
 			<div>
 				<label for="mobile">Mobile</label>
-				<input id="mobile" name="mobile" type="tel" autocomplete="tel">
+				<input id="mobile" name="mobile" type="tel" autocomplete="tel" placeholder="Include country code">
 			</div>
 			<div>
 				<label for="country">Country</label>
@@ -74,27 +81,47 @@
 			</div>
 			<div class="is-full">
 				<label for="message">Message</label>
-				<textarea id="message" name="message" rows="4"></textarea>
+				<textarea id="message" name="message" rows="4" placeholder="What should we walk through on the call?"></textarea>
 			</div>
 			<div class="is-full">
 				<button class="bc-btn bc-btn-primary" type="submit">{{ site_page.button_label }}</button>
 				<p class="bc-form-status" data-bc-form-status></p>
 			</div>
 		</form>
-		<aside class="bc-compare" style="grid-template-columns:1fr;align-self:start;">
-			<article>
+		<aside class="bc-demo-aside">
+			<article class="bc-demo-panel">
 				<h2 class="bc-h3">{{ site_page.aside_title }}</h2>
-				<ul class="bc-check-list is-pink">
+				<ol class="bc-demo-steps">
 					{% for item in site_page.body_items %}
-					<li>{{ item.text or item.title }}</li>
+					<li>
+						<span>{{ loop.index }}</span>
+						<p>{{ item.text or item.title }}</p>
+					</li>
 					{% endfor %}
-				</ul>
+				</ol>
 			</article>
-			<article class="is-help">
+			<article class="bc-demo-panel is-help">
 				<h2 class="bc-h3">{{ site_page.cta_title }}</h2>
-				<p><a href="{{ bc.email_link }}">{{ bc.contact_email }}</a></p>
-				<p><a href="{{ bc.phone_link }}">{{ bc.contact_phone_display }}</a></p>
-				<p><a href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener" data-bc-wa data-bc-wa-text>WhatsApp {{ bc.whatsapp_display_active }}</a></p>
+				{% if site_page.cta_text %}
+				<p class="bc-note">{{ site_page.cta_text }}</p>
+				{% endif %}
+				<div class="bc-demo-contacts">
+					{% if bc.contact_email %}
+					<a class="bc-demo-contact" href="{{ bc.email_link }}">
+						<strong>Email</strong>
+						<span>{{ bc.contact_email }}</span>
+					</a>
+					{% endif %}
+					{% if bc.show_phone %}
+					<a class="bc-demo-contact" href="{{ bc.phone_link }}">
+						<strong>Phone</strong>
+						<span>{{ bc.contact_phone_display }}</span>
+					</a>
+					{% endif %}
+					{% if bc.whatsapp_link %}
+					<a class="bc-btn bc-btn-wa" href="{{ bc.whatsapp_link }}" target="_blank" rel="noopener" data-bc-wa data-bc-wa-text>WhatsApp {{ bc.whatsapp_display_active }}</a>
+					{% endif %}
+				</div>
 			</article>
 		</aside>
 	</div>

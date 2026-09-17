@@ -32,6 +32,7 @@
   "kiosk_url",
   "column_break_links",
   "canonical_host",
+  "google_site_verification",
   "assets_section",
   "logo",
   "logo_preview",
@@ -198,14 +199,14 @@
    "options": "URL"
   },
   {
-   "default": "http://printechsdammam.dyndns.org:86/book",
+   "default": "https://www.beautcloud.com/book",
    "fieldname": "book_url",
    "fieldtype": "Data",
    "label": "Online Booking URL",
    "options": "URL"
   },
   {
-   "default": "http://printechsdammam.dyndns.org:86/kiosk",
+   "default": "https://www.beautcloud.com/kiosk",
    "fieldname": "kiosk_url",
    "fieldtype": "Data",
    "label": "Kiosk URL",
@@ -221,6 +222,12 @@
    "fieldtype": "Data",
    "label": "Canonical Host",
    "options": "URL"
+  },
+  {
+   "description": "Google Search Console HTML tag content value",
+   "fieldname": "google_site_verification",
+   "fieldtype": "Data",
+   "label": "Google Site Verification"
   },
   {
    "fieldname": "assets_section",

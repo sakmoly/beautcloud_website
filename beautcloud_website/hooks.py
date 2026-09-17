@@ -9,10 +9,11 @@ required_apps = []
 
 home_page = "index"
 
-web_include_css = ["/assets/beautcloud_website/css/beautcloud.css?v=20260916o"]
+web_include_css = ["/assets/beautcloud_website/css/beautcloud.css?v=20260916p"]
 web_include_js = ["/assets/beautcloud_website/js/beautcloud.js?v=20260916n"]
 
 update_website_context = ["beautcloud_website.website.context.update_website_context"]
+before_request = ["beautcloud_website.website.product_proxy.before_request"]
 
 base_template_map = {
 	r"^/?$": "beautcloud_website/templates/layouts/beautcloud.html",

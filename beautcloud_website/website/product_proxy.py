@@ -21,7 +21,12 @@ SKIP_REQ = {
 SKIP_RES = SKIP_REQ | {"content-encoding"}
 
 
-KIOSK_HOSTS = {"kiosk.beautcloud.com"}
+KIOSK_HOSTS = {"kiosk.beautcloud.com", "kiosk.beautycloud.com"}
+KIOSK_REDIRECT = "https://www.beautcloud.com/kiosk"
+BOOK_HOSTS = {"book.beautcloud.com", "book.beautycloud.com"}
+BOOK_REDIRECT = "https://www.beautcloud.com/book"
+POS_HOSTS = {"pos.beautcloud.com", "pos.beautycloud.com"}
+POS_REDIRECT = "https://www.beautcloud.com/staff/pos"
 
 
 def request_host(request) -> str:
@@ -44,6 +49,17 @@ def should_proxy(path: str) -> bool:
 		or path.startswith("/_next/")
 		or path == "/api/beauty"
 		or path.startswith("/api/beauty/")
+		or path
+		in {
+			"/favicon.png",
+			"/favicon.ico",
+			"/icon.png",
+			"/apple-icon.png",
+			"/apple-touch-icon.png",
+			"/beauty-cloud-logo.png",
+			"/beauty-cloud-wordmark.png",
+			"/manifest.webmanifest",
+		}
 	)
 
 
@@ -72,8 +88,19 @@ def before_request():
 		raise ProxiedResponse(
 			Response(GOOGLE_VERIFY_BODY, status=200, content_type="text/html; charset=utf-8")
 		)
-	if request_host(request) in KIOSK_HOSTS and request.path in ("/", ""):
-		raise ProxiedResponse(_fetch(request, path="/kiosk"))
+	if request_host(request) in KIOSK_HOSTS:
+		raise ProxiedResponse(Response(status=301, headers={"Location": KIOSK_REDIRECT}))
+	if request_host(request) in BOOK_HOSTS:
+		raise ProxiedResponse(Response(status=301, headers={"Location": BOOK_REDIRECT}))
+	if request_host(request) in POS_HOSTS:
+		raise ProxiedResponse(Response(status=301, headers={"Location": POS_REDIRECT}))
+	if request.path in ("/favicon.ico", "/favicon.png"):
+		raise ProxiedResponse(
+			Response(
+				status=302,
+				headers={"Location": "/assets/beauty_cloud/images/beauty-cloud-favicon.png"},
+			)
+		)
 	if not should_proxy(request.path):
 		return
 	raise ProxiedResponse(_fetch(request))

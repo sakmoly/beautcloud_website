@@ -37,7 +37,7 @@
 				<button type="button" data-bc-lang="en" class="is-active" aria-pressed="true">EN</button>
 				<button type="button" data-bc-lang="ar" aria-pressed="false">عربي</button>
 			</div>
-			<a class="bc-nav-login bc-hide-sm" href="{{ bc.login_url }}">{{ home.nav_login_label }}</a>
+			<a class="bc-nav-login bc-hide-sm" href="{{ home.nav_login_route or bc.login_url }}">{{ home.nav_login_label }}</a>
 			<a class="bc-btn bc-btn-primary" href="{{ home.nav_demo_route }}">{{ home.nav_demo_label }}</a>
 		</div>
 	</div>

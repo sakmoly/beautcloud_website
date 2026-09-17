@@ -71,6 +71,7 @@ HOME_DEFAULTS = {
 	"nav_about_label": "About",
 	"nav_about_route": "/about",
 	"nav_login_label": "Login",
+	"nav_login_route": "/login",
 	"nav_demo_label": "Book a Demo",
 	"nav_demo_route": "/book-demo",
 	"footer_blurb": "A Printechs solution for salons, spas and beauty groups.",

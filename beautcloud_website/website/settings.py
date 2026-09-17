@@ -20,6 +20,10 @@ DEFAULTS = {
 	"login_url": "",
 	"book_url": "https://www.beautcloud.com/book",
 	"kiosk_url": "https://www.beautcloud.com/kiosk",
+	"facebook_url": "https://www.facebook.com/printechs",
+	"twitter_url": "https://twitter.com/printechssaudi",
+	"linkedin_url": "https://www.linkedin.com/company/printechs",
+	"instagram_url": "https://www.instagram.com/printechssaudiarabia",
 	"canonical_host": "https://beautcloud.com",
 	"google_site_verification": "cv4mnLGBpKqeRhGiK48Y6UYBQ2xPk2jqKRYTaFM_0_0",
 	"logo": f"{ASSET}/logo/beau-t-cloud-primary.png",
@@ -273,8 +277,22 @@ def get_brand_settings():
 	data["show_phone"] = bool(phone) and phone not in placeholder_phones
 	data["email_link"] = f"mailto:{data['contact_email']}" if data.get("contact_email") else ""
 	data["login_url"] = data.get("login_url") or "/book-demo"
+	data["social_links"] = social_links_from(data)
 	data["images"] = get_image_map()
 	return frappe._dict(data)
+
+
+def social_links_from(data):
+	return [
+		item
+		for item in (
+			{"name": "Facebook", "key": "facebook", "url": data.get("facebook_url")},
+			{"name": "X", "key": "twitter", "url": data.get("twitter_url")},
+			{"name": "LinkedIn", "key": "linkedin", "url": data.get("linkedin_url")},
+			{"name": "Instagram", "key": "instagram", "url": data.get("instagram_url")},
+		)
+		if item.get("url")
+	]
 
 
 def get_image_map():

@@ -27,6 +27,8 @@ BOOK_HOSTS = {"book.beautcloud.com", "book.beautycloud.com"}
 BOOK_REDIRECT = "https://www.beautcloud.com/book"
 POS_HOSTS = {"pos.beautcloud.com", "pos.beautycloud.com"}
 POS_REDIRECT = "https://www.beautcloud.com/staff/pos"
+ERP_HOSTS = {"erp.beautcloud.com", "erp.beautycloud.com"}
+ERP_REDIRECT = "https://www.beautcloud.com/desk"
 
 
 def request_host(request) -> str:
@@ -94,6 +96,8 @@ def before_request():
 		raise ProxiedResponse(Response(status=301, headers={"Location": BOOK_REDIRECT}))
 	if request_host(request) in POS_HOSTS:
 		raise ProxiedResponse(Response(status=301, headers={"Location": POS_REDIRECT}))
+	if request_host(request) in ERP_HOSTS:
+		raise ProxiedResponse(Response(status=301, headers={"Location": ERP_REDIRECT}))
 	if request.path in ("/favicon.ico", "/favicon.png"):
 		raise ProxiedResponse(
 			Response(

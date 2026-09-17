@@ -20,6 +20,7 @@ from beautcloud_website.website.settings import (
 	PAGE_SLOTS,
 	SOLUTION_SLOTS,
 	get_brand_settings,
+	social_links_from,
 )
 
 MARKETING_ROOTS = {
@@ -120,6 +121,10 @@ def _cta(home, page=None):
 def update_website_context(context):
 	bc = get_brand_settings()
 	home = get_homepage()
+	for field in ("facebook_url", "twitter_url", "linkedin_url", "instagram_url"):
+		if home.get(field):
+			bc[field] = home.get(field)
+	bc.social_links = social_links_from(bc)
 	context.bc = bc
 	context.home = home
 	context.bc_nav = get_nav()

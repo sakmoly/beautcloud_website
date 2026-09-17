@@ -33,6 +33,11 @@
   "column_break_links",
   "canonical_host",
   "google_site_verification",
+  "social_section",
+  "facebook_url",
+  "twitter_url",
+  "linkedin_url",
+  "instagram_url",
   "assets_section",
   "logo",
   "logo_preview",
@@ -230,6 +235,37 @@
    "label": "Google Site Verification"
   },
   {
+   "collapsible": 0,
+   "description": "Footer social icons. Leave a URL empty to hide that icon.",
+   "fieldname": "social_section",
+   "fieldtype": "Section Break",
+   "label": "Social Media"
+  },
+  {
+   "fieldname": "facebook_url",
+   "fieldtype": "Data",
+   "label": "Facebook URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "twitter_url",
+   "fieldtype": "Data",
+   "label": "X / Twitter URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "linkedin_url",
+   "fieldtype": "Data",
+   "label": "LinkedIn URL",
+   "options": "URL"
+  },
+  {
+   "fieldname": "instagram_url",
+   "fieldtype": "Data",
+   "label": "Instagram URL",
+   "options": "URL"
+  },
+  {
    "fieldname": "assets_section",
    "fieldtype": "Section Break",
    "label": "Brand Images"
@@ -379,7 +415,7 @@
  "index_web_pages_for_search": 0,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-16 21:50:00.000000",
+ "modified": "2026-09-18 02:04:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud Settings",

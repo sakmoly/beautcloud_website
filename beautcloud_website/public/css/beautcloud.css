@@ -1044,15 +1044,52 @@
 	padding: 3.5rem 0 1.4rem;
 }
 
+.bc-footer-brand {
+	margin-left: -1.15rem;
+}
+
 .bc-footer-logo {
 	display: inline-block;
 	background: transparent;
+	margin-left: -0.35rem;
 }
 
 .bc-footer-logo img {
 	display: block;
 	height: 96px;
 	width: auto;
+}
+
+.bc-footer-blurb {
+	color: #d8c4d2;
+	margin-top: 0.7rem;
+	max-width: 16.5rem;
+}
+
+.bc-footer-social {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+	margin-top: 1.15rem;
+}
+
+.bc-footer-social a {
+	display: grid;
+	place-items: center;
+	width: 1.35rem;
+	height: 1.35rem;
+	color: #f7eef3;
+}
+
+.bc-footer-social svg {
+	display: block;
+	width: 1.2rem;
+	height: 1.2rem;
+	fill: currentColor;
+}
+
+.bc-footer-social a:hover {
+	color: var(--bc-pink);
 }
 
 .bc-footer a {
@@ -1380,6 +1417,10 @@ html[dir="rtl"] .bc-demo-grid {
 
 	.bc-footer-grid {
 		grid-template-columns: 1fr 1fr;
+	}
+
+	.bc-footer-brand {
+		margin-left: 0;
 	}
 }
 

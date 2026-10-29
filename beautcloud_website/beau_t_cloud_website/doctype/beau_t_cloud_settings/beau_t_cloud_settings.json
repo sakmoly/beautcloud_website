@@ -33,6 +33,7 @@
   "column_break_links",
   "canonical_host",
   "google_site_verification",
+  "clarity_project_id",
   "social_section",
   "facebook_url",
   "twitter_url",
@@ -235,6 +236,12 @@
    "label": "Google Site Verification"
   },
   {
+   "description": "Microsoft Clarity project ID only, e.g. z3nozeyady. Leave empty to disable.",
+   "fieldname": "clarity_project_id",
+   "fieldtype": "Data",
+   "label": "Microsoft Clarity ID"
+  },
+  {
    "collapsible": 0,
    "description": "Footer social icons. Leave a URL empty to hide that icon.",
    "fieldname": "social_section",
@@ -415,7 +422,7 @@
  "index_web_pages_for_search": 0,
  "issingle": 1,
  "links": [],
- "modified": "2026-09-18 02:04:00.000000",
+ "modified": "2026-10-26 11:11:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud Settings",

@@ -1,3 +1,5 @@
+import re
+
 import frappe
 
 ASSET = "/assets/beautcloud_website/images"
@@ -26,6 +28,7 @@ DEFAULTS = {
 	"instagram_url": "https://www.instagram.com/printechssaudiarabia",
 	"canonical_host": "https://beautcloud.com",
 	"google_site_verification": "cv4mnLGBpKqeRhGiK48Y6UYBQ2xPk2jqKRYTaFM_0_0",
+	"clarity_project_id": "",
 	"logo": f"{ASSET}/logo/beau-t-cloud-primary.png",
 	"symbol": f"{ASSET}/logo/beau-t-cloud-symbol.png",
 	"favicon": f"{ASSET}/logo/favicon.png",
@@ -278,6 +281,8 @@ def get_brand_settings():
 	data["email_link"] = f"mailto:{data['contact_email']}" if data.get("contact_email") else ""
 	data["login_url"] = data.get("login_url") or "/book-demo"
 	data["social_links"] = social_links_from(data)
+	clarity_id = re.sub(r"[^A-Za-z0-9]", "", str(data.get("clarity_project_id") or ""))
+	data["clarity_project_id"] = clarity_id
 	data["images"] = get_image_map()
 	return frappe._dict(data)
 

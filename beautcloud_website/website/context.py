@@ -14,6 +14,7 @@ from beautcloud_website.website.cms import (
 	list_features,
 	list_solutions,
 )
+from beautcloud_website.website.routes import published_page_slugs
 from beautcloud_website.website.content import FEATURES, PAGE_IMAGES, PAGES, SOLUTIONS
 from beautcloud_website.website.settings import (
 	FEATURE_SLOTS,
@@ -35,6 +36,7 @@ MARKETING_ROOTS = {
 	"book-demo",
 	"privacy-policy",
 	"terms",
+	"cms-page",
 }
 
 
@@ -133,9 +135,12 @@ def update_website_context(context):
 	path = (context.get("path") or context.get("route") or _request_path() or "").strip("/")
 	if path == "index":
 		path = ""
+	request_path = _request_path()
+	if path in ("cms-page", "cms_page") and request_path and request_path not in ("cms-page", "cms_page"):
+		path = request_path
 	root = path.split("/")[0] if path else ""
 
-	if path not in ("", "index") and root not in MARKETING_ROOTS:
+	if path not in ("", "index") and root not in MARKETING_ROOTS and root not in published_page_slugs():
 		return context
 
 	context.base_template = "beautcloud_website/templates/layouts/beautcloud.html"
@@ -241,7 +246,11 @@ def update_website_context(context):
 		]
 		return context
 
-	page = get_page(path) if path in PAGES or frappe.db.exists("Beau-T-Cloud Website Page", path) else None
+	page = (
+		get_page(path)
+		if path in PAGES or path in published_page_slugs() or frappe.db.exists("Beau-T-Cloud Website Page", path)
+		else None
+	)
 	if page:
 		page_image = _img(bc, PAGE_SLOTS.get(path), PAGE_IMAGES.get(path) or bc.hero_image)
 		_seo(

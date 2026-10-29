@@ -14,10 +14,12 @@ web_include_js = ["/assets/beautcloud_website/js/beautcloud.js?v=20260916n"]
 
 update_website_context = ["beautcloud_website.website.context.update_website_context"]
 before_request = ["beautcloud_website.website.product_proxy.before_request"]
+website_path_resolver = ["beautcloud_website.website.routes.resolve_website_path"]
 
 base_template_map = {
 	r"^/?$": "beautcloud_website/templates/layouts/beautcloud.html",
 	r"^index$": "beautcloud_website/templates/layouts/beautcloud.html",
+	r"^/?cms-page$": "beautcloud_website/templates/layouts/beautcloud.html",
 	r"^/?(features|solutions|product-tour|pricing|about|contact|book-demo|privacy-policy|terms)(/.*)?$": (
 		"beautcloud_website/templates/layouts/beautcloud.html"
 	),

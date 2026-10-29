@@ -1,0 +1,44 @@
+<!-- base_template: beautcloud_website/templates/layouts/beautcloud.html -->
+<section class="bc-cinema" style="background-image:url('{{ page_image }}')">
+	<div class="bc-cinema-shade"></div>
+	<div class="bc-wrap bc-cinema-inner">
+		{% if site_page.eyebrow %}
+		<p class="bc-eyebrow">{{ site_page.eyebrow }}</p>
+		{% endif %}
+		<h1 class="bc-h1">{{ site_page.hero or site_page.title }}</h1>
+		{% if site_page.lead %}
+		<p class="bc-lead">{{ site_page.lead }}</p>
+		{% endif %}
+	</div>
+</section>
+{% if site_page.body_items %}
+<section class="bc-section">
+	<div class="bc-wrap bc-pillars">
+		{% for item in site_page.body_items %}
+		<article>
+			<h2 class="bc-h3">{{ item.title }}</h2>
+			<p>{{ item.text }}</p>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+{% if site_page.intro %}
+<section class="bc-section">
+	<div class="bc-wrap" style="max-width:720px;">{{ site_page.intro }}</div>
+</section>
+{% endif %}
+{% if site_page.faq_items %}
+<section class="bc-section">
+	<div class="bc-wrap">
+		{% for item in site_page.faq_items %}
+		<article class="bc-faq">
+			<h2 class="bc-h3">{{ item.question or item.title }}</h2>
+			<p>{{ item.answer or item.text }}</p>
+		</article>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}
+{% include "beautcloud_website/templates/includes/page_sections.html" %}
+{% include "beautcloud_website/templates/includes/demo_cta.html" %}

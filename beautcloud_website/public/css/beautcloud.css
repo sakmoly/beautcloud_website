@@ -1581,6 +1581,35 @@ html[dir="rtl"] .bc-demo-grid {
 		grid-template-columns: 1fr;
 	}
 
+	.bc-feature-split,
+	.bc-feature-split.is-flip {
+		display: flex;
+		flex-direction: column;
+		grid-template-columns: 1fr;
+		direction: ltr;
+		gap: 1.25rem;
+		align-items: stretch;
+	}
+
+	.bc-feature-split > *,
+	.bc-feature-split.is-flip > * {
+		flex: 0 0 auto;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	.bc-feature-split .bc-photo-frame,
+	.bc-feature-split.is-flip .bc-photo-frame {
+		order: -1;
+		width: 100%;
+	}
+
+	.bc-feature-split .bc-photo-frame img,
+	.bc-feature-split.is-flip .bc-photo-frame img {
+		width: 100%;
+		height: 220px;
+	}
+
 	.bc-hero-photo {
 		height: 240px;
 	}

@@ -421,6 +421,7 @@ def _table_items(doc, field):
 				"link_label": row.get("link_label") or "",
 				"link_route": row.get("link_route") or "",
 				"image": row.get("image") or "",
+				"image_side": row.get("image_side") or "Auto",
 				"q": row.get("question") or row.get("title") or "",
 				"a": row.get("answer") or row.get("text") or "",
 			}
@@ -1158,7 +1159,13 @@ def _decorate_article_item(row, index=0):
 	item["outro_lines"] = outro
 	item["list_label"] = (item.get("kind") or "").strip() or label or ("What you get" if points else "")
 	item["image"] = item.get("image") or _SAMPLE_IMAGES[index % len(_SAMPLE_IMAGES)]
-	item["image_left"] = bool(index % 2)
+	side = (item.get("image_side") or "Auto").strip()
+	if side == "Image left":
+		item["image_left"] = True
+	elif side == "Image right":
+		item["image_left"] = False
+	else:
+		item["image_left"] = bool(index % 2)
 	return item
 
 

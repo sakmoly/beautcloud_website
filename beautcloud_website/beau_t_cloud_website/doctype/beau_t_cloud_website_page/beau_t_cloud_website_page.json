@@ -23,7 +23,7 @@
   {"fieldname": "lead", "fieldtype": "Small Text", "label": "Description"},
   {"fieldname": "body_section", "fieldtype": "Section Break", "label": "Body"},
   {"fieldname": "intro", "fieldtype": "Text Editor", "label": "Intro"},
-  {"fieldname": "body_items", "fieldtype": "Table", "label": "Sections", "options": "Beau-T-Cloud Copy Line"},
+  {"description": "Each row is one article block: Title, Text, optional Image. Put bullets on their own lines starting with - or •. Kind / number is the list heading (for example What you get).", "fieldname": "body_items", "fieldtype": "Table", "label": "Sections", "options": "Beau-T-Cloud Copy Line"},
   {"fieldname": "faq_items", "fieldtype": "Table", "label": "FAQ", "options": "Beau-T-Cloud FAQ Item"},
   {"fieldname": "cta_section", "fieldtype": "Section Break", "label": "CTA"},
   {"fieldname": "button_label", "fieldtype": "Data", "label": "Button label"},
@@ -35,7 +35,7 @@
   {"fieldname": "cta_secondary_label", "fieldtype": "Data", "label": "Secondary button"}
  ],
  "links": [],
- "modified": "2026-10-29 11:38:00.000000",
+ "modified": "2026-11-07 20:44:00.000000",
  "modified_by": "Administrator",
  "module": "Beau-T-Cloud Website",
  "name": "Beau-T-Cloud Website Page",

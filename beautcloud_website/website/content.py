@@ -484,6 +484,7 @@ PAGE_IMAGES = {
 	"product-tour": f"{ASSET}/hero/hero-salon.png",
 	"privacy-policy": f"{ASSET}/logo/beau-t-cloud-primary.png",
 	"terms": f"{ASSET}/logo/beau-t-cloud-primary.png",
+	"blog": f"{ASSET}/home/lounge.png",
 }
 
 PRICING = [

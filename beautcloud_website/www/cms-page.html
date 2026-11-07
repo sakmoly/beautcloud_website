@@ -11,26 +11,52 @@
 		{% endif %}
 	</div>
 </section>
-{% if site_page.body_items %}
-<section class="bc-section">
-	<div class="bc-wrap bc-pillars">
-		{% for item in site_page.body_items %}
-		<article>
-			<h2 class="bc-h3">{{ item.title }}</h2>
-			<p>{{ item.text }}</p>
-		</article>
-		{% endfor %}
-	</div>
-</section>
-{% endif %}
 {% if site_page.intro %}
 <section class="bc-section">
-	<div class="bc-wrap" style="max-width:720px;">{{ site_page.intro }}</div>
+	<div class="bc-wrap bc-article">{{ site_page.intro }}</div>
 </section>
 {% endif %}
+{% for item in site_page.body_items %}
+<section class="bc-section {% if loop.index is even %}bc-section-alt{% endif %}">
+	<div class="bc-wrap bc-feature-split {% if item.image_left %}is-flip{% endif %}">
+		<div class="bc-article">
+			{% if item.title %}
+			<h2 class="bc-h2">{{ item.title }}</h2>
+			{% endif %}
+			{% for paragraph in item.intro_lines %}
+			<p>{{ paragraph }}</p>
+			{% endfor %}
+			{% if not item.intro_lines and not item.points and item.text %}
+			<p>{{ item.text }}</p>
+			{% endif %}
+			{% if item.points %}
+			{% if item.list_label %}
+			<h3 class="bc-h3">{{ item.list_label }}</h3>
+			{% endif %}
+			<ul class="bc-article-points">
+				{% for point in item.points %}
+				<li>{{ point }}</li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			{% for paragraph in item.outro_lines %}
+			<p>{{ paragraph }}</p>
+			{% endfor %}
+			{% if item.link_route %}
+			<p><a class="bc-article-link" href="{{ item.link_route }}">{{ item.link_label or "Learn more" }}</a></p>
+			{% endif %}
+		</div>
+		{% if item.image %}
+		<figure class="bc-photo-frame">
+			<img src="{{ item.image }}" alt="{{ item.title }}" width="960" height="540" loading="lazy">
+		</figure>
+		{% endif %}
+	</div>
+</section>
+{% endfor %}
 {% if site_page.faq_items %}
 <section class="bc-section">
-	<div class="bc-wrap">
+	<div class="bc-wrap bc-article">
 		{% for item in site_page.faq_items %}
 		<article class="bc-faq">
 			<h2 class="bc-h3">{{ item.question or item.title }}</h2>

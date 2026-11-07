@@ -342,7 +342,7 @@
    "label": "Website Photos"
   },
   {
-   "description": "These are the photos used on public pages. Click a row, attach a new image, and Save. Leave a row as-is to keep the current photo.",
+   "description": "Theae are the photos used on public pages. Click a row, attach a new image, and Save. Leave a row as-is to keep the current photo.",
    "fieldname": "website_images",
    "fieldtype": "Table",
    "label": "Page, feature and solution photos",

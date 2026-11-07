@@ -1,3 +1,5 @@
+import re
+
 import frappe
 
 from beautcloud_website.website.content import (
@@ -418,6 +420,7 @@ def _table_items(doc, field):
 				"route": row.get("link_route") or "",
 				"link_label": row.get("link_label") or "",
 				"link_route": row.get("link_route") or "",
+				"image": row.get("image") or "",
 				"q": row.get("question") or row.get("title") or "",
 				"a": row.get("answer") or row.get("text") or "",
 			}
@@ -1087,7 +1090,76 @@ def get_page(slug):
 				}
 				for item in TOUR
 			]
+	data["body_items"] = [
+		_decorate_article_item(row, index)
+		for index, row in enumerate(data.get("body_items") or [])
+		if (row.get("title") or row.get("text"))
+	]
 	return data
+
+
+_BULLET_RE = re.compile(r"^(?:[-*•–—●▪]|\d{1,2}[.)]|[a-z][.)])\s+(.+)$", re.I)
+_TIP_RE = re.compile(
+	r"(Practical tips:|What can you do\??|How can you improve your daily workflow\??)\s*-+\s*",
+	re.I,
+)
+_SAMPLE_IMAGES = [
+	"/assets/beautcloud_website/images/solutions/hair-salon-detail.png",
+	"/assets/beautcloud_website/images/features/online-booking.png",
+	"/assets/beautcloud_website/images/features/client-crm.png",
+	"/assets/beautcloud_website/images/features/staff-management.png",
+	"/assets/beautcloud_website/images/features/salon-pos.png",
+	"/assets/beautcloud_website/images/features/inventory-management.png",
+]
+
+
+def _bullet_line(line):
+	match = _BULLET_RE.match(line)
+	return match.group(1).strip() if match else None
+
+
+def _normalize_article_text(text):
+	text = str(text or "").replace("\r\n", "\n")
+	text = re.sub(r"\n?Copy text\s*$", "", text, flags=re.I)
+	text = _TIP_RE.sub(lambda match: f"\n{match.group(1)}\n- ", text)
+	return text
+
+
+def _article_parts(text):
+	intro, points, outro = [], [], []
+	stage = "intro"
+	for raw in _normalize_article_text(text).split("\n"):
+		line = raw.strip()
+		if not line:
+			continue
+		point = _bullet_line(line)
+		if point:
+			stage = "points"
+			points.append(point)
+		elif stage == "points":
+			outro.append(line)
+		else:
+			intro.append(line)
+	label = ""
+	if intro and re.match(
+		r"^(Practical tips|What can you do|How can you improve your daily workflow)\??:?$",
+		intro[-1],
+		re.I,
+	):
+		label = intro.pop().rstrip(":?").strip()
+	return intro, points, outro, label
+
+
+def _decorate_article_item(row, index=0):
+	item = dict(row or {})
+	intro, points, outro, label = _article_parts(item.get("text"))
+	item["intro_lines"] = intro
+	item["points"] = points
+	item["outro_lines"] = outro
+	item["list_label"] = (item.get("kind") or "").strip() or label or ("What you get" if points else "")
+	item["image"] = item.get("image") or _SAMPLE_IMAGES[index % len(_SAMPLE_IMAGES)]
+	item["image_left"] = bool(index % 2)
+	return item
 
 
 def list_features():
